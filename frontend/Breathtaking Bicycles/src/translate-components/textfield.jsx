@@ -1,6 +1,6 @@
 import React from "react"
 import { useState } from 'react';
-import TranslateButton from './translate-components/translateButton.jsx';
+import TranslateButton from './translateButton.jsx';
 
 
 function textfield() {
