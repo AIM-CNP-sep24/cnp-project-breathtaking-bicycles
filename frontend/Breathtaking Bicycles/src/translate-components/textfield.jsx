@@ -1,5 +1,7 @@
 import React from "react"
 import { useState } from 'react';
+import TranslateButton from './translate-components/translateButton.jsx';
+
 
 function textfield() {
   const [text, settext] = useState("");
@@ -14,6 +16,7 @@ function textfield() {
         className="border-[2px] border-[#F5EEDC] p-2 rounded mr-2 w-full"
         onChange={(e) => settext(e.target.value)}
         />
+        <TranslateButton />
       </>
     );
 };
