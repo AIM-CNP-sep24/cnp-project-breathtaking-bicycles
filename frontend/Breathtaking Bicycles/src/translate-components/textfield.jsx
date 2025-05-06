@@ -5,11 +5,25 @@ function Textfield() {
   const [text, setText] = useState("");
   const [submittedMessages, setSubmittedMessages] = useState([]);
   const messagesEndRef = useRef(null);
+  const enLanguageCode = "en";
+  const nlLanguageCode = "nl";
 
-  const handleTranslate = () => {
+  const  handleTranslate = async () => {
     if (text.trim() !== "") {
-      setSubmittedMessages((prev) => [...prev, text]);
-      setText("");
+      var detectionResponse = await fetch("http://127.0.0.1:5000/detect", {
+        method: "POST",
+        body: JSON.stringify({
+          q: text
+        }),
+        headers: {
+          "Content-type": "application/json"
+        }
+      });
+    
+    //   setSubmittedMessages((prev) => [...prev, text]);
+    //   setText("");
+      var [detectedLanguageObject] = await detectionResponse.json()
+      console.log(detectedLanguageObject.language);
     }
   };
 

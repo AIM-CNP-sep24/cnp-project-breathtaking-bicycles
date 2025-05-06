@@ -1,4 +1,4 @@
-import './benodigdhedenPagina.css'
+//import './benodigdhedenPagina.css'
 
 function BenodigdhedenPagina(){
 
