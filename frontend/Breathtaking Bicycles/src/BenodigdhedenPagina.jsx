@@ -1,4 +1,5 @@
-import './benodigdhedenPagina.css'
+import React from 'react';
+import Terugknop from './terugknop.jsx'
 
 function BenodigdhedenPagina(){
 
@@ -17,7 +18,8 @@ function BenodigdhedenPagina(){
 
     return (
         <>
-           <div className="grid-rows-3 text-center mx-5">
+        <Terugknop/>
+           <div className="pt-5 grid-rows-3 text-center mx-5">
                 <CategorieElement imgsrc="../src/img/Food-Drinks-Icon.png" titelInTaal1="Eten & Drinken" titelInTaal2="Food & Drinks" imageSize="289"/>
                 <CategorieElement imgsrc="../src/img/Food-Drinks-Icon.png" titelInTaal1="Badkamer" titelInTaal2="Bathroom"/>
                 <CategorieElement imgsrc="../src/img/Food-Drinks-Icon.png" titelInTaal1="WC" titelInTaal2="Toilet"/>
