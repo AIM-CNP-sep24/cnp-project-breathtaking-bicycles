@@ -6,12 +6,12 @@ function BenodigdhedenPagina(){
     const [titel, setTitel] = useState("");
     const [benodigdhedenArray, setBenodigdhedenArray] = useState([]);
     const {parentId} = useParams();
+    // Haal het ID uit de URL om zo de volgende benodigdheden te genereren. 
     useEffect(() => {
         setBenodigdhedenArray(haalBenodigdhedenOp(parentId));
         }, [parentId]
     );
 
-  
     function haalBenodigdhedenOp(parent){
         if (parent == "root"){
             setTitel("Standaard Benodigdheden");
@@ -34,7 +34,7 @@ function BenodigdhedenPagina(){
                     id: 3,
                     naamTaal1: "Medicijnen",
                     naamTaal2: "Medicine",
-                    imgSource: "../src/img/Medicijnen-Icon.png",
+                    imgSource: "../src/img/Medicijn-Icon.png",
                     laag: 1
                 },
                 {
@@ -55,7 +55,7 @@ function BenodigdhedenPagina(){
                     id: 6,
                     naamTaal1: "Naar buiten gaan",
                     naamTaal2: "Going outside",
-                    imgSource: "../src/Buiten-Icon.png",
+                    imgSource: "../src/img/Buiten-Icon.png",
                     laag: 1
                 }
             ];
@@ -63,45 +63,45 @@ function BenodigdhedenPagina(){
         } else if (parent == "1") {
             setTitel("Eten & Drinken");
             const array = [{
-                id: 1,
+                id: 7,
                 naamTaal1: "Pizza",
                 naamTaal2: "Pizza",
-                imgSource: "../src/img/Food-Drinks-Icon.png", 
+                imgSource: "../src/img/Pizza-Icon.png", 
                 laag: 1
             },
             {
-                id: 2,
+                id: 8,
                 naamTaal1: "Water",
                 naamTaal2: "Water",
-                imgSource: "../src/img/Toilet-Icon.png",
+                imgSource: "../src/img/Water-Icon.png",
                 laag: 1
             },
             {
-                id: 3,
+                id: 9,
                 naamTaal1: "Brood",
                 naamTaal2: "Bread",
-                imgSource: "../src/img/Medicijnen-Icon.png",
+                imgSource: "../src/img/Brood-Icon.png",
                 laag: 1
             },
             {
-                id: 4,
+                id: 10,
                 naamTaal1: "Thee",
                 naamTaal2: "Tea",
-                imgSource: "../src/img/Slapen-Icon.png",
+                imgSource: "../src/img/Thee-Icon.png",
                 laag: 1
             },
             {
-                id: 5,
+                id: 11,
                 naamTaal1: "Koffie",
                 naamTaal2: "Coffee",
-                imgSource: "../src/img/Badkamer-Icon.png",
+                imgSource: "../src/img/Koffie-Icon.png",
                 laag: 1
             },
             {
-                id: 6,
+                id: 12,
                 naamTaal1: "Fruit",
                 naamTaal2: "Fruit",
-                imgSource: "../src/Buiten-Icon.png",
+                imgSource: "../src/img/Appel-Icon.png",
                 laag: 1
             }
         ];
@@ -160,9 +160,8 @@ function BenodigdhedenPagina(){
             <h1 className="text-center text-4xl">{titel}</h1>
             <div className="grid-rows-3 text-center mx-5">
                 {benodigdhedenArray.map(function(object, i) {
-                    let link = object.id.toString();
                     return <>
-                    <CategorieElement key={i} object={object} link={link}/>
+                    <CategorieElement key={i} object={object} id={object.id.toString()}/>
                     </>
                 })}
             </div>
