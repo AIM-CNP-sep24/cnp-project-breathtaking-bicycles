@@ -1,31 +1,172 @@
-import React from 'react';
+
 import Terugknop from './terugknop.jsx'
+import { Link, Route, Routes, useParams} from 'react-router'
+import { useState, useEffect } from 'react';
+import CategorieElement from './CategorieElement';
 
 function BenodigdhedenPagina(){
+    const [titel, setTitel] = useState("");
+    const [benodigdhedenArray, setBenodigdhedenArray] = useState([]);
+    const {parentId} = useParams();
+    useEffect(() => {
+        setBenodigdhedenArray(haalBenodigdhedenOp(parentId));
+        }, [parentId]
+    );
 
-    function CategorieElement({imgsrc, titelInTaal1, titelInTaal2, imageSize}){
-        return (
-            <button className="mt-10 mx-15">
-                <div className="w-[310px] h-[330px] text-2xl text-center inline-block rounded-[10px] bg-[#F5EEDC] cursor-pointer shadow-[0_20px_#e0d9c8]">
-                    <h1>{titelInTaal1}</h1>
-                    <div className="line px-[10px] border-b-[2px] border-black"></div>
-                    <h1>{titelInTaal2}</h1>
-                    <img className="pictogram ml-[10%] w-[80%] text-center select-none" src={imgsrc}></img>
-                </div>
-                </button>
-        )
+  
+    function haalBenodigdhedenOp(parent){
+        if (parent == "root"){
+            setTitel("Standaard Benodigdheden");
+            const array = [
+                {
+                    id: 1,
+                    naamTaal1: "Eten & Drinken",
+                    naamTaal2: "Food & Drinks",
+                    imgSource: "../src/img/Food-Drinks-Icon.png", 
+                    laag: 1
+                },
+                {
+                    id: 2,
+                    naamTaal1: "Toilet",
+                    naamTaal2: "Toilet",
+                    imgSource: "../src/img/Toilet-Icon.png",
+                    laag: 1
+                },
+                {
+                    id: 3,
+                    naamTaal1: "Medicijnen",
+                    naamTaal2: "Medicine",
+                    imgSource: "../src/img/Medicijnen-Icon.png",
+                    laag: 1
+                },
+                {
+                    id: 4,
+                    naamTaal1: "Slapen",
+                    naamTaal2: "Sleeping",
+                    imgSource: "../src/img/Slapen-Icon.png",
+                    laag: 1
+                },
+                {
+                    id: 5,
+                    naamTaal1: "Badkamer",
+                    naamTaal2: "Bathroom",
+                    imgSource: "../src/img/Badkamer-Icon.png",
+                    laag: 1
+                },
+                {
+                    id: 6,
+                    naamTaal1: "Naar buiten gaan",
+                    naamTaal2: "Going outside",
+                    imgSource: "../src/Buiten-Icon.png",
+                    laag: 1
+                }
+            ];
+            return array
+        } else if (parent == "1") {
+            setTitel("Eten & Drinken");
+            const array = [{
+                id: 1,
+                naamTaal1: "Pizza",
+                naamTaal2: "Pizza",
+                imgSource: "../src/img/Food-Drinks-Icon.png", 
+                laag: 1
+            },
+            {
+                id: 2,
+                naamTaal1: "Water",
+                naamTaal2: "Water",
+                imgSource: "../src/img/Toilet-Icon.png",
+                laag: 1
+            },
+            {
+                id: 3,
+                naamTaal1: "Brood",
+                naamTaal2: "Bread",
+                imgSource: "../src/img/Medicijnen-Icon.png",
+                laag: 1
+            },
+            {
+                id: 4,
+                naamTaal1: "Thee",
+                naamTaal2: "Tea",
+                imgSource: "../src/img/Slapen-Icon.png",
+                laag: 1
+            },
+            {
+                id: 5,
+                naamTaal1: "Koffie",
+                naamTaal2: "Coffee",
+                imgSource: "../src/img/Badkamer-Icon.png",
+                laag: 1
+            },
+            {
+                id: 6,
+                naamTaal1: "Fruit",
+                naamTaal2: "Fruit",
+                imgSource: "../src/Buiten-Icon.png",
+                laag: 1
+            }
+        ];
+        return array;
+        } else if (parent == "2") {
+            setTitel("Toilet");
+            const array = [{
+                id: 1,
+                naamTaal1: "Eten",
+                naamTaal2: "Food & Drinks",
+                imgSource: "../src/img/Food-Drinks-Icon.png", 
+                laag: 1
+            },
+            {
+                id: 2,
+                naamTaal1: "Toilet",
+                naamTaal2: "Toilet",
+                imgSource: "../src/img/Toilet-Icon.png",
+                laag: 1
+            },
+            {
+                id: 3,
+                naamTaal1: "Medicijnen",
+                naamTaal2: "Medicine",
+                imgSource: "../src/img/Medicijnen-Icon.png",
+                laag: 1
+            },
+            {
+                id: 4,
+                naamTaal1: "Slapen",
+                naamTaal2: "Sleeping",
+                imgSource: "../src/img/Slapen-Icon.png",
+                laag: 1
+            },
+            {
+                id: 5,
+                naamTaal1: "Bad",
+                naamTaal2: "Bathroom",
+                imgSource: "../src/img/Badkamer-Icon.png",
+                laag: 1
+            },
+            {
+                id: 6,
+                naamTaal1: "Naar buiten gaan",
+                naamTaal2: "Going outside",
+                imgSource: "../src/Buiten-Icon.png",
+                laag: 1
+            }
+        ];
+        return array;
+        }
     }
 
     return (
         <>
-        <Terugknop/>
-           <div className="pt-5 grid-rows-3 text-center mx-5">
-                <CategorieElement imgsrc="../src/img/Food-Drinks-Icon.png" titelInTaal1="Eten & Drinken" titelInTaal2="Food & Drinks" imageSize="289"/>
-                <CategorieElement imgsrc="../src/img/Food-Drinks-Icon.png" titelInTaal1="Badkamer" titelInTaal2="Bathroom"/>
-                <CategorieElement imgsrc="../src/img/Food-Drinks-Icon.png" titelInTaal1="WC" titelInTaal2="Toilet"/>
-                <CategorieElement imgsrc="../src/img/Food-Drinks-Icon.png" titelInTaal1="Naar buiten gaan" titelInTaal2="Going outside"/>
-                <CategorieElement imgsrc="../src/img/Food-Drinks-Icon.png" titelInTaal1="Medicijnen" titelInTaal2="Medicine"/>
-                <CategorieElement imgsrc="../src/img/Food-Drinks-Icon.png" titelInTaal1="Gaan Slapen" titelInTaal2="Going to sleep"/>
+            <h1 className="text-center text-4xl">{titel}</h1>
+            <div className="grid-rows-3 text-center mx-5">
+                {benodigdhedenArray.map(function(object, i) {
+                    let link = object.id.toString();
+                    return <>
+                    <CategorieElement key={i} object={object} link={link}/>
+                    </>
+                })}
             </div>
         </>
     )
