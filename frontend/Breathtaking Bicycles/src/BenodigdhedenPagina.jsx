@@ -6,6 +6,7 @@ function BenodigdhedenPagina(){
     const [titel, setTitel] = useState("");
     const [benodigdhedenArray, setBenodigdhedenArray] = useState([]);
     const {parentId} = useParams();
+    // Haal het ID uit de URL om zo de volgende benodigdheden te genereren. 
     useEffect(() => {
         setBenodigdhedenArray(haalBenodigdhedenOp(parentId));
         }, [parentId]

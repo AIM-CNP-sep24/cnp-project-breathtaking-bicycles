@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 
 function CategorieElement({object, id}){
     const [subCategorie, setSubCategorie] = useState("false");
+
+    // Onderscheid maken tussen wel of geen subcategorie, staat nu nog hardcoded, aanpassen zodra DB beschikbaar is.
         useEffect(() => {
             if(id <= 6 && id != 2){
                 setSubCategorie(true);
@@ -18,6 +20,7 @@ function CategorieElement({object, id}){
         return (
             <>
             {subCategorie ? 
+            // Als er een subcategorie is word de button een link naar de volgende pagina, als dat niet zo is wordt er een onclick toegevoegd om de actie te verwerken
             (
                 <Link to={"/benodigdheden/" + id}>
                     <button className="mt-10 mx-15">
