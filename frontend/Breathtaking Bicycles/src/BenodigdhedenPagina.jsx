@@ -1,5 +1,3 @@
-//import './benodigdhedenPagina.css'
-
 function BenodigdhedenPagina(){
 
     function CategorieElement({imgsrc, titelInTaal1, titelInTaal2, imageSize}){
