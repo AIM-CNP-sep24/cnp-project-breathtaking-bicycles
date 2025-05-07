@@ -20,10 +20,34 @@ function Textfield() {
         }
       });
     
-    //   setSubmittedMessages((prev) => [...prev, text]);
-    //   setText("");
-      var [detectedLanguageObject] = await detectionResponse.json()
-      console.log(detectedLanguageObject.language);
+      var [detectedLanguageObject] = await detectionResponse.json();
+      var targetLanguage;
+      if (detectedLanguageObject.language == "nl") {
+        targetLanguage = enLanguageCode;
+      } else if (detectedLanguageObject.language == "en") {
+        targetLanguage = nlLanguageCode
+      } else {
+        console.log("This feature has only been worked out for nl en translation.")
+      }
+
+      var translationResponse = await fetch("http://127.0.0.1:5000/translate", {
+        method: "POST",
+        body: JSON.stringify({
+          q: text,
+          source: "auto",
+          target: targetLanguage,
+        }),
+        headers: {
+          "Content-type": "application/json"
+        }
+      });
+
+      var translationObject = await translationResponse.json();
+
+      console.log("detected language: " + detectedLanguageObject.language);
+      console.log("transalted text: " + translationObject.translatedText)
+      setSubmittedMessages((prev) => [...prev, translationObject.translatedText]);
+      setText("");
     }
   };
 
