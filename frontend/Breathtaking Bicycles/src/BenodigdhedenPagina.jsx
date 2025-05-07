@@ -159,17 +159,27 @@ function BenodigdhedenPagina(){
 
     return (
         <>
+        <div className="relative">
+            {parentId !== "root" && (
+                <Terugknop
+                    onClick={() => window.history.back()}
+                    className="top-4 left-4"
+                />
+            )}
+        </div>
+
             <h1 className="text-center text-4xl">{titel}</h1>
+            
             <div className="grid-rows-3 text-center mx-5">
                 {benodigdhedenArray.map(function(object, i) {
                     let link = object.id.toString();
-                    return <>
+                    return (
                     <CategorieElement key={i} object={object} link={link}/>
-                    </>
+                    );
                 })}
             </div>
         </>
-    )
+    );
 }
 
 export default BenodigdhedenPagina;
