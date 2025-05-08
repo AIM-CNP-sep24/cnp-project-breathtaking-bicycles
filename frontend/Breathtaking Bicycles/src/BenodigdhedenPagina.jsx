@@ -1,7 +1,7 @@
 import { Link, Route, Routes, useParams} from 'react-router'
 import { useState, useEffect } from 'react';
 import CategorieElement from './CategorieElement';
-import Terugknop from './terugknop.jsx';
+import Terugknop from './Terugknop.jsx';
 
 function BenodigdhedenPagina(){
     const [titel, setTitel] = useState("");
@@ -12,6 +12,7 @@ function BenodigdhedenPagina(){
         setBenodigdhedenArray(haalBenodigdhedenOp(parentId));
         }, [parentId]
     );
+
 
     function haalBenodigdhedenOp(parent){
         if (parent == "root"){
@@ -159,12 +160,17 @@ function BenodigdhedenPagina(){
     return (
         <>
         <div className="relative">
-            {parentId !== "root" && (
+        {(() => {
+        if (parentId !== "root") {
+            return (
                 <Terugknop
                     onClick={() => window.history.back()}
                     className="top-4 left-4"
                 />
-            )}
+            );
+        }
+        return null;
+    })()}
         </div>
             <h1 className="text-center text-4xl">{titel}</h1>
             
