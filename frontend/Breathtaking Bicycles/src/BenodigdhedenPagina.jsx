@@ -1,5 +1,5 @@
 
-import Terugknop from './terugknop.jsx'
+import Terugknop from './Terugknop.jsx'
 import { Link, Route, Routes, useParams} from 'react-router'
 import { useState, useEffect } from 'react';
 import CategorieElement from './CategorieElement';

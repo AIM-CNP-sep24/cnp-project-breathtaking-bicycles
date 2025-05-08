@@ -1,7 +1,7 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import BenodigdhedenPagina from './BenodigdhedenPagina';
-import Terugknop from './terugknop.jsx';
+import { MemoryRouter } from 'react-router';
+import BenodigdhedenPagina from '../BenodigdhedenPagina.jsx';
+import Terugknop from '../Terugknop.jsx';
 
 export default {
     title: 'Components/BenodigdhedenPagina',
