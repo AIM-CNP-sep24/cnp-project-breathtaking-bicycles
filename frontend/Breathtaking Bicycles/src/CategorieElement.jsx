@@ -28,7 +28,10 @@ function CategorieElement({object, id}){
                                 <h1 className="font-bold">{object.naamTaal1}</h1>
                                 <div className="line px-[10px] border-b-[2px] border-black"></div>
                                 <h1>{object.naamTaal2}</h1>
-                                <img className="pictogram ml-[10%] w-[80%] text-center select-none" src={object.imgSource} alt="image"></img>
+                                <img 
+                                    className="pictogram ml-[10%] w-[80%] text-center select-none" 
+                                    src={object.imgSource} alt={object.naamTaal1}>
+                                </img>
                             </div>
                         </button>
                     </Link>
@@ -38,7 +41,10 @@ function CategorieElement({object, id}){
                             <h1 className="font-bold">{object.naamTaal1}</h1>
                             <div className="line px-[10px] border-b-[2px] border-black"></div>
                              <h1>{object.naamTaal2}</h1>
-                            <img className="pictogram ml-[10%] w-[80%] text-center select-none" src={object.imgSource} alt="image"></img>
+                            <img 
+                                className="pictogram ml-[10%] w-[80%] text-center select-none" 
+                                src={object.imgSource} alt="image">
+                            </img>
                         </div>
                     </button>
                     )

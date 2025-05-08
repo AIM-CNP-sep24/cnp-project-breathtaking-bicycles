@@ -12,19 +12,25 @@ function Header ({ onClickBurger, onClickNoodknop}) {
        <header className="bg-[#27548A] p-3">
         <div className="container mx-auto flex justify-between items-center">
             <button 
-            onClick={onClickBurger}
-            className="text-white cursor-pointer">
+                onClick={onClickBurger}
+                className="text-white cursor-pointer">
                 <Bars3Icon className="h-20 w-17"/>
             </button>
             {vertaalPagina ? (
                 <Link to="/benodigdheden/root">
-                    <button className="bg-[#DDA853] rounded-[10px] cursor-pointer shadow-[0_10px_#BA8C43]" onClick={handleClick}>
+                    <button 
+                        className="bg-[#DDA853] rounded-[10px] cursor-pointer shadow-[0_10px_#BA8C43]" 
+                        onClick={handleClick}
+                    >
                         <Squares2X2Icon className="h-20 w-40"/>
                     </button>
                 </Link>
             ) : (
                 <Link to="/vertalen">
-                    <button className="bg-[#DDA853] rounded-[10px] cursor-pointer shadow-[0_10px_#BA8C43]" onClick={handleClick}>
+                    <button 
+                        className="bg-[#DDA853] rounded-[10px] cursor-pointer shadow-[0_10px_#BA8C43]" 
+                        onClick={handleClick}
+                    >
                         <LanguageIcon className="h-20 w-40"/>
                     </button>
                 </Link>
