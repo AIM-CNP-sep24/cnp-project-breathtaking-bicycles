@@ -73,7 +73,7 @@ function Textfield() {
 
   return (
     <div className="flex flex-col justify-center h-screen px-4 bg-white">
-      <div className="max-w-3xl w-full mx-auto">
+      <div className=" w-full mx-auto">
         {/* Message History */}
         <div className="max-h-64 overflow-y-auto  mb-6 rounded">
           {submittedMessages.map((msg, index) => (
