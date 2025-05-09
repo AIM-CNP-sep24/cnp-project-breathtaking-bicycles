@@ -72,7 +72,7 @@ function Textfield() {
   }, [submittedMessages]);
 
   return (
-    <div className="flex flex-col justify-center h-screen px-4 bg-white">
+    <div className="flex flex-col justify-center h-screen px-4 bg-white overflow-hidden">
       <div className=" w-full mx-auto">
         {/* Message History */}
         <div className="max-h-64 overflow-y-auto  mb-6 rounded">
