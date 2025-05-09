@@ -48,9 +48,7 @@ function CategorieElement({object, id}){
                         </div>
                     </button>
                     )
-            }
-            
-            
+            } 
             </>
         )
     }
