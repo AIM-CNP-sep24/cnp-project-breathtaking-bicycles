@@ -162,12 +162,16 @@ function BenodigdhedenPagina(){
             {(() => {
             if (parentId !== "root") {
                 return (
-                    <div className="grid-cols-[1fr,2fr]">
-                        <TerugKnop
-                            onClick={() => window.history.back()}
-                            className="top-4 left-4"
-                        />
-                        <h1 className="text-center text-4xl font-bold">{titel}</h1>
+                    <div className="grid grid-cols-3 w-[100%]">
+                        <div className="w-[100%] mt-2">
+                            <TerugKnop
+                                onClick={() => window.history.back()}
+                                className="left-4"
+                            />
+                        </div>
+                        <div className=" w-[100%]">
+                            <h1 className="h-20 text-center text-4xl font-bold mt-8">{titel}</h1>
+                        </div>
                     </div>
                 );
             }
