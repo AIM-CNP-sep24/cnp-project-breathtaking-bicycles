@@ -1,7 +1,7 @@
 import { Link, Route, Routes, useParams} from 'react-router'
 import { useState, useEffect } from 'react';
 import CategorieElement from './CategorieElement';
-import Terugknop from './Terugknop.jsx';
+import TerugKnop from './TerugKnop';
 
 function BenodigdhedenPagina(){
     const [titel, setTitel] = useState("");
@@ -159,21 +159,26 @@ function BenodigdhedenPagina(){
 
     return (
         <>
-        <div className="relative">
-        {(() => {
-        if (parentId !== "root") {
-            return (
-                <Terugknop
-                    onClick={() => window.history.back()}
-                    className="top-4 left-4"
-                />
-            );
-        }
-        return null;
-    })()}
-        </div>
-            <h1 className="text-center text-4xl">{titel}</h1>
+            {(() => {
+            if (parentId !== "root") {
+                return (
+                    <div className="grid grid-cols-3 w-[100%]">
+                        <div className="w-[100%] mt-2">
+                            <TerugKnop
+                                onClick={() => window.history.back()}
+                                className="left-4"
+                            />
+                        </div>
+                        <div className=" w-[100%]">
+                            <h1 className="h-20 text-center text-4xl font-bold mt-8">{titel}</h1>
+                        </div>
+                    </div>
+                );
+            }
+            return <h1 className="text-center text-4xl font-bold px-10">{titel}</h1>;
+        })()}
             
+
             <div className="grid-rows-3 text-center mx-5">
                 {benodigdhedenArray.map(function(object, i) {
                     return <>
