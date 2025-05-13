@@ -4,6 +4,7 @@ import {Routes, Route} from 'react-router'
 import Header from './header.jsx'
 import Textfield from './translate-components/textfield.jsx'
 import Index from './Index.jsx'
+import BenodigdhedenboomPagina from './benodigdhedenboom-components/BenodigdhedenboomPagina.jsx'
 
 function App() {
   
@@ -14,6 +15,7 @@ function App() {
         <Route path={"benodigdheden/:parentId"} element={<BenodigdhedenPagina />} />
         <Route path="vertalen" element={<Textfield />} />
         <Route path="" element={<Index />} />
+        <Route path="boomstructuurbeheer/:parentId" element={<BenodigdhedenboomPagina />} />
       </Routes>
     </>
   )
