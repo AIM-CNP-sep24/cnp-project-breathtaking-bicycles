@@ -8,9 +8,9 @@ function TaalInstelmenuComponent() {
 
     //functie om de talen te switchen
     const switchLanguage = () => {
-        const temp = selectedLanguageZorgvrager;
+        const selectedLanguageZorgrvrager = selectedLanguageZorgvrager;
         setSelectedLanguageZorgvrager(selectedLanguageZorgverlener);
-        setSelectedLanguageZorgverlener(temp);
+        setSelectedLanguageZorgverlener(selectedLanguageZorgrvrager);
     };
 
     //talen array: later data opgehaald uit de database
@@ -21,7 +21,7 @@ function TaalInstelmenuComponent() {
 
     return (
         <div className="container p-20 h-100 justify-start">
-            <div className="flex flex-col h-full rounded-lg bg-[#ffffff]">
+            <div className="flex flex-col h-[100%] rounded-lg bg-[#ffffff]">
                 <h1 className="text-4xl font-bold mb-4 text-center">Taalkeuze</h1>
                     <div className="flex justify-between w-full px-4">
                        <LanguageSelection
