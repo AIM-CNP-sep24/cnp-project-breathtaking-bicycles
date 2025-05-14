@@ -5,6 +5,7 @@ import Header from './header.jsx'
 import Textfield from './translate-components/textfield.jsx'
 import Index from './Index.jsx'
 import InstelComponent from './InstelComponent.jsx'
+import Login from './Login.jsx'
 
 function App() {
   
@@ -16,6 +17,7 @@ function App() {
         <Route path="instelmenu" element={<InstelComponent />} />
         <Route path="vertalen" element={<Textfield />} />
         <Route path="" element={<Index />} />
+        <Route path="login" element={<Login />} />
       </Routes>
     </>
   )
