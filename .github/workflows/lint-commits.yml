@@ -16,12 +16,10 @@ jobs:
       
       - name: Install dependencies
         run: npm install storybook
-        working-directory: frontend/breathtakingbicycles
 
       - name: Run Storybook tests
         run: npm run storybook
-        working-directory: frontend/breathtakingbicycles
-
+        
 
   backend:
     runs-on: ubuntu-latest
