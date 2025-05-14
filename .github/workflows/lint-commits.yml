@@ -18,7 +18,7 @@ jobs:
         run: npm install storybook
 
       - name: Run Storybook tests
-        run: npm run test-storybook
+        run: npm run storybook
 
   backend:
     runs-on: ubuntu-latest
