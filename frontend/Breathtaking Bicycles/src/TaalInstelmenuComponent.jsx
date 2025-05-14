@@ -19,7 +19,6 @@ function TaalInstelmenuComponent() {
         'Engels',
     ];
 
-
     return (
         <div className="container p-20 h-100 justify-start">
             <div className="flex flex-col h-full rounded-lg bg-[#ffffff]">
@@ -36,7 +35,6 @@ function TaalInstelmenuComponent() {
                         >
                             <ArrowsRightLeftIcon className="h-20 w-20 text-black" />
                         </button>
-
 
                         <LanguageSelection
                             label="Zorgvrager"
