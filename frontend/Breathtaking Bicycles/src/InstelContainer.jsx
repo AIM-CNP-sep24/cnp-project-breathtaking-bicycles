@@ -1,7 +1,7 @@
 import react from "react";
 import TaalInstelmenuComponent from "./TaalInstelmenuComponent.jsx";
 
- function InstelComponent() {
+ function InstelContainer() {
     return (
         <div className="container p-10 h-200">
             <div className="flex flex-col items-center h-full rounded-lg bg-[#F5EEDC]">
@@ -11,4 +11,4 @@ import TaalInstelmenuComponent from "./TaalInstelmenuComponent.jsx";
     );
 }
 
-export default InstelComponent;
+export default InstelContainer;
