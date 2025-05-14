@@ -1,7 +1,7 @@
 import { Link, Route, Routes, useParams} from 'react-router'
 import { useState, useEffect } from 'react';
 import CategorieElement from './CategorieElement';
-import TerugKnop from './TerugKnop';
+import TerugKnop from './TerugKnop.jsx';
 
 function BenodigdhedenPagina(){
     const [titel, setTitel] = useState("");
