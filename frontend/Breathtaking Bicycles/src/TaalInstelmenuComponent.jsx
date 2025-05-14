@@ -27,7 +27,7 @@ function TaalInstelmenuComponent() {
                        <LanguageSelection
                             label="Zorgverlener"
                             value={selectedLanguageZorgverlener}
-                            onChange={(e) => setSelectedLanguageZorgverlener(e.target.value)}
+                            onChange={(value) => setSelectedLanguageZorgverlener(value)}
                             options={languages.filter((lang) => lang !== selectedLanguageZorgvrager)} // geselcteerde taal van zorgvrager filteren
                         />
                         <button
@@ -39,7 +39,7 @@ function TaalInstelmenuComponent() {
                         <LanguageSelection
                             label="Zorgvrager"
                             value={selectedLanguageZorgvrager}
-                            onChange={(e) => setSelectedLanguageZorgvrager(e.target.value)}
+                            onChange={(value) => setSelectedLanguageZorgvrager(value)}
                             options={languages.filter((lang) => lang !== selectedLanguageZorgverlener)} // geselcteerde taal van zorgverlener filteren
                         />
                     </div>
