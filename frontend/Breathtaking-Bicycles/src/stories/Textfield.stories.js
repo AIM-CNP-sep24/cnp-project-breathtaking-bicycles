@@ -1,4 +1,4 @@
-import Textfield from '../translate-components/textfield';
+import Textfield from '../translate-components/Textfield';
 
 export default {
   title: 'Translate/Textfield',
