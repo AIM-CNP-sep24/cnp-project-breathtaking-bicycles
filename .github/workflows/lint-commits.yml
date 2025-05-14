@@ -6,6 +6,9 @@ on: [push, pull_request]
 jobs:
   frontend:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend\Breathtaking Bicycles
     steps:
       - uses: actions/checkout@v4
 
@@ -15,10 +18,11 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm install  
+        run: npm install
 
       - name: Build Storybook
         run: npm run build-storybook
+
 
         
   backend:
