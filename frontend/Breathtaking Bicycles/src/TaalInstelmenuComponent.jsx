@@ -8,9 +8,9 @@ function TaalInstelmenuComponent() {
 
     //functie om de talen te switchen
     const switchLanguage = () => {
-        const selectedLanguageZorgrvrager = selectedLanguageZorgvrager;
+        const selectedLanguageZorgrvragerCopy = selectedLanguageZorgvrager;
         setSelectedLanguageZorgvrager(selectedLanguageZorgverlener);
-        setSelectedLanguageZorgverlener(selectedLanguageZorgrvrager);
+        setSelectedLanguageZorgverlener(selectedLanguageZorgrvragerCopy);
     };
 
     //talen array: later data opgehaald uit de database
