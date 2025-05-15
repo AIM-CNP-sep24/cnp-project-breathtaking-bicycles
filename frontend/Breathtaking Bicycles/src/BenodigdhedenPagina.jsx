@@ -2,165 +2,71 @@ import { Link, Route, Routes, useParams} from 'react-router'
 import { useState, useEffect } from 'react';
 import CategorieElement from './CategorieElement';
 import TerugKnop from './TerugKnop';
+import axios from 'axios';
 
 function BenodigdhedenPagina(){
     const [titel, setTitel] = useState("");
     const [benodigdhedenArray, setBenodigdhedenArray] = useState([]);
     const {parentId} = useParams();
+    const taal1 = "NL";
+    const taal2 = "EN";
     // Haal het ID uit de URL om zo de volgende benodigdheden te genereren. 
     useEffect(() => {
-        setBenodigdhedenArray(haalBenodigdhedenOp(parentId));
-        }, [parentId]
+        haalBenodigdhedenOp(parentId, taal1, taal2);
+        haalTitelOp(parentId, taal1, taal2);
+        }, [parentId, taal1, taal2]
     );
 
 
-    function haalBenodigdhedenOp(parent){
-        if (parent == "root"){
-            setTitel("Standaard Benodigdheden");
-            const array = [
-                {
-                    id: 1,
-                    naamTaal1: "Eten & Drinken",
-                    naamTaal2: "Food & Drinks",
-                    imgSource: "../src/img/Food-Drinks-Icon.png", 
-                    laag: 1
-                },
-                {
-                    id: 2,
-                    naamTaal1: "Toilet",
-                    naamTaal2: "Toilet",
-                    imgSource: "../src/img/Toilet-Icon.png",
-                    laag: 1
-                },
-                {
-                    id: 3,
-                    naamTaal1: "Medicijnen",
-                    naamTaal2: "Medicine",
-                    imgSource: "../src/img/Medicijn-Icon.png",
-                    laag: 1
-                },
-                {
-                    id: 4,
-                    naamTaal1: "Slapen",
-                    naamTaal2: "Sleeping",
-                    imgSource: "../src/img/Slapen-Icon.png",
-                    laag: 1
-                },
-                {
-                    id: 5,
-                    naamTaal1: "Badkamer",
-                    naamTaal2: "Bathroom",
-                    imgSource: "../src/img/Badkamer-Icon.png",
-                    laag: 1
-                },
-                {
-                    id: 6,
-                    naamTaal1: "Naar buiten gaan",
-                    naamTaal2: "Going outside",
-                    imgSource: "../src/img/Buiten-Icon.png",
-                    laag: 1
-                }
-            ];
-            return array
-        } else if (parent == "1") {
-            setTitel("Eten & Drinken");
-            const array = [{
-                id: 7,
-                naamTaal1: "Pizza",
-                naamTaal2: "Pizza",
-                imgSource: "../src/img/Pizza-Icon.png", 
-                laag: 1
-            },
-            {
-                id: 8,
-                naamTaal1: "Water",
-                naamTaal2: "Water",
-                imgSource: "../src/img/Water-Icon.png",
-                laag: 1
-            },
-            {
-                id: 9,
-                naamTaal1: "Brood",
-                naamTaal2: "Bread",
-                imgSource: "../src/img/Brood-Icon.png",
-                laag: 1
-            },
-            {
-                id: 10,
-                naamTaal1: "Thee",
-                naamTaal2: "Tea",
-                imgSource: "../src/img/Thee-Icon.png",
-                laag: 1
-            },
-            {
-                id: 11,
-                naamTaal1: "Koffie",
-                naamTaal2: "Coffee",
-                imgSource: "../src/img/Koffie-Icon.png",
-                laag: 1
-            },
-            {
-                id: 12,
-                naamTaal1: "Fruit",
-                naamTaal2: "Fruit",
-                imgSource: "../src/img/Appel-Icon.png",
-                laag: 1
+
+    async function haalBenodigdhedenOp(parentId, taal1, taal2){
+        try {
+            const response = await fetch("http://localhost:8080/benodigdheden-ophalen", {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "parentId": parentId,
+                    "taal1": taal1,
+                    "taal2": taal2
+                }},
+            );
+
+            if(response.ok){
+                const data = await response.json();
+                setBenodigdhedenArray(data);
             }
-        ];
-        return array;
-        } else if (parent == "2") {
-            setTitel("Toilet");
-            const array = [{
-                id: 1,
-                naamTaal1: "Eten",
-                naamTaal2: "Food & Drinks",
-                imgSource: "../src/img/Food-Drinks-Icon.png", 
-                laag: 1
-            },
-            {
-                id: 2,
-                naamTaal1: "Toilet",
-                naamTaal2: "Toilet",
-                imgSource: "../src/img/Toilet-Icon.png",
-                laag: 1
-            },
-            {
-                id: 3,
-                naamTaal1: "Medicijnen",
-                naamTaal2: "Medicine",
-                imgSource: "../src/img/Medicijnen-Icon.png",
-                laag: 1
-            },
-            {
-                id: 4,
-                naamTaal1: "Slapen",
-                naamTaal2: "Sleeping",
-                imgSource: "../src/img/Slapen-Icon.png",
-                laag: 1
-            },
-            {
-                id: 5,
-                naamTaal1: "Bad",
-                naamTaal2: "Bathroom",
-                imgSource: "../src/img/Badkamer-Icon.png",
-                laag: 1
-            },
-            {
-                id: 6,
-                naamTaal1: "Naar buiten gaan",
-                naamTaal2: "Going outside",
-                imgSource: "../src/Buiten-Icon.png",
-                laag: 1
+        } catch (error){
+            console.log(error);
+        }
+    }
+
+    async function haalTitelOp(parentId, taal1, taal2){
+        try {
+            const response = await fetch("http://localhost:8080/benodigdheid-titel-ophalen", {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "parentId": parentId,
+                    "taal1": taal1,
+                    "taal2": taal2
+                }}, 
+            );
+
+            if(response.ok){
+                const data = await response.json();
+                data.map((r) => {
+                    setTitel(r.taal1);
+                })
             }
-        ];
-        return array;
+        } catch (error){
+            console.log(error);
         }
     }
 
     return (
         <>
             {(() => {
-            if (parentId !== "root") {
+            if (parentId != 0) {
                 return (
                     <div className="grid grid-cols-3 w-[100%]">
                         <div className="w-[100%] mt-2">
@@ -170,7 +76,7 @@ function BenodigdhedenPagina(){
                             />
                         </div>
                         <div className=" w-[100%]">
-                            <h1 className="h-20 text-center text-4xl font-bold mt-8">{titel}</h1>
+                            <h1 className="text-center text-4xl font-bold mt-8">{titel}</h1>
                         </div>
                     </div>
                 );
