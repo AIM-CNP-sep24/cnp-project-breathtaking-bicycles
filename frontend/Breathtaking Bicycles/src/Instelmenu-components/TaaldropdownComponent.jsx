@@ -12,17 +12,22 @@
 
     // Sluit de dropdown bij een klik buiten de component
     useEffect(() => {
+
+        //functie die controleert of de klik binnen of de dropdown plaatsvindt
         const closeDropdown = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
                 setIsOpen(false);
             }
         };
 
+        //voeg een event listener toe aan het document dat luisteren naar muisklikken
         document.addEventListener('mousedown', closeDropdown);
+
+        //verwijder de eventlistener als het component ontkoppeld wordt
         return () => {
             document.removeEventListener('mousedown', closeDropdown);
         };
-    }, []);
+    }, []); //Zorgt ervoor dat eventlistener alleen bij het laden van de component wordt uitgevoerd
 
 
 
