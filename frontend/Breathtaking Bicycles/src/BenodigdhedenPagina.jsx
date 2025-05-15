@@ -2,7 +2,6 @@ import { Link, Route, Routes, useParams} from 'react-router'
 import { useState, useEffect } from 'react';
 import CategorieElement from './CategorieElement';
 import TerugKnop from './TerugKnop';
-import axios from 'axios';
 
 function BenodigdhedenPagina(){
     const [titel, setTitel] = useState("");

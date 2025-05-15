@@ -7,16 +7,21 @@ function TaalInstelmenuComponent() {
     const [selectedLanguageZorgverlener, setSelectedLanguageZorgverlener] = useState('');
     const [languages, setLanguages] = useState([]); // array om de talen op te slaan
 
+     //talen array: data wordt opgehaald van de backend
+    useEffect(() => {
+        //roep de functie aan om de talen op te halen
+        fetchLanguages();
+    }, []); // Lege dependency array zorgt ervoor dat de functie alleen bij het laden van het component wordt uitgevoerd
+
     //functie om de talen te switchen
-    const switchLanguage = () => {
+    function switchLanguage () {
         const selectedLanguageZorgrvragerCopy = selectedLanguageZorgvrager;
         setSelectedLanguageZorgvrager(selectedLanguageZorgverlener);
         setSelectedLanguageZorgverlener(selectedLanguageZorgrvragerCopy);
     };
 
-    //talen array: data wordt opgehaald van de backend
-    useEffect(() => {
-        //functie om de talen op te halen
+
+     //functie om de talen op te halen
         async function fetchLanguages() {
             try {
                 const response = await fetch("http://localhost:8080/talen-ophalen"); // URL van de backend
@@ -29,11 +34,6 @@ function TaalInstelmenuComponent() {
                 console.error('Fout bij ophalen van talen:', error);
             }
         };
-        //roep de functie aan om de talen op te halen
-        fetchLanguages();
-    }, []); // Lege dependency array zorgt ervoor dat de functie alleen bij het laden van het component wordt uitgevoerd
-
-
 
     return (
         <div className="container p-20 h-100 justify-start">
