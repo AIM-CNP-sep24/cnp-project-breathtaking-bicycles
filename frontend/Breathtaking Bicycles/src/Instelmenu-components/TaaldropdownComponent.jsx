@@ -10,24 +10,24 @@
         setIsOpen(false); //sluit dropdown na selectie
     };
 
-    // Sluit de dropdown bij een klik buiten de component
+    // Sluit de dropdown bij een klik buiten het component
     useEffect(() => {
 
-        //functie die controleert of de klik binnen of de dropdown plaatsvindt
+        //functie die controleert of de klik binnen of op de dropdown plaatsvindt
         const closeDropdown = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
                 setIsOpen(false);
             }
         };
 
-        //voeg een event listener toe aan het document dat luisteren naar muisklikken
+        //voeg een eventlistener toe aan het document dat luistert naar muisklikken
         document.addEventListener('mousedown', closeDropdown);
 
         //verwijder de eventlistener als het component ontkoppeld wordt
         return () => {
             document.removeEventListener('mousedown', closeDropdown);
         };
-    }, []); //Zorgt ervoor dat eventlistener alleen bij het laden van de component wordt uitgevoerd
+    }, []); //Zorgt ervoor dat de eventlistener alleen bij het laden van het component wordt uitgevoerd
 
 
 
@@ -41,7 +41,7 @@
                     {value || 'Selecteer een taal'}
                 </div>
 
-                {isOpen && ( //als isOpen true is, dan render de dropdown. als het false is, dan render de dropdown niet
+                {isOpen && ( //als isOpen true is, dan de dropdown laten renderen. als isOpen false is, dan de dropdown niet renderen
                     <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-md">
                         {options.map((option) => (
                             <li
