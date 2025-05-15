@@ -68,4 +68,5 @@ jobs:
         run: npm install
 
       - name: Run ESLint
-        run: npx eslint . --ext .js,.jsx
+        run: npx eslint "**/*.{js,jsx}"
+
