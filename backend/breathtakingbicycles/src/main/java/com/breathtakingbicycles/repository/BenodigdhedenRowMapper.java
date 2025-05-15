@@ -2,7 +2,6 @@ package com.breathtakingbicycles.repository;
 
 import com.breathtakingbicycles.domein.Benodigdheid;
 import org.springframework.jdbc.core.RowMapper;
-import com.breathtakingbicycles.domein.BenodigdhedenOphaalData;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
