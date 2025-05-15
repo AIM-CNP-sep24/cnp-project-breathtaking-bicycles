@@ -3,9 +3,6 @@ USE breathtakingbicycles
 INSERT INTO taal (naam, code, imgsrc) VALUES ('Nederlands', 'NL', '1')
 INSERT INTO taal (naam, code, imgsrc) VALUES ('Engels', 'EN', '1')
 
-
-
-
 INSERT INTO benodigdheid (id, parent_id, imgsrc, rangnr, laag) VALUES (1, 0, '../src/img/Food-Drinks-Icon.png', 1, 0)
 INSERT INTO benodigdheid (id, parent_id, imgsrc, rangnr, laag) VALUES (2, 0, '../src/img/Toilet-Icon.png', 2, 0)
 INSERT INTO benodigdheid (id, parent_id, imgsrc, rangnr, laag) VALUES (3, 0, '../src/img/Medicijn-Icon.png', 3, 0)

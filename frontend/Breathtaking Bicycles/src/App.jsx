@@ -4,7 +4,7 @@ import {Routes, Route} from 'react-router'
 import Header from './header.jsx'
 import Textfield from './translate-components/textfield.jsx'
 import Index from './Index.jsx'
-import InstelComponent from './InstelComponent.jsx'
+import InstelComponent from './InstelContainer.jsx'
 
 function App() {
   
