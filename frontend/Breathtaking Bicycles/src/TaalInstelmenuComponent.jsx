@@ -23,11 +23,11 @@ function TaalInstelmenuComponent() {
         <div className="container p-20 h-100 justify-start">
             <div className="flex flex-col h-[100%] rounded-lg bg-[#ffffff]">
                 <h1 className="text-4xl font-bold mb-4 text-center">Taalkeuze</h1>
-                    <div className="flex justify-between w-full px-4">
+                    <div className="flex justify-between w-full px-10">
                        <LanguageSelection
                             label="Zorgverlener"
                             value={selectedLanguageZorgverlener}
-                            onChange={(e) => setSelectedLanguageZorgverlener(e.target.value)}
+                            onChange={(value) => setSelectedLanguageZorgverlener(value)}
                             options={languages.filter((lang) => lang !== selectedLanguageZorgvrager)} // geselcteerde taal van zorgvrager filteren
                         />
                         <button
@@ -39,7 +39,7 @@ function TaalInstelmenuComponent() {
                         <LanguageSelection
                             label="Zorgvrager"
                             value={selectedLanguageZorgvrager}
-                            onChange={(e) => setSelectedLanguageZorgvrager(e.target.value)}
+                            onChange={(value) => setSelectedLanguageZorgvrager(value)}
                             options={languages.filter((lang) => lang !== selectedLanguageZorgverlener)} // geselcteerde taal van zorgverlener filteren
                         />
                     </div>
