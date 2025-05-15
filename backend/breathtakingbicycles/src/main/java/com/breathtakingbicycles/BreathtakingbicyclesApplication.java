@@ -9,5 +9,7 @@ public class BreathtakingbicyclesApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BreathtakingbicyclesApplication.class, args);
 	}
-
+	public static boolean failTest() {
+		return true;
+	}
 }
