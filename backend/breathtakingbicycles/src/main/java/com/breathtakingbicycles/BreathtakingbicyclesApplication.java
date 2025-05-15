@@ -10,6 +10,6 @@ public class BreathtakingbicyclesApplication {
 		SpringApplication.run(BreathtakingbicyclesApplication.class, args);
 	}
 	public static boolean failTest() {
-		return false;
+		return true;
 	}
 }
