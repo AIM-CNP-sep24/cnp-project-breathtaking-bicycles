@@ -45,11 +45,11 @@
                     <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-md">
                         {options.map((option) => (
                             <li
-                                key={option}
+                                key={option.id}
                                 className="p-4 bg-gray-100 cursor-pointer"
-                                onClick={() => handleOptionClick(option)}
+                                onClick={() => handleOptionClick(option.naam)}
                             >
-                                {option}
+                                {option.naam}
                             </li>
                         ))}
                     </ul>

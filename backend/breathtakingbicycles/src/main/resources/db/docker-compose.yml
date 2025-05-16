@@ -3,7 +3,7 @@ version: '3.8'
 services:
   sqlserver:
 #    Aanpassen naar mcr.microsoft.com/mssql/server:2022-latest voor windows gebruikers
-    image: mcr.microsoft.com/azure-sql-edge
+    image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: sqlserver
     environment:
       ACCEPT_EULA: "Y"
