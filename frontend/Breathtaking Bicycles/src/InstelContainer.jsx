@@ -1,6 +1,6 @@
 import react from "react";
 
- function InstelComponent() {
+ function InstelContainer() {
     return (
         <div className="container p-10 h-200">
             <div className="flex flex-col items-center justify-center h-full rounded-lg bg-[#F5EEDC]">
@@ -9,4 +9,4 @@ import react from "react";
     );
 }
 
-export default InstelComponent;
+export default InstelContainer; 
