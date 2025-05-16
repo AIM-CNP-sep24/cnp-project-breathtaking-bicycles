@@ -1,1 +1,40 @@
 @import "tailwindcss";
+
+@font-face {  
+    font-family: OpenDyslexic;  
+    src: url("../src/fonts/OpenDyslexic-Regular.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {  
+    font-family: OpenDyslexic;  
+    src: url("../src/fonts/OpenDyslexic-Bold.otf") format("opentype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {  
+    font-family: OpenDyslexic;  
+    src: url("../src/fonts/OpenDyslexic-Italic.otf") format("opentype");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {  
+    font-family: OpenDyslexic;  
+    src: url("../src/fonts/OpenDyslexic-Bold-Italic.otf") format("opentype");
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* @theme { 
+    --font-OpenDyslexic: "OpenDyslexic";
+} */
+
+/* Dit is nodig voor de normalizatie van de fonts, ze komen namelijk niet helemaal overeen en dat zorgt ervoor dat de componenten er gek uit zien */
+.font-OpenDyslexic {
+    font-family: 'OpenDyslexic';
+    letter-spacing: -0.09em;
+    display: inline-block; 
+}

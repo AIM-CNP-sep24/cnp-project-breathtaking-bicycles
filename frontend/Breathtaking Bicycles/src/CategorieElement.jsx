@@ -1,7 +1,7 @@
 import { Link } from "react-router"
 import { useState, useEffect } from "react";
 
-function CategorieElement({object, id}){
+function CategorieElement({object, id, uiSettings}){
     const [subCategorie, setSubCategorie] = useState("false");
 
 
@@ -41,7 +41,7 @@ function CategorieElement({object, id}){
             (
                     <Link to={"/benodigdheden/" + id}>
                         <button className="mt-10 mx-15">
-                            <div className="w-[310px] h-[330px] text-2xl text-center inline-block rounded-[10px] bg-[#F5EEDC] cursor-pointer shadow-[0_20px_#e0d9c8]">
+                            <div className={`w-[310px] h-[330px] text-2xl text-center inline-block rounded-[10px] bg-[${uiSettings.colorPallete["color-1"]}] cursor-pointer shadow-[0_20px_#e0d9c8]`}>
                                 <h1 className="font-bold">{object.naamTaal1}</h1>
                                 <div className="line px-[10px] border-b-[2px] border-black"></div>
                                 <h1>{object.naamTaal2}</h1>
@@ -54,7 +54,7 @@ function CategorieElement({object, id}){
                     </Link>
                     ) : (
                     <button className="mt-10 mx-15" onClick={handleClick}>
-                        <div className="w-[310px] h-[330px] text-2xl text-center inline-block rounded-[10px] bg-[#F5EEDC] cursor-pointer shadow-[0_20px_#e0d9c8]">
+                        <div className={`w-[310px] h-[330px] text-2xl text-center inline-block rounded-[10px] bg-[${uiSettings.colorPallete["color-1"]}] cursor-pointer shadow-[0_20px_#e0d9c8]`}>
                             <h1 className="font-bold">{object.naamTaal1}</h1>
                             <div className="line px-[10px] border-b-[2px] border-black"></div>
                              <h1>{object.naamTaal2}</h1>
