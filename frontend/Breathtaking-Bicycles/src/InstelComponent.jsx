@@ -1,5 +1,3 @@
-import react from "react";
-
  function InstelComponent() {
     return (
         <div className="container p-10 h-200">

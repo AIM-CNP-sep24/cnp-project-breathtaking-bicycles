@@ -1,5 +1,3 @@
-import React from 'react';
-
 const TerugKnop = ({ onClick, className }) => {
     return (
         <button
