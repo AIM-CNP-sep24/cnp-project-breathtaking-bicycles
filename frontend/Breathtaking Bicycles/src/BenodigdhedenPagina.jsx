@@ -170,7 +170,7 @@ function BenodigdhedenPagina(){
                             />
                         </div>
                         <div className=" w-[100%]">
-                            <h1 className="h-20 text-center text-4xl font-bold mt-8">{titel}</h1>
+                            <h1 className="text-center text-4xl font-bold mt-8">{titel}</h1>
                         </div>
                     </div>
                 );

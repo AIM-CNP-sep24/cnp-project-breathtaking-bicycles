@@ -7,9 +7,7 @@ const uiSettings = {
         "color-3": "#183B4E",
         "color-4": "#DDA853",
     },
-    font: {
-        "fontName": "standard"
-    }
+    font: "standard"
 }
 
 const uiSettingsSecondary = {
@@ -19,10 +17,10 @@ const uiSettingsSecondary = {
         "color-3": "#FF9D23",
         "color-4": "#F93827",
     },
-    font: {
-        "fontName": "openDyslexic"
-    }
+    font: "font-OpenDyslexic"
 }
+
+// Gebruik dit element als houvast voor het maken van je eigen elementen!!!!
 
 function SettingsPreview() {
     return (
@@ -30,8 +28,8 @@ function SettingsPreview() {
             <div className="flex flex-col items-center justify-center h-full rounded-lg bg-[#F5EEDC] pb-10">
                 <p className="text-2xl font-bold">Preview</p>
                 <div className="pt-6"></div>
-                <div className="bg-white px-46 py-28 rounded-lg">
-                    <h1 className="font-openDyslexic h-20 text-center text-4xl font-bold">Standaard Benodigdheden</h1>
+                <div className="bg-white p-28 rounded-lg flex flex-col items-center justify-center">
+                    <h1 className={`${uiSettingsSecondary.font} text-center text-4xl font-bold`}>Standaard Benodigdheden</h1>
                     <CategorieElement key={1} 
                     object={{
                         id: 7,

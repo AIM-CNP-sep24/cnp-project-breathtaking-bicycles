@@ -3,23 +3,38 @@
 @font-face {  
     font-family: OpenDyslexic;  
     src: url("../src/fonts/OpenDyslexic-Regular.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {  
-    font-family: OpenDyslexic-bold;  
-    src: url("../src/fonts/OpenDyslexic-Regular.otf") format("opentype");
+    font-family: OpenDyslexic;  
+    src: url("../src/fonts/OpenDyslexic-Bold.otf") format("opentype");
+    font-weight: bold;
+    font-style: normal;
 }
 
 @font-face {  
-    font-family: OpenDyslexic-italic;  
-    src: url("../src/fonts/OpenDyslexic-Regular.otf") format("opentype");
+    font-family: OpenDyslexic;  
+    src: url("../src/fonts/OpenDyslexic-Italic.otf") format("opentype");
+    font-weight: normal;
+    font-style: italic;
 }
 
 @font-face {  
-    font-family: OpenDyslexic-bold-italic;  
-    src: url("../src/fonts/OpenDyslexic-Regular.otf") format("opentype");
+    font-family: OpenDyslexic;  
+    src: url("../src/fonts/OpenDyslexic-Bold-Italic.otf") format("opentype");
+    font-weight: bold;
+    font-style: italic;
 }
 
-@theme { 
-    --font-openDyslexic: "OpenDyslexic", "OpenDyslexic-bold", "OpenDyslexic-italic", "OpenDyslexic-bold-italic";
+/* @theme { 
+    --font-OpenDyslexic: "OpenDyslexic";
+} */
+
+/* Dit is nodig voor de normalizatie van de fonts, ze komen namelijk niet helemaal overeen en dat zorgt ervoor dat de componenten er gek uit zien */
+.font-OpenDyslexic {
+    font-family: 'OpenDyslexic';
+    letter-spacing: -0.09em;
+    display: inline-block; 
 }
