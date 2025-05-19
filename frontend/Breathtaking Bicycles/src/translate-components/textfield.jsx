@@ -20,7 +20,6 @@ function Textfield() {
 
       const [detectedLanguageObject] = await detectionResponse.json();
       let targetLanguage;
-
       if (detectedLanguageObject.language === "nl") {
         targetLanguage = enLanguageCode;
       } else if (detectedLanguageObject.language === "en") {

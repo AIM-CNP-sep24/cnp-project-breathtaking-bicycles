@@ -6,7 +6,6 @@ CREATE TABLE taal (
     id bigint NOT NULL IDENTITY(1,1) PRIMARY KEY,
     naam varchar(100) NOT NULL,
     code varchar(10) NOT NULL,
-    imgsrc varchar(255) NOT NULL
 );
 
 CREATE TABLE zin (

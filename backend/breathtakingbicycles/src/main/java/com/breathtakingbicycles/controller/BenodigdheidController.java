@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,24 +31,37 @@ public class BenodigdheidController {
     }
 
     @PostMapping("/maak-benodigdheid")
-    public ResponseEntity<Map<String, String>> createBenodigdheid(@RequestHeader("body") BenodigdheidInvoerData invoerData){
-        boolean status = benodigdheidRepository.createBenodigdheid(invoerData);
+    public ResponseEntity<Map<String, String>> maakBenodigdheid(@RequestHeader("body") BenodigdheidInvoerData invoerData) {
         Map<String, String> response = new HashMap<>();
         String message;
-        if (status){
-            message = "Benodigdheid toegevoegd";
-            response.put("message", message);
-            return(ResponseEntity.status(200).body(response));
+        if (benodigdheidRepository.checkOfBenodigdheidNaamAlBestaat(invoerData.naam)) {
+            ArrayList<VertalingData> vertalingData = benodigdheidRepository.maakVertalingData(invoerData.naam);
+            boolean status = benodigdheidRepository.maakBenodigdheid(invoerData, vertalingData);
+            if (status) {
+                message = "Benodigdheid toegevoegd";
+                response.put("message", message);
+                return (ResponseEntity.status(200).body(response));
+            } else {
+                message = "Er is iets mis gegaan";
+                response.put("message", message);
+                return (ResponseEntity.status(403).body(response));
+            }
         } else {
-            message = "Er is iets mis gegaan";
+            message = "Benodigdheid bestaat al";
             response.put("message", message);
-            return(ResponseEntity.status(403).body(response));
+            return (ResponseEntity.status(403).body(response));
         }
     }
 
     @PostMapping("/verwijder-benodigdheden")
     public ResponseEntity<Map <String, String>> verwijderBenodigdheid(@RequestHeader("benodigdheidId") int benodigdheidId){
-        boolean status = benodigdheidRepository.verwijderBenodigdheid(benodigdheidId);
+        boolean status;
+        if (benodigdheidRepository.checkOfBenodigdheidBestaat(benodigdheidId)) {
+            status = benodigdheidRepository.verwijderBenodigdheid(benodigdheidId);
+        } else {
+            status = false;
+        }
+        System.out.println(status);
         Map<String, String> response = new HashMap<>();
         String message = "Succes";
         response.put("message", message);

@@ -5,10 +5,9 @@ function CategorieElement({object, id}){
     const [subCategorie, setSubCategorie] = useState("false");
 
 
-    // Onderscheid maken tussen wel of geen subcategorie, staat nu nog hardcoded, aanpassen zodra DB beschikbaar is.
         useEffect(() => {
             haalChildsOp(id);
-        }, []);
+        }, [id]);
 
         async function haalChildsOp(id){
             try {
