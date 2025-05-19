@@ -87,7 +87,7 @@ function BenodigdhedenPagina(){
             <div className="grid-rows-3 text-center mx-5">
                 {benodigdhedenArray.map(function(object, i) {
                     return <>
-                    <CategorieElement key={i} object={object} id={object.id.toString()}/>
+                        <CategorieElement key={i} object={object} id={object.id.toString()}/>
                     </>
                 })}
             </div>
