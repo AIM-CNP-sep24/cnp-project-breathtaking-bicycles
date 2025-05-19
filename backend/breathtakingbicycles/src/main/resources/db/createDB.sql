@@ -1,13 +1,12 @@
---DROP TABLE dbo.vertaling;
---DROP TABLE dbo.benodigdheid_vertaling;
---DROP TABLE dbo.benodigdheid;
---DROP TABLE dbo.taal;
---DROP TABLE dbo.zin;
+
+CREATE DATABASE breathtakingbicycles
+use breathtakingbicycles
 
 CREATE TABLE taal (
     id bigint NOT NULL IDENTITY(1,1) PRIMARY KEY,
     naam varchar(100) NOT NULL,
-    code varchar(10) NOT NULL
+    code varchar(10) NOT NULL,
+    imgsrc varchar(255) NOT NULL
 );
 
 CREATE TABLE zin (
@@ -32,15 +31,17 @@ CREATE TABLE vertaling (
 );
 
 CREATE TABLE benodigdheid (
-    id bigint NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    id bigint NOT NULL PRIMARY KEY,
     parent_id bigint NULL,
-    laag int NOT NULL CHECK (laag BETWEEN 0 AND 2),
+    laag int NULL,
     imgsrc varchar(255) NOT NULL,
+    rangnr int NULL,
 
-    CONSTRAINT FK_benodigdheid_parent
-      FOREIGN KEY (parent_id)
-          REFERENCES benodigdheid(id)
-          ON DELETE NO ACTION
+    CONSTRAINT CHK_rangnr_zesoflager
+        CHECK (rangnr <= 6),
+
+    CONSTRAINT CHK_laag_tussen0en2
+        CHECK (laag >= 0 AND laag <= 2)
 );
 
 CREATE TABLE benodigdheid_vertaling (
