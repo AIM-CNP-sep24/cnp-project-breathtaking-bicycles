@@ -7,7 +7,7 @@ const kleurPaletten = [
 ];
 
 // TODOO Hele applicatie verandert van kleurenpalet
-function KleurenpaletKeuzeComponent() {
+function KleurenpaletKeuzeComponent({ disabled }) {
   const [geselecteerdPalet, setGeselecteerdPalet] = useState(''); //state om het geselecteerde kleurenpalet op te slaan
 
   return (
@@ -21,6 +21,7 @@ function KleurenpaletKeuzeComponent() {
               kleur={geselecteerdPalet}
               setKleur={() => setGeselecteerdPalet(palet.naam)}
               palet={palet}
+              disabled={disabled}
             />
           ))}
         </div>

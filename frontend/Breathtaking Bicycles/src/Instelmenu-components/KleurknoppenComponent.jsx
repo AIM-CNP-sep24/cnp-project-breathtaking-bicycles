@@ -1,4 +1,4 @@
-function KleurknoppenComponent({ kleur, setKleur, palet }) {
+function KleurknoppenComponent({ kleur, setKleur, palet, disabled }) {
   return (
     <button
       style={{ 
@@ -9,6 +9,7 @@ function KleurknoppenComponent({ kleur, setKleur, palet }) {
         transition: 'box-shadow 0.2s, border 0.2s',
       }}
       onClick={setKleur}
+      disabled={disabled}
       className="flex flex-col items-center focus:outline-none hover:shadow-lg hover:border-[#DDA853]"
     >
       <img src={palet.img} alt={palet.naam + " palet"} style={{ width: 200, height: 60, marginBottom: 8 }} />
