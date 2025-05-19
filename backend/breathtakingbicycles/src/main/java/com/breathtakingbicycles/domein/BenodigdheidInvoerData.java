@@ -1,20 +1,12 @@
 package com.breathtakingbicycles.domein;
 
 public class BenodigdheidInvoerData {
-    public int id;
     public String imgsrc;
+    public String naam;
 
-    public BenodigdheidInvoerData(int id, String imgsrc) {
-        this.id = id;
+    public BenodigdheidInvoerData(String imgsrc, String naam) {
         this.imgsrc = imgsrc;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.naam = naam;
     }
 
     public String getImgsrc() {
@@ -25,11 +17,19 @@ public class BenodigdheidInvoerData {
         this.imgsrc = imgsrc;
     }
 
+    public String getNaam() {
+        return naam;
+    }
+
+    public void setNaam(String naam) {
+        this.naam = naam;
+    }
+
     @Override
     public String toString() {
         return "BenodigdheidInvoerData{" +
-                "id=" + id +
                 ", imgsrc='" + imgsrc + '\'' +
+                ", naam='" + naam + '\'' +
                 '}';
     }
 }
