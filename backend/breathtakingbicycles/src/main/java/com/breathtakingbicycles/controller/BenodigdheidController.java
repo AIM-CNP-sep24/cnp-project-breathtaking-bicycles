@@ -25,6 +25,11 @@ public class BenodigdheidController {
         this.benodigdheidRepository = benodigdheidRepository;
     }
 
+    @GetMapping("/alle-benodigdhedenOphalen")
+    public List<Benodigdheid> getAlleBenodigdheden(@RequestHeader("taal1") String taal1, @RequestHeader("taal2") String taal2){
+        return benodigdheidRepository.getAlleBenodigdheden(taal1, taal2);
+    }
+
     @GetMapping("/benodigdheden-ophalen")
     public List<Benodigdheid> getBenodigdhedenOphaalData(@RequestHeader ("taal1") String taal1, @RequestHeader ("taal2") String taal2, @RequestHeader ("parentId") int parentId ) throws ServletRequestBindingException {
         return benodigdheidRepository.getBenodigdheidOphaalData(parentId, taal1, taal2);
