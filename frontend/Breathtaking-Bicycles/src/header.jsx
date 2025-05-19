@@ -17,7 +17,7 @@ function Header ({ onClickBurger, onClickNoodknop}) {
                 <Bars3Icon className="h-20 w-17"/>
             </button>
             {vertaalPagina ? (
-                <Link to="/benodigdheden/root">
+                <Link to="/benodigdheden/0">
                     <button 
                         className="bg-[#DDA853] rounded-[10px] cursor-pointer shadow-[0_10px_#BA8C43]" 
                         onClick={handleClick}

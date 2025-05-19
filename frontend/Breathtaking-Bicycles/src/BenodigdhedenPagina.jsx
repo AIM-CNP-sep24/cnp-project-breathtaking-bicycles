@@ -16,8 +16,6 @@ function BenodigdhedenPagina(){
         }, [parentId, taal1, taal2]
     );
 
-
-
     async function haalBenodigdhedenOp(parentId, taal1, taal2){
         try {
             const response = await fetch("http://localhost:8080/benodigdheden-ophalen", {
