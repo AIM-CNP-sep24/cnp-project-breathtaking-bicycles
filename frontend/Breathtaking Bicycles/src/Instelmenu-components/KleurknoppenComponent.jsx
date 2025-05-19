@@ -2,10 +2,10 @@ function KleurknoppenComponent({ kleur, setKleur, palet }) {
   return (
     <button
       style={{ 
-        border: kleur === palet.naam ? '4px solid #27548A' : '2px solid #ccc', 
+        border: kleur === palet.naam ? '4px solid #27548A' : '2px solid #ccc', // randkleur wordt aangepast op basis van de geselecteerde kleur
         borderRadius: 12, 
         padding: 12, 
-        boxShadow: '0 8px 12px 0 rgba(0,0,0,0.18)', // alleen schaduw onder de knop
+        boxShadow: '0 8px 12px 0 rgba(0,0,0,0.18)', // schaduw onder de knop
         transition: 'box-shadow 0.2s, border 0.2s',
       }}
       onClick={setKleur}

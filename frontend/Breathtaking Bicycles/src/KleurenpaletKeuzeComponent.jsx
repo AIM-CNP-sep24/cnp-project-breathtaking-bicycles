@@ -6,8 +6,9 @@ const kleurPaletten = [
   { naam: "kleurenblinden", img: "/images/kleurenpalet-kleurenblindheid.png"}
 ];
 
+// TODOO Hele applicatie verandert van kleurenpalet
 function KleurenpaletKeuzeComponent() {
-  const [geselecteerdPalet, setGeselecteerdPalet] = useState('');
+  const [geselecteerdPalet, setGeselecteerdPalet] = useState(''); //state om het geselecteerde kleurenpalet op te slaan
 
   return (
     <div className="container p-20 h-100 justify-start">
