@@ -6,6 +6,7 @@ import Index from './Index.jsx'
 import BenodigdhedenboomPagina from './benodigdhedenboom-components/BenodigdhedenboomPagina.jsx'
 import SettingsPreview from './SettingsPreview.jsx'
 import InstelContainer from './InstelContainer.jsx'
+import Login from './Login.jsx'
 
 function App() {
   
@@ -19,6 +20,7 @@ function App() {
         <Route path="" element={<Index />} />
         <Route path="boomstructuurbeheer/:parentId" element={<BenodigdhedenboomPagina />} />
         <Route path="settings" element={<SettingsPreview/> } />
+        <Route path="login" element={<Login />} />
       </Routes>
     </>
   )

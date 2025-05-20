@@ -1,7 +1,10 @@
 ---
-name: Lint commit
+name: unit tests
 
-on: [pull_request]
+on:
+  pull_request:
+    paths-ignore:
+      - '**/*storybook-static/**'
 
 jobs:
   frontend:
@@ -68,5 +71,5 @@ jobs:
         run: npm install
 
       - name: Run ESLint
-        run: npx eslint "**/*.{js,jsx}"
+        run: npx eslint "**/*.{js,jsx}" --ignore-pattern "storybook-static/**"
 
