@@ -1,10 +1,10 @@
 ---
 name: Lint commit
 
-on: 
+on:
   push:
     paths-ignore:
-      -"frontend/Breathtaking-Bicycles/storybook-static**"
+      - 'frontend/Breathtaking-Bicycles/storybook-static/**'
 
 jobs:
   frontend:
