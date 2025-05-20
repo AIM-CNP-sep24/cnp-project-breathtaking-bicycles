@@ -8,7 +8,6 @@ import SettingsPreview from './SettingsPreview.jsx'
 import InstelContainer from './InstelContainer.jsx'
 
 function App() {
-  
   return (
     <>
      <Header />

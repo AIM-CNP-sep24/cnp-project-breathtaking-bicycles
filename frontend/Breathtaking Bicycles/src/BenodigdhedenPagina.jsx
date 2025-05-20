@@ -2,11 +2,21 @@ import { Link, Route, Routes, useParams} from 'react-router'
 import { useState, useEffect } from 'react';
 import CategorieElement from './CategorieElement';
 import TerugKnop from './TerugKnop';
+import emptyDataArray from './emptyDataArray.json';
 
 function BenodigdhedenPagina(){
     const [titel, setTitel] = useState("");
     const [benodigdhedenArray, setBenodigdhedenArray] = useState([]);
     const {parentId} = useParams();
+    const uiSettings = {
+        colorPallete: {
+            "color-one": "#F5EEDC",
+            "color-two": "#27548A",
+            "color-three": "#183B4E",
+            "color-four": "#DDA853",
+        },
+        font: "standard"
+    }
     const taal1 = "NL";
     const taal2 = "EN";
     // Haal het ID uit de URL om zo de volgende benodigdheden te genereren. 
@@ -30,7 +40,7 @@ function BenodigdhedenPagina(){
 
             if(response.ok){
                 const data = await response.json();
-                setBenodigdhedenArray(data);
+               setBenodigdhedenArray(data);
             }
         } catch (error){
             console.log(error);
@@ -85,7 +95,7 @@ function BenodigdhedenPagina(){
             <div className="grid-rows-3 text-center mx-5">
                 {benodigdhedenArray.map(function(object, i) {
                     return <>
-                        <CategorieElement key={i} object={object} id={object.id.toString()}/>
+                        <CategorieElement key={i} object={object} id={object.id.toString()} uiSettings={uiSettings}/>
                     </>
                 })}
             </div>
