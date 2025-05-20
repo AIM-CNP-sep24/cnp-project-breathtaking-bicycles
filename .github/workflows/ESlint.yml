@@ -1,0 +1,33 @@
+name: Lint commit
+
+on:
+  push:
+    paths-ignore:
+      - 'frontend/Breathtaking-Bicycles/storybook-static/assets/**'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend/Breathtaking-Bicycles
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Clean npm cache and state
+        run: 
+          rm -rf node_modules package-lock.json
+          npm cache clean --force
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run ESLint
+        run: npx eslint "**/*.{js,jsx}"
