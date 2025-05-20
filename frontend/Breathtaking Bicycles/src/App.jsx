@@ -14,8 +14,10 @@ function App() {
       <Routes>          
         <Route path={"benodigdheden/:parentId"} element={<BenodigdhedenPagina />} />
         <Route path="instelmenu" element={<InstelComponent />} />
+        <Route path="boomstructuurbeheer/:parentId" element={<BenodigdhedenPagina />} />
         <Route path="vertalen" element={<Textfield />} />
         <Route path="" element={<Index />} />
+
       </Routes>
     </>
   )

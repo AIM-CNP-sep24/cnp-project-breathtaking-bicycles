@@ -1,49 +1,119 @@
 import { Link } from 'react-router';
 import { Bars3Icon, CurrencyRupeeIcon, ExclamationTriangleIcon, LanguageIcon, Squares2X2Icon } from '@heroicons/react/24/solid'
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-function Header ({ onClickBurger, onClickNoodknop}) {
+function Header({ onClickBurger, onClickNoodknop, onChange, option }) {
     const [vertaalPagina, setVertaalPagina] = useState(false);
-    function handleClick(){
+    const [menuOpen, setMenuOpen] = useState(false);
+    const dropdownHamburgerRef = useRef(null); //ref voor de dropdown van hamburgermenu
+
+    function handleClick() {
         setVertaalPagina(!vertaalPagina);
     }
 
+    const handleOptionClick = (option) => {
+        onChange(option);
+        setMenuOpen(false); //sluit hamburgerdropdown na selectie
+        console.log('header gesloten');
+    };
+
+    // Sluit de hamburgerdropdown bij een klik buiten het component
+    useEffect(() => {
+
+        //functie die controleert of de klik binnen of op de hamburgerdropdown plaatsvindt
+        const closeHamburgerDropdown = (event) => {
+            if (dropdownHamburgerRef.current && !dropdownHamburgerRef.current.contains(event.target)) {
+                setMenuOpen(false);
+            }
+        };
+
+        //voeg een eventlistener toe aan het document dat luistert naar muisklikken
+        document.addEventListener('mousedown', closeHamburgerDropdown);
+
+        //verwijder de eventlistener als het component ontkoppeld wordt
+        return () => {
+            document.removeEventListener('mousedown', closeHamburgerDropdown);
+        };
+    }, []); //Zorgt ervoor dat de eventlistener alleen bij het laden van het component wordt uitgevoerd
+
+
     return (
-       <header className="bg-[#27548A] p-3">
-        <div className="container mx-auto flex justify-between items-center">
-            <button 
-                onClick={onClickBurger}
-                className="text-white cursor-pointer">
-                <Bars3Icon className="h-20 w-17"/>
-            </button>
-            {vertaalPagina ? (
-                <Link to="/benodigdheden/root">
-                    <button 
-                        className="bg-[#DDA853] rounded-[10px] cursor-pointer shadow-[0_10px_#BA8C43]" 
-                        onClick={handleClick}
+        <header ref={dropdownHamburgerRef} className="bg-[#183B4E] p-3 w-full relative z-50">
+            <div className="w-full flex justify-between items-center px-4">
+                <div className="relative">
+                    <button
+                        onClick={() => { console.log('klik!'); setMenuOpen((open) => !open); }}
+                        className={`cursor-pointer transition-colors duration-200 p-2
+                            ${menuOpen ? 'bg-white border-white' : 'bg-[#183B4E]'}
+  `                       }
                     >
-                        <Squares2X2Icon className="h-20 w-40"/>
+                        <Bars3Icon className={`h-20 w-17 transition-colors duration-200 ${menuOpen ? 'text-[#183B4E]' : 'text-white'}`} />
                     </button>
-                </Link>
-            ) : (
-                <Link to="/vertalen">
-                    <button 
-                        className="bg-[#DDA853] rounded-[10px] cursor-pointer shadow-[0_10px_#BA8C43]" 
-                        onClick={handleClick}
-                    >
-                        <LanguageIcon className="h-20 w-40"/>
+                </div>
+
+                {menuOpen && (
+                    <div className="absolute left-0 top-full w-full bg-[#183B4E] rounded-b-lg shadow-lg z-40">
+                        <div className="flex flex-row justify-center gap-20 py-4">
+                            <Link to="/boomstructuurbeheer/0">
+                                <button
+                                    className="block px-8 py-4 text-2xl w-full text-center font-bold text-[#ffffff] bg-[#27548A] rounded-lg shadow-md"
+                                    onClick={() => {
+                                        console.log('Boomstructuur geklikt!');
+                                        setMenuOpen(false);
+                                    }}
+                                >
+                                    Boomstructuur
+                                </button>
+                            </Link>
+
+                            <Link to="/instelmenu">
+                                <button
+                                    className="block px-8 py-4 text-2xl w-full text-center font-bold text-[#ffffff] bg-[#27548A] rounded-lg shadow-md"
+                                    onClick={() => {
+                                        console.log('Instelmenu geklikt!');
+                                        setMenuOpen(false);
+                                    }}
+                                >
+                                    Instelmenu
+                                </button>
+                            </Link>
+                        </div>
+                    </div>
+                )}
+
+                <div className="flex-1 flex justify-center">
+                    {vertaalPagina ? (
+                        <Link to="/benodigdheden/root">
+                            <button
+                                className="bg-[#DDA853] rounded-[10px] cursor-pointer shadow-[0_10px_#BA8C43]"
+                                onClick={handleClick}
+                            >
+                                <Squares2X2Icon className="h-20 w-40" />
+                            </button>
+                        </Link>
+
+                    ) : (
+                        <Link to="/vertalen">
+                            <button
+                                className="bg-[#DDA853] rounded-[10px] cursor-pointer shadow-[0_10px_#BA8C43]"
+                                onClick={handleClick}
+                            >
+                                <LanguageIcon className="h-20 w-40" />
+                            </button>
+                        </Link>
+                    )}
+                </div>
+
+                <div className="flex-none">
+                    <button
+                        onClick={onClickNoodknop}
+                        className="bg-red-600 text-white flex items-center gap-2 font-bold py-2 px-4 rounded-[10px] cursor-pointer">
+                        <ExclamationTriangleIcon className="h-14 w-14 text-white" />
                     </button>
-                </Link>
-            )}
-            <button
-                onClick={onClickNoodknop}
-                className="bg-red-600 text-white flex items-center gap-2 font-bold py-2 px-4 rounded-[10px] cursor-pointer">
-                <ExclamationTriangleIcon className="h-14 w-14 text-white"/>
-            </button>
+                </div>
             </div>
-       </header>
-    )
+        </header>
+    );
 }
 
 export default Header;
-
