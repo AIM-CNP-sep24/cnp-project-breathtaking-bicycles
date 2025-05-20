@@ -31,4 +31,4 @@ jobs:
         run: npm install
 
       - name: Run ESLint
-        run: npx eslint "**/*.{js,jsx}"
+        run: npx eslint "**/*.{js,jsx}" --ignore-pattern "storybook-static/**"
