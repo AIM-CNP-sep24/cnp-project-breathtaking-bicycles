@@ -1,4 +1,5 @@
-name: Lint commit
+---
+name: ESLint
 
 on:
   pull_request:
