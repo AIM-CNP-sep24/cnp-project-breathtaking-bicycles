@@ -2,7 +2,7 @@
 name: Lint commit
 
 on:
-  push:
+  pull_request:
     paths-ignore:
       - 'frontend/Breathtaking-Bicycles/storybook-static/assets/**'
 
@@ -70,6 +70,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Skip if only storybook static assets changed
+        id: check-changes
+        run: |
+          changes=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+          echo "$changes" | grep -v '^frontend/Breathtaking-Bicycles/storybook-static/assets/' || echo "skip=true" >> $GITHUB_OUTPUT
+
       - name: Run ESLint
+        if: steps.check-changes.outputs.skip != 'true'
         run: npx eslint "**/*.{js,jsx}"
+
 
