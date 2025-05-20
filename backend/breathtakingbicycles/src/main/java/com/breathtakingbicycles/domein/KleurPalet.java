@@ -2,12 +2,12 @@ package com.breathtakingbicycles.domein;
 
 public class KleurPalet {
     public int id;
-    public String color_one;
-    public String color_one_shadow;
-    public String color_two;
-    public String color_two_shadow;
-    public String color_three;
-    public String color_three_shadow;
-    public String color_four;
-    public String color_four_shadow;
+    public String colorOne;
+    public String colorOneShadow;
+    public String colorTwo;
+    public String colorTwoShadow;
+    public String colorThree;
+    public String colorThreeShadow;
+    public String colorFour;
+    public String colorFourShadow;
 }
