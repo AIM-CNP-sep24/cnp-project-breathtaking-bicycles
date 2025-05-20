@@ -4,7 +4,7 @@ name: ESLint
 on:
   pull_request:
     paths-ignore:
-      - 'frontend/Breathtaking-Bicycles/storybook-static/assets/**'
+      - '**/*storybook-static/**'
 
 jobs:
   lint:
