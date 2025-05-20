@@ -1,7 +1,10 @@
 ---
 name: Lint commit
 
-on: [pull_request]
+on: 
+  push:
+    paths-ignore:
+      -"storybook-static/**"
 
 jobs:
   frontend:
