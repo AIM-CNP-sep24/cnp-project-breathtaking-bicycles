@@ -12,15 +12,35 @@ function BenodigdhedenboomPagina(){
     const [toggleForeground, setToggleForeGround] = useState(false);
     const [geklikteCategorie, setGeklikteCategorie] = useState(0);
     const [geselecteerdeCategorieenArray, setGeselecteerdeCategorieenArray] = useState([null, null, null, null, null, null]);
-    const [rangNr, setRangNr] = useState(0);
+    const [laagNr, setLaagNr] = useState(0);
     const taal1 = "NL";
     const taal2 = "EN";
     const {parentId} = useParams();
 
     useEffect(() => {
-        haalBenodigdhedenOp(parentId, taal1, taal2);
+        haalHuidigeBenodigdhedenOp(parentId, taal1, taal2);
         haalAlleBenodigdhedenOp(taal1, taal2);
+        haalLaagNrOp(parentId);
     }, [parentId])
+
+    async function haalLaagNrOp(id){
+        try {
+            const response = await fetch("http://localhost:8080/enkel-benodigdheid-ophalen", {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "id": id
+                }
+            });
+            if (response.ok){
+                const data = await response.json();
+                console.log("data" + data);
+                setLaagNr(data);
+            }
+        } catch (error) {
+
+        }
+    }
 
     async function haalAlleBenodigdhedenOp(taal1, taal2){
         try {
@@ -35,9 +55,8 @@ function BenodigdhedenboomPagina(){
             if (response.ok){
                 const data = await response.json();
                 for (let index = 0; index < data.length; index++){
-                    if (data[index].id = parentId){
+                    if (data[index].id == parentId){
                         console.log(data[index].laag);
-                        setRangNr(data[index].laag);
                     }
                 }
                 setAlleBenodigdhedenArray(data);
@@ -47,8 +66,9 @@ function BenodigdhedenboomPagina(){
         }
     }
 
-    async function haalBenodigdhedenOp(parentId, taal1, taal2){
+    async function haalHuidigeBenodigdhedenOp(parentId, taal1, taal2){
         try {
+            console.log(1);
             const response = await fetch("http://localhost:8080/benodigdheden-ophalen", {
                 method: "GET",
                 headers: {
@@ -60,19 +80,21 @@ function BenodigdhedenboomPagina(){
             );
 
             if(response.ok){
-                
+                console.log(response);
                 const data = await response.json();
                 if (data.length === 0){
-                    const tempArray= [];
+                    const tempArray = [];
                     for (let index = 0; index < 6; index++){
                         tempArray[index] = VulMetLeegElement();
                     }
                     setBenodigdhedenArray(tempArray);
                 } else if (data.length < 6){
+                    const tempArray = new Array(6);
+                    console.log(2);
                     setBenodigdhedenArray(data);
-                    const tempArray = benodigdhedenArray;
+                    tempArray = benodigdhedenArray;
                     for (let index = 0; index < 6; index++){
-                        if (tempArray[index] == null){
+                        if (tempArray[index].id != null){
                             tempArray[index] = VulMetLeegElement();
                         }
                     }
@@ -86,20 +108,18 @@ function BenodigdhedenboomPagina(){
         }
     }
 
-    async function stuurBenodigdhedenWijziging(benodigdheid){
-        console.log(benodigdheid);
-        console.log(rangNr);
-            const response = await fetch ("http://localhost:8080/boomstructuur-wijzigen", {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8"
-                },
-                body: JSON.stringify({"parentId": benodigdheid.parentId, "laag": rangNr, "rangnr": benodigdheid.rangNr, "id": benodigdheid.id})
-            });
-            if (response.ok){
-                alert("succes");
-            }
-
+    async function stuurBenodigdhedenWijziging(benodigdheid){            
+                const response = await fetch ("http://localhost:8080/boomstructuur-wijzigen", {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify({"parentId": parentId, "laag": laagNr, "rangnr": benodigdheid.rangnr, "id": benodigdheid.id})
+                });
+                if (response.ok){
+                    console.log("Succes");
+                }
+    // }
     }
 
     function VulMetLeegElement(){
@@ -114,6 +134,7 @@ function BenodigdhedenboomPagina(){
     function opslaanClick(){
         benodigdhedenArray.map(function(object, i) {
             stuurBenodigdhedenWijziging(object);
+            
         })
     }
     

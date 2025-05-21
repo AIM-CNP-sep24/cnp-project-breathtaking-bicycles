@@ -23,7 +23,7 @@ function BenodigdhedenPagina(){
     useEffect(() => {
         haalBenodigdhedenOp(parentId, taal1, taal2);
         haalTitelOp(parentId, taal1, taal2);
-        }, [parentId, taal1, taal2]
+        }, [parentId]
     );
 
     async function haalBenodigdhedenOp(parentId, taal1, taal2){

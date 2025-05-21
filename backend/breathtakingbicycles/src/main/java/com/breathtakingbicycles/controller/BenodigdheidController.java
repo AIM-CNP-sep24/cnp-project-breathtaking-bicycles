@@ -37,6 +37,8 @@ public class BenodigdheidController {
 
     @PostMapping("/boomstructuur-wijzigen")
     public String boomstructuurWijzigen(@RequestBody Benodigdheid benodigdheid){
+        System.out.println(benodigdheid);
+        benodigdheidRepository.haalBenodigdheidUitBoomStructuur(benodigdheid.parentId);
         return benodigdheidRepository.plaatsBenodigdheidInBoom(benodigdheid.parentId, benodigdheid.rangnr, benodigdheid.laag, benodigdheid.id);
     }
 
@@ -91,6 +93,17 @@ public class BenodigdheidController {
     @GetMapping("/benodigdheid-childs-ophalen")
     public boolean getBenodigdheidChilds(@RequestHeader("parentId") int parentId){
         return benodigdheidRepository.getBenodigdheidChilds(parentId);
+    }
+
+    @PostMapping("/benodigdheden-uit-boomstructuur-halen")
+    public String haalBenodigdheidUitBoomStructuur(@RequestBody int parentId){
+        benodigdheidRepository.haalBenodigdheidUitBoomStructuur(parentId);
+        return "succes";
+    }
+
+    @GetMapping("/enkel-benodigdheid-ophalen")
+    public int haalEnkelBenodigdheidOp(@RequestHeader("id") int id){
+        return benodigdheidRepository.haalEnkelBenodigdheidOp(id);
     }
 
 

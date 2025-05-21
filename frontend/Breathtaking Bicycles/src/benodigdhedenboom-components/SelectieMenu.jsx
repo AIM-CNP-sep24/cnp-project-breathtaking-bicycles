@@ -4,6 +4,7 @@ function SelectieMenu({setToggleForeGround, alleBenodigdheden, setAlleBenodigdhe
     useEffect(() => {
         setGeselecteerdeCategorieenArray(huidigeBenodigdheden);
     }, [])
+    console.log(alleBenodigdheden);
     return(
         <div className="bg-white h-[60%] w-[40%] text-3xl mt-20 rounded-[20px] overflow:scroll">
             <ul className="opacity-100">
@@ -14,6 +15,7 @@ function SelectieMenu({setToggleForeGround, alleBenodigdheden, setAlleBenodigdhe
                                     const tempArray = geselecteerdeCategorieenArray;
 
                                     tempArray[geklikteCategorie] = object;
+                                    tempArray[geklikteCategorie].rangnr = geklikteCategorie;
                                     setGeselecteerdeCategorieenArray(tempArray)
                                     console.log(geselecteerdeCategorieenArray);
                                     setToggleForeGround(false);

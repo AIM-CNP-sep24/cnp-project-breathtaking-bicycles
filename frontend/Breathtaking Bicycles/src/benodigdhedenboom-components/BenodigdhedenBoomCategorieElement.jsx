@@ -1,4 +1,6 @@
-function BenodigdhedenBoomCategorieElement({index, object, id, setToggleForeGround, setGeklikteCategorie}){
+import { Link } from "react-router"
+
+function BenodigdhedenBoomCategorieElement({index, object, setToggleForeGround, setGeklikteCategorie}){
     return(
     <>
         <button className="mt-10 mx-15 z-2" onClick={
@@ -15,6 +17,9 @@ function BenodigdhedenBoomCategorieElement({index, object, id, setToggleForeGrou
                     </img>
             </div>
         </button>
+        <Link to={"/boomstructuurbeheer/" + object.id}>
+            <button>Naar Subcategorie</button>
+        </Link>
     </>
     )
 }
