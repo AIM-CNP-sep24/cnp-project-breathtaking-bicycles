@@ -14,7 +14,6 @@ function Header({ onClickNoodknop, onChange }) {
     const handleOptionClick = (option) => {
         onChange(option);
         setMenuOpen(false); //sluit hamburgerdropdown na selectie
-        console.log('header gesloten');
     };
 
 
