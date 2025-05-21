@@ -32,7 +32,7 @@ function App() {
     async function setColorPalettes() {
       let colorPalettes = await getColorPalettes();
       setUiSettings({colorPalette: colorPalettes[0],
-        font: "font-openDyslexic"
+        font: "font-OpenDyslexic"
       })
     }
     setColorPalettes();
