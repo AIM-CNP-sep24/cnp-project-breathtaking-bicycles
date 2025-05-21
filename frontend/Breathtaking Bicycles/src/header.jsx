@@ -1,8 +1,8 @@
 import { Link } from 'react-router';
-import { Bars3Icon, CurrencyRupeeIcon, ExclamationTriangleIcon, LanguageIcon, Squares2X2Icon } from '@heroicons/react/24/solid'
-import { useState, useEffect, useRef } from 'react';
+import { Bars3Icon, ExclamationTriangleIcon, LanguageIcon, Squares2X2Icon } from '@heroicons/react/24/solid'
+import { useState, useRef } from 'react';
 
-function Header({ onClickBurger, onClickNoodknop, onChange, option }) {
+function Header({ onClickNoodknop, onChange }) {
     const [vertaalPagina, setVertaalPagina] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const dropdownHamburgerRef = useRef(null); //ref voor de dropdown van hamburgermenu
