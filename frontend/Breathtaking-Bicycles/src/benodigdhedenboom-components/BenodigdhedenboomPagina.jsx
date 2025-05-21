@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import BenodigdhedenBoomCategorieElement from "./BenodigdhedenBoomCategorieElement";
 import SelectieMenu from "./SelectieMenu";
-import { PhotoIcon } from "@heroicons/react/24/solid";
 
 
 function BenodigdhedenboomPagina(){
@@ -24,8 +23,9 @@ function BenodigdhedenboomPagina(){
     }, [parentId])
 
     async function haalLaagNrOp(id){
+        const url = "http://localhost:8080/enkel-benodigdheid-ophalen";
         try {
-            const response = await fetch("http://localhost:8080/enkel-benodigdheid-ophalen", {
+            const response = await fetch(url, {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -34,7 +34,6 @@ function BenodigdhedenboomPagina(){
             });
             if (response.ok){
                 const data = await response.json();
-                console.log("data" + data);
                 setLaagNr(data);
             }
         } catch (error) {
@@ -43,8 +42,9 @@ function BenodigdhedenboomPagina(){
     }
 
     async function haalAlleBenodigdhedenOp(taal1, taal2){
+        const url = "http://localhost:8080/alle-benodigdheden-ophalen"
         try {
-            const response = await fetch("http://localhost:8080/alle-benodigdheden-ophalen", {
+            const response = await fetch(url, {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -54,11 +54,6 @@ function BenodigdhedenboomPagina(){
             });
             if (response.ok){
                 const data = await response.json();
-                for (let index = 0; index < data.length; index++){
-                    if (data[index].id == parentId){
-                        console.log(data[index].laag);
-                    }
-                }
                 setAlleBenodigdhedenArray(data);
             }
         } catch (error){
@@ -67,9 +62,9 @@ function BenodigdhedenboomPagina(){
     }
 
     async function haalHuidigeBenodigdhedenOp(parentId, taal1, taal2){
+        const url = "http://localhost:8080/benodigdheden-ophalen";
         try {
-            console.log(1);
-            const response = await fetch("http://localhost:8080/benodigdheden-ophalen", {
+            const response = await fetch(url, {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -80,7 +75,6 @@ function BenodigdhedenboomPagina(){
             );
 
             if(response.ok){
-                console.log(response);
                 const data = await response.json();
                 if (data.length === 0){
                     const tempArray = [];
@@ -90,7 +84,6 @@ function BenodigdhedenboomPagina(){
                     setBenodigdhedenArray(tempArray);
                 } else if (data.length < 6){
                     const tempArray = new Array(6);
-                    console.log(2);
                     setBenodigdhedenArray(data);
                     tempArray = benodigdhedenArray;
                     for (let index = 0; index < 6; index++){
@@ -108,8 +101,10 @@ function BenodigdhedenboomPagina(){
         }
     }
 
-    async function stuurBenodigdhedenWijziging(benodigdheid){            
-                const response = await fetch ("http://localhost:8080/boomstructuur-wijzigen", {
+    async function stuurBenodigdhedenWijziging(benodigdheid){    
+                const url = "http://localhost:8080/boomstructuur-wijzigen";
+                try {    
+                const response = await fetch (url, {
                     method: "POST",
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
@@ -119,6 +114,9 @@ function BenodigdhedenboomPagina(){
                 if (response.ok){
                     console.log("Succes");
                 }
+            } catch (error) {
+
+            }
     // }
     }
 
@@ -142,9 +140,12 @@ function BenodigdhedenboomPagina(){
     <>
 
         {toggleForeground ? (<>
-            <div className="fixed inset:0 bg-black bg-black/50 flex justify-center z-50 w-[100%] h-[100%] overflow-hidden">
+        <dialog open>
+            <SelectieMenu geklikteCategorie={geklikteCategorie} setToggleForeGround={setToggleForeGround} alleBenodigdheden={alleBenodigdhedenArray} huidigeBenodigdheden={benodigdhedenArray} setBenodigdheden={setBenodigdhedenArray} setGeselecteerdeCategorieenArray={setGeselecteerdeCategorieenArray} geselecteerdeCategorieenArray={geselecteerdeCategorieenArray} />
+        </dialog>
+            {/* <div className="fixed inset:0 bg-black bg-black/50 flex justify-center z-50 w-[100%] h-[100%] overflow-hidden">
                 <SelectieMenu geklikteCategorie={geklikteCategorie} setToggleForeGround={setToggleForeGround} alleBenodigdheden={alleBenodigdhedenArray} huidigeBenodigdheden={benodigdhedenArray} setBenodigdheden={setBenodigdhedenArray} setGeselecteerdeCategorieenArray={setGeselecteerdeCategorieenArray} geselecteerdeCategorieenArray={geselecteerdeCategorieenArray} />
-            </div>
+            </div> */}
         </>) : (<></>)}
         <h1 className="text-center text-4xl font-bold px-10">{title}</h1>
         <div className="grid-rows-3 text-center mx-5">
@@ -154,7 +155,7 @@ function BenodigdhedenboomPagina(){
                 </>
             })}
         </div>
-        <div className="">
+        <div>
             <button className="bg-[#DDA853] cursor-pointer p-3 mt-15 text-center w-[20%] rounded-lg mx-[40%]" onClick={opslaanClick}>Opslaan</button>
         </div>
         <h2 className="mt-24 font-bold text-center text-3xl">Benodigdheid toevoegen</h2>

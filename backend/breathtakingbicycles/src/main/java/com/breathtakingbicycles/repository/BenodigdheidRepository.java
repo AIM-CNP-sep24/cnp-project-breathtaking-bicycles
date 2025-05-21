@@ -49,11 +49,6 @@ public class BenodigdheidRepository {
     }
 
     public String plaatsBenodigdheidInBoom(int parentId, int rangnr, int laag, int benodigdheidId){
-        System.out.println("parent" + parentId);
-        System.out.println("rang" + rangnr);
-        System.out.println("laag" + laag);
-        System.out.println("ben" + benodigdheidId);
-        System.out.println(jdbcTemplate.update("UPDATE benodigdheid SET parent_id = ?, rangnr = ?, laag = ? WHERE id = ?", parentId, rangnr, laag, benodigdheidId));
         jdbcTemplate.update("UPDATE benodigdheid SET parent_id = ?, rangnr = ?, laag = ? WHERE id = ?", parentId, rangnr, laag, benodigdheidId);
         return ("succes");
     }

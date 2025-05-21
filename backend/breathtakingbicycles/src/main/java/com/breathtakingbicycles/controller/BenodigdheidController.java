@@ -37,7 +37,6 @@ public class BenodigdheidController {
 
     @PostMapping("/boomstructuur-wijzigen")
     public String boomstructuurWijzigen(@RequestBody Benodigdheid benodigdheid){
-        System.out.println(benodigdheid);
         benodigdheidRepository.haalBenodigdheidUitBoomStructuur(benodigdheid.parentId);
         return benodigdheidRepository.plaatsBenodigdheidInBoom(benodigdheid.parentId, benodigdheid.rangnr, benodigdheid.laag, benodigdheid.id);
     }
@@ -73,7 +72,6 @@ public class BenodigdheidController {
         } else {
             status = false;
         }
-        System.out.println(status);
         Map<String, String> response = new HashMap<>();
         String message = "Succes";
         response.put("message", message);
