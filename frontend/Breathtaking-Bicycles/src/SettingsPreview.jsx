@@ -17,7 +17,7 @@ function SettingsPreview({uiSettings}) {
                         naamTaal2: "Pizza",
                         imgsrc: "../src/img/Pizza-Icon.png", 
                         laag: 1
-                    }} 
+                    }}
                     id={7}
                     uiSettings={uiSettings}/>
                 </div>
