@@ -1,4 +1,3 @@
-import react from "react";
 import TaalInstelmenuComponent from "./TaalInstelmenuComponent.jsx";
 
  function InstelContainer() {
