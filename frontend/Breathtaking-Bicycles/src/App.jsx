@@ -31,7 +31,6 @@ function App() {
   useEffect(() => {
     async function setColorPalettes() {
       let colorPalettes = await getColorPalettes();
-      console.log(colorPalettes)
       setUiSettings({colorPalette: colorPalettes[0],
         font: "font-openDyslexic"
       })
