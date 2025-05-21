@@ -1,0 +1,75 @@
+---
+name: unit tests
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**/*storybook-static/**'
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend/Breathtaking-Bicycles
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Clean npm cache and state
+        run: 
+          rm -rf node_modules package-lock.json
+          npm cache clean --force
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Storybook
+        run: npm run build-storybook
+
+        
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Run JUnit tests
+        run: mvn test
+        working-directory: backend/breathtakingbicycles
+  
+  lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend/Breathtaking-Bicycles
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Clean npm cache and state
+        run: 
+          rm -rf node_modules package-lock.json
+          npm cache clean --force
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run ESLint
+        run: npx eslint "**/*.{js,jsx}" --ignore-pattern "storybook-static/**"
+

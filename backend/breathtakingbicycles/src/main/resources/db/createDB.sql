@@ -6,7 +6,7 @@ CREATE TABLE taal (
     id bigint NOT NULL IDENTITY(1,1) PRIMARY KEY,
     naam varchar(100) NOT NULL,
     code varchar(10) NOT NULL,
-    imgsrc varchar(255) NOT NULL
+    imgsrc varchar(255) NOT NULL,
 );
 
 CREATE TABLE zin (
@@ -38,10 +38,10 @@ CREATE TABLE benodigdheid (
     rangnr int NULL,
 
     CONSTRAINT CHK_rangnr_zesoflager
-        CHECK (rangnr <= 6),
+      CHECK (rangnr <= 6),
 
     CONSTRAINT CHK_laag_tussen0en2
-        CHECK (laag >= 0 AND laag <= 2)
+      CHECK (laag >= 0 AND laag <= 2)
 );
 
 CREATE TABLE benodigdheid_vertaling (
@@ -60,3 +60,15 @@ CREATE TABLE benodigdheid_vertaling (
 		REFERENCES benodigdheid(id)
 		ON DELETE CASCADE
 );
+
+CREATE TABLE kleurenpalet (
+    id bigint NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    color_one varchar(7) NOT NULL,
+    color_one_shadow varchar(7) NOT NULL,
+    color_two varchar(7) NOT NULL,
+    color_two_shadow varchar(7) NOT NULL,
+    color_three varchar(7) NOT NULL,
+    color_three_shadow varchar(7) NOT NULL,
+    color_four varchar(7) NOT NULL,
+    color_four_shadow varchar(7) NOT NULL,
+)
