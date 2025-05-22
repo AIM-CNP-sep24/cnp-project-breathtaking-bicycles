@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ArrowsRightLeftIcon } from '@heroicons/react/24/outline';
-import LanguageSelection from './Instelmenu-components/TaaldropdownComponent';
+import LanguageSelection from './TaaldropdownComponent';
 
 function TaalInstelmenuComponent() {
     const [selectedLanguageZorgvrager, setSelectedLanguageZorgvrager] = useState('');

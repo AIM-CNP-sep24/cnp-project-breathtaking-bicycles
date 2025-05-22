@@ -4,10 +4,9 @@ import Header from './header.jsx'
 import Textfield from './translate-components/textfield.jsx'
 import Index from './Index.jsx'
 import BenodigdhedenboomPagina from './benodigdhedenboom-components/BenodigdhedenboomPagina.jsx'
-import SettingsPreview from './SettingsPreview.jsx'
-import InstelContainer from './InstelContainer.jsx'
 import Login from './Login.jsx'
 import { useEffect, useState } from 'react'
+import InstelPagina from './instel-pagina/InstelPagina.jsx'
 
 async function getColorPalettes(){
   const url = "http://localhost:8080/kleurpaletten";
@@ -43,11 +42,10 @@ function App() {
      <Header />
       <Routes>          
         <Route path={"benodigdheden/:parentId"} element={<BenodigdhedenPagina />} />
-        <Route path="instelmenu" element={<InstelContainer />} />
+        <Route path="instelmenu" element={<InstelPagina uiSettings={uiSettings}/>} />
         <Route path="vertalen" element={<Textfield />} />
         <Route path="" element={<Index />} />
         <Route path="boomstructuurbeheer/:parentId" element={<BenodigdhedenboomPagina />} />
-        <Route path="settings" element={<SettingsPreview uiSettings={uiSettings}/> } />
         <Route path="login" element={<Login />} />
       </Routes>
     </>

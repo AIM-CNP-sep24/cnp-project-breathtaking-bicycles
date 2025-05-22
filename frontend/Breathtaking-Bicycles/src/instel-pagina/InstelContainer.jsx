@@ -1,4 +1,4 @@
-import TaalInstelmenuComponent from "./TaalInstelmenuComponent.jsx";
+import TaalInstelmenuComponent from "./Instelmenu-components/TaalInstelmenuComponent.jsx";
 
  function InstelContainer() {
     return (
