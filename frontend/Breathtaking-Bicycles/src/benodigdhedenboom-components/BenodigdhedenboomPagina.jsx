@@ -86,8 +86,8 @@ function BenodigdhedenboomPagina(){
                 } else if (data.length < 6){
                     const tempArray = ["null", "null", "null", "null", "null", "null"];
                     setBenodigdhedenArray(data);
-                    data.map((object, i) => {
-                        tempArray[i] = object;
+                    data.map((benodigdheid, i) => {
+                        tempArray[i] = benodigdheid;
                     })
                     
                     
@@ -135,8 +135,8 @@ function BenodigdhedenboomPagina(){
     }
 
     function opslaanClick(){
-        benodigdhedenArray.map(function(object, i) {
-            stuurBenodigdhedenWijziging(object);
+        benodigdhedenArray.map((benodigdheid) => {
+            stuurBenodigdhedenWijziging(benodigdheid);
             
         })
     }
@@ -152,9 +152,9 @@ function BenodigdhedenboomPagina(){
         </>) : (<></>)}
         <h1 className="text-center text-4xl font-bold px-10">{title}</h1>
         <div className="grid grid-cols-2 text-center mx-5">
-            {benodigdhedenArray.map(function(object, i) {
+            {benodigdhedenArray.map((benodigdheid, i) => {
                 return<>
-                <BenodigdhedenBoomCategorieElement index={i} object={object} benodigdheden={alleBenodigdhedenArray} setToggleForeGround={setToggleForeGround} setGeklikteCategorie={setGeklikteCategorie} laag={laagNr}/>
+                <BenodigdhedenBoomCategorieElement index={i} benodigdheid={benodigdheid} benodigdheden={alleBenodigdhedenArray} setToggleForeGround={setToggleForeGround} setGeklikteCategorie={setGeklikteCategorie} laag={laagNr}/>
                 </>
             })}
         </div>

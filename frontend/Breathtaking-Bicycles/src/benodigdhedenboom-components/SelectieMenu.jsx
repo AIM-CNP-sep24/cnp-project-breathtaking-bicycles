@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-function SelectieMenu({setToggleForeGround, alleBenodigdheden, setAlleBenodigdheden, huidigeBenodigdheden, setGeselecteerdeCategorieenArray, geselecteerdeCategorieenArray, geklikteCategorie, zoekTekst, setZoekTekst}){
+function SelectieMenu({setToggleForeGround, alleBenodigdheden, huidigeBenodigdheden, setGeselecteerdeCategorieenArray, geselecteerdeCategorieenArray, geklikteCategorie, zoekTekst, setZoekTekst}){
     useEffect(() => {
         setGeselecteerdeCategorieenArray(huidigeBenodigdheden);
     }, [])
@@ -10,22 +10,22 @@ function SelectieMenu({setToggleForeGround, alleBenodigdheden, setAlleBenodigdhe
             <input type="text" className="w-[100%] px-5 py-5 bg-[#FFF] rounded-t-lg outline-0 border-b-1" placeholder="Zoek..." value={zoekTekst} onChange={(e) => setZoekTekst(e.target.value)} onClick={(e) => e.stopPropagation()}></input>
             <ul className="opacity-100 overflow-auto h-[800px]">
                 {
-                    alleBenodigdheden.filter((object) => 
-                    object.naamTaal1.toUpperCase().includes(zoekTekst.toUpperCase())).map((object)=>(
+                    alleBenodigdheden.filter((benodigdheid) => 
+                    benodigdheid.naamTaal1.toUpperCase().includes(zoekTekst.toUpperCase())).map((benodigdheid)=>(
                         <li className="cursor-pointer">
                             <button className="p-3 cursor-pointer w-[100%]" onClick={
                             () => {
 
                                     const tempArray = geselecteerdeCategorieenArray;
-                                    tempArray[geklikteCategorie] = object;
+                                    tempArray[geklikteCategorie] = benodigdheid;
                                     tempArray[geklikteCategorie].rangnr = geklikteCategorie;
                                     setGeselecteerdeCategorieenArray(tempArray)
                                     setToggleForeGround(false);
                                 }
                             }>
                                 <div className="flex flex-row align-items ">
-                                    <img className="w-[25%]" src={object.imgsrc} alt={object.naamTaal1}></img>
-                                    <h1 className="w-[75%] content-center">{object.naamTaal1}</h1>
+                                    <img className="w-[25%]" src={benodigdheid.imgsrc} alt={benodigdheid.naamTaal1}></img>
+                                    <h1 className="w-[75%] content-center">{benodigdheid.naamTaal1}</h1>
                                 </div>
                             </button>
                         </li>

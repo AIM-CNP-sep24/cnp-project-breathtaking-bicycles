@@ -85,9 +85,9 @@ function BenodigdhedenPagina({uiSettings}){
             
 
             <div className="grid-rows-3 text-center mx-5">
-                {benodigdhedenArray.map(function(object, i) {
+                {benodigdhedenArray.map((benodigdheid, i) => {
                     return <>
-                        <CategorieElement key={i} object={object} id={object.id.toString()} uiSettings={uiSettings}/>
+                        <CategorieElement key={i} benodigdheid={benodigdheid} id={benodigdheid.id.toString()} uiSettings={uiSettings}/>
                     </>
                 })}
             </div>
