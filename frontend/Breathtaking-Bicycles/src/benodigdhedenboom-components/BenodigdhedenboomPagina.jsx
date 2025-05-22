@@ -83,11 +83,18 @@ function BenodigdhedenboomPagina(){
                     }
                     setBenodigdhedenArray(tempArray);
                 } else if (data.length < 6){
-                    const tempArray = new Array(6);
+                    const tempArray = ["null", "null", "null", "null", "null", "null"];
                     setBenodigdhedenArray(data);
-                    tempArray = benodigdhedenArray;
+                    console.log(data);
+                    console.log(benodigdhedenArray);
+                    data.map((object, i) => {
+                        tempArray[i] = object;
+                    })
+                    console.log(tempArray);
+                    
+                    
                     for (let index = 0; index < 6; index++){
-                        if (tempArray[index].id != null){
+                        if (tempArray[index] == "null"){
                             tempArray[index] = VulMetLeegElement();
                         }
                     }
@@ -140,12 +147,12 @@ function BenodigdhedenboomPagina(){
     <>
 
         {toggleForeground ? (<>
-        <dialog open>
+        {/* <dialog open>
             <SelectieMenu geklikteCategorie={geklikteCategorie} setToggleForeGround={setToggleForeGround} alleBenodigdheden={alleBenodigdhedenArray} huidigeBenodigdheden={benodigdhedenArray} setBenodigdheden={setBenodigdhedenArray} setGeselecteerdeCategorieenArray={setGeselecteerdeCategorieenArray} geselecteerdeCategorieenArray={geselecteerdeCategorieenArray} />
-        </dialog>
-            {/* <div className="fixed inset:0 bg-black bg-black/50 flex justify-center z-50 w-[100%] h-[100%] overflow-hidden">
+        </dialog> */}
+            <div className="fixed inset:0 bg-black bg-black/50 flex justify-center z-50 w-[100%] h-[100%] overflow-hidden">
                 <SelectieMenu geklikteCategorie={geklikteCategorie} setToggleForeGround={setToggleForeGround} alleBenodigdheden={alleBenodigdhedenArray} huidigeBenodigdheden={benodigdhedenArray} setBenodigdheden={setBenodigdhedenArray} setGeselecteerdeCategorieenArray={setGeselecteerdeCategorieenArray} geselecteerdeCategorieenArray={geselecteerdeCategorieenArray} />
-            </div> */}
+            </div>
         </>) : (<></>)}
         <h1 className="text-center text-4xl font-bold px-10">{title}</h1>
         <div className="grid-rows-3 text-center mx-5">

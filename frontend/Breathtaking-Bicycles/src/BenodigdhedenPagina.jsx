@@ -3,19 +3,11 @@ import { useState, useEffect } from 'react';
 import CategorieElement from './CategorieElement';
 import TerugKnop from './TerugKnop';
 
-function BenodigdhedenPagina(){
+function BenodigdhedenPagina({uiSettings}){
     const [titel, setTitel] = useState("");
     const [benodigdhedenArray, setBenodigdhedenArray] = useState([]);
     const {parentId} = useParams();
-    const uiSettings = {
-        colorPallete: {
-            "color-one": "#F5EEDC",
-            "color-two": "#27548A",
-            "color-three": "#183B4E",
-            "color-four": "#DDA853",
-        },
-        font: "standard"
-    }
+
     const taal1 = "NL";
     const taal2 = "EN";
     // Haal het ID uit de URL om zo de volgende benodigdheden te genereren. 
@@ -79,6 +71,7 @@ function BenodigdhedenPagina(){
                             <TerugKnop
                                 onClick={() => window.history.back()}
                                 className="left-4"
+                                parentId={parentId}
                             />
                         </div>
                         <div className=" w-[100%]">

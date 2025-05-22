@@ -42,7 +42,7 @@ function App() {
     <>
      <Header />
       <Routes>          
-        <Route path={"benodigdheden/:parentId"} element={<BenodigdhedenPagina />} />
+        <Route path={"benodigdheden/:parentId"} element={<BenodigdhedenPagina uiSettings={uiSettings}/>} />
         <Route path="instelmenu" element={<InstelContainer />} />
         <Route path="vertalen" element={<Textfield />} />
         <Route path="" element={<Index />} />
