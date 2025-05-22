@@ -1,12 +1,16 @@
-import TaalInstelmenuComponent from "./TaalInstelmenuComponent.jsx";
-import KleurenpaletKeuzeComponent from "./KleurenpaletKeuzeComponent.jsx";
+import TaalInstelmenuComponent from "./Instelmenu-components/TaalInstelmenuComponent.jsx";
+import KleurenpaletKeuzeComponent from "./Instelmenu-components/KleurenpaletKeuzeComponent.jsx";
 
- function InstelContainer() {
+ function InstelContainer({uiSettings, colorPalettes, geselecteerdPalet, setGeselecteerdPalet}) {
+
     return (
         <div className="container p-10 h-200">
             <div className="flex flex-col items-center h-[100%] rounded-lg bg-[#F5EEDC]">
                 <TaalInstelmenuComponent />
-                <KleurenpaletKeuzeComponent />
+                <KleurenpaletKeuzeComponent colorPalettes={colorPalettes} 
+                    geselecteerdPalet={geselecteerdPalet}
+                    setGeselecteerdPalet={setGeselecteerdPalet}
+                />
             </div>
         </div>
     );
