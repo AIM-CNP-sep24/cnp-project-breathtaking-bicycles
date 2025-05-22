@@ -3,8 +3,9 @@ import { useState } from "react";
 import TaalInstelmenuComponent from "./Instelmenu-components/TaalInstelmenuComponent.jsx";
 import Opslaanknop from "./Instelmenu-components/OpslaanknopComponent.jsx";
 import Aanpasknop from "./Instelmenu-components/AanpasknopComponent.jsx";
+import FontInstelmenuComponent from "./Instelmenu-components/FontInstelmenuComponent.jsx";
 
- function InstelContainer({ disabled }) {
+ function InstelContainer({ disabled, setFontKeuze }) {
     const [isAanpasbaar, setIsAanpasbaar] = useState(true); // state om bij te houden of de instellingen aanpasbaar zijn
 
     const handleOpslaan = () => {
@@ -32,6 +33,7 @@ import Aanpasknop from "./Instelmenu-components/AanpasknopComponent.jsx";
                     )}
                 </div>
                 <TaalInstelmenuComponent disabled={!isAanpasbaar} />
+                <FontInstelmenuComponent setFontKeuze={setFontKeuze} disabled={!isAanpasbaar} />
             </div>
         </div>
     );
