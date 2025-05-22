@@ -1,6 +1,5 @@
 
 import { useState } from "react";
-import KleurenpaletKeuzeComponent from "./Instelmenu-components/KleurenpaletKeuzeComponent.jsx";
 import TaalInstelmenuComponent from "./Instelmenu-components/TaalInstelmenuComponent.jsx";
 import Opslaanknop from "./Instelmenu-components/OpslaanknopComponent.jsx";
 import Aanpasknop from "./Instelmenu-components/AanpasknopComponent.jsx";
@@ -33,7 +32,6 @@ import Aanpasknop from "./Instelmenu-components/AanpasknopComponent.jsx";
                     )}
                 </div>
                 <TaalInstelmenuComponent disabled={!isAanpasbaar} />
-                <KleurenpaletKeuzeComponent disabled={!isAanpasbaar}/>
             </div>
         </div>
     );
