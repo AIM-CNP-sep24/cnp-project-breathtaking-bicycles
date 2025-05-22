@@ -4,13 +4,37 @@ function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const handleLogin = async () => {
+        setError('');
 
-    const handleLogin = () => {
-        //TODO login handeling
+        try {
+            const response = await fetch('http://localhost:8080/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password,
+                }),
+            });
 
-        //Error handeling
-        setError('Gebruikersnaam of wachtwoord incorrect!');
+            if (!response.ok) {
+                throw new Error('Gebruikersnaam of wachtwoord incorrect!');
+            }
+
+            const data = await response.json();
+            const token = data.token;
+        
+            localStorage.setItem('jwtToken', token);
+
+            console.log('Login successful, token saved.');
+
+        } catch (err) {
+            setError(err.message);
+        }
     };
+
 
     return (
         <div className="flex flex-col justify-center px-4 h-200">
