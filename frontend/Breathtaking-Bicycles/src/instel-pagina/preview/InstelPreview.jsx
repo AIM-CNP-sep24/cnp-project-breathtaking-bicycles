@@ -1,8 +1,8 @@
-import CategorieElement from "./CategorieElement";
+import CategorieElement from "../../CategorieElement";
 
 // Gebruik dit element als houvast voor het maken van je eigen elementen!!!!
 
-function SettingsPreview({uiSettings}) {
+function InstelPreview({uiSettings}) {
     return (
         <div className="container p-10 h-220">
             <div className="flex flex-col items-center justify-center h-full rounded-lg bg-[#F5EEDC] pb-10">
@@ -26,4 +26,4 @@ function SettingsPreview({uiSettings}) {
     );
 }
 
-export default SettingsPreview
+export default InstelPreview;
