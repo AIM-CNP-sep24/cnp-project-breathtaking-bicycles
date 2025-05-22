@@ -103,7 +103,7 @@ public class BenodigdheidRepository {
             ArrayList<VertalingData> vertaaldeTekstList = new ArrayList<>();
             int benodigdheidId = getHoogsteBenodigdheidId();
             benodigdheidId += 1;
-            List<Taal> talenLijst= taalRepository.getTalen();
+            List<Taal> talenLijst = taalRepository.getTalen();
             for (int index = 0; index < talenLijst.size(); index++){
                 VertalingData vertalingData = new VertalingData();
                 vertalingData.tekst = taalRepository.vertaalIngevoerdeNaam(tekst, talenLijst.get(index).code);
