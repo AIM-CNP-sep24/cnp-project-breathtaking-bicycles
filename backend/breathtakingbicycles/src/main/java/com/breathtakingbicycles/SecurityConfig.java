@@ -29,13 +29,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login").permitAll()
-                        .anyRequest().authenticated()
-                )
                 .cors(Customizer.withDefaults())
+                .authorizeHttpRequests(auth -> auth
+                        .anyRequest().permitAll()
+                )
                 .build();
     }
+
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {

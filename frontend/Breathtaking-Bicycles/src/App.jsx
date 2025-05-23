@@ -44,7 +44,7 @@ function App() {
      <Header />
       <Routes>          
         <Route path={"benodigdheden/:parentId"} element={<BenodigdhedenPagina uiSettings={uiSettings}/>} />
-        <Route path="instelmenu" element={<InstelPagina uiSettings={uiSettings} colorPalettes={colorPalettes}/>} />
+        <Route path="instelmenu" element={ <InstelPagina uiSettings={uiSettings} colorPalettes={colorPalettes}/>} />
         <Route path="vertalen" element={<Textfield />} />
         <Route path="" element={<Index />} />
         <Route path="boomstructuurbeheer/:parentId" element={<BenodigdhedenboomPagina />} />

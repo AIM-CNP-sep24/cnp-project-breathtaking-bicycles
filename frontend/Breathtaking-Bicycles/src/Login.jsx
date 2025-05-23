@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import InstelPagina from './instel-pagina/InstelPagina.jsx'
+import { Route } from 'react-router';
 
 function Login() {
     const [username, setUsername] = useState('');
@@ -29,6 +31,9 @@ function Login() {
             localStorage.setItem('jwtToken', token);
 
             console.log('Login successful, token saved.');
+            console.log(token);
+            
+            <Route path='./instel-pagina/InstelPagina.jsx'></Route>
 
         } catch (err) {
             setError(err.message);
