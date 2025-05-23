@@ -118,8 +118,9 @@ public class BenodigdheidRepository {
         }
     }
 
-    public int haalEnkelBenodigdheidOp(int id){
-        return jdbcTemplate.queryForObject("SELECT id FROM benodigdheid WHERE id = ?", Integer.class, id);
+    public List<Benodigdheid> haalParentBenodigdheidOp(int id, String taal1, String taal2){
+        int parentId = jdbcTemplate.queryForObject("SELECT parent_id FROM benodigdheid WHERE id = ?", Integer.class, id);
+        return jdbcTemplate.query("SELECT b.id, MAX(CASE WHEN t.code = ? THEN bv.tekst END) AS naamTaal1, MAX(CASE WHEN t.code = ? THEN bv.tekst END) AS naamTaal2, b.parent_id, b.laag, b.rangnr, b.imgsrc FROM benodigdheid b LEFT OUTER JOIN benodigdheid_vertaling bv ON b.id = bv.benodigdheid_id LEFT OUTER JOIN taal t on bv.taal_id = t.id WHERE t.code IN (?, ?) AND b.id = ? GROUP BY b.id, b.parent_id, b.laag, b.rangnr, b.imgsrc ORDER BY rangnr ASC", new BenodigdhedenRowMapper(), taal1, taal2, taal1, taal2, parentId);
     }
 
 }
