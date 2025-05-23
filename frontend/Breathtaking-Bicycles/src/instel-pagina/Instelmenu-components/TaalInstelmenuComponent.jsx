@@ -36,7 +36,7 @@ function TaalInstelmenuComponent({ disabled }) {
         };
 
     return (
-        <div className="container p-20 h-100 justify-start">
+        <div className="container p-15 h-100 justify-start">
             <div className="flex flex-col h-[100%] rounded-lg bg-[#ffffff]">
                 <h1 className="text-4xl font-bold mb-4 text-center">Taalkeuze</h1>
                 <div className="flex justify-between w-full px-10">
