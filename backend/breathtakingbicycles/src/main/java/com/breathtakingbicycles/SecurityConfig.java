@@ -60,6 +60,7 @@ public class SecurityConfig {
         return new ProviderManager(authProvider);
     }
 
+/* is voor development
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails user = User.withDefaultPasswordEncoder()
@@ -70,7 +71,7 @@ public class SecurityConfig {
 
         return new InMemoryUserDetailsManager(user);
     }
-
+*/
     @Bean
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
