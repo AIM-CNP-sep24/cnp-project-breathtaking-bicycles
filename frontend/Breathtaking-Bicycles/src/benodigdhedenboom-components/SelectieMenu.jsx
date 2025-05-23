@@ -1,28 +1,40 @@
 import { useEffect } from "react";
 
-function SelectieMenu({setToggleForeGround, alleBenodigdheden, setAlleBenodigdheden, huidigeBenodigdheden, setGeselecteerdeCategorieenArray, geselecteerdeCategorieenArray, geklikteCategorie}){
+function SelectieMenu({setToggleForeGround, alleBenodigdheden, huidigeBenodigdheden, setGeselecteerdeCategorieenArray, geselecteerdeCategorieenArray, geklikteCategorie, zoekTekst, setZoekTekst}){
     useEffect(() => {
         setGeselecteerdeCategorieenArray(huidigeBenodigdheden);
     }, [])
     return(
-        <div className="bg-white h-[60%] w-[40%] text-3xl mt-20 rounded-[20px] overflow:scroll">
-            <ul className="opacity-100">
-                {alleBenodigdheden.map(function(object, index) {
-                    return <>
-                        <li className="cursor-pointer"><button className="border-1 p-3 cursor-pointer w-[100%]" onClick={
+        <>
+        <div className="bg-white h-[900px] w-[40%] text-3xl mt-20 rounded-t-lg">
+            <input type="text" className="w-[100%] px-5 py-5 bg-[#FFF] rounded-t-lg outline-0 border-b-1" placeholder="Zoek..." value={zoekTekst} onChange={(e) => setZoekTekst(e.target.value)} onClick={(e) => e.stopPropagation()}></input>
+            <ul className="opacity-100 overflow-auto h-[800px]">
+                {
+                    alleBenodigdheden.filter((benodigdheid) => 
+                    benodigdheid.naamTaal1.toUpperCase().includes(zoekTekst.toUpperCase())).map((benodigdheid)=>(
+                        <li className="cursor-pointer">
+                            <button className="p-3 cursor-pointer w-[100%]" onClick={
                             () => {
-                                    const tempArray = geselecteerdeCategorieenArray;
 
-                                    tempArray[geklikteCategorie] = object;
+                                    const tempArray = geselecteerdeCategorieenArray;
+                                    tempArray[geklikteCategorie] = benodigdheid;
                                     tempArray[geklikteCategorie].rangnr = geklikteCategorie;
                                     setGeselecteerdeCategorieenArray(tempArray)
                                     setToggleForeGround(false);
                                 }
-                            }>{object.naamTaal1}</button></li>
-                    </>
-})}
+                            }>
+                                <div className="flex flex-row align-items ">
+                                    <img className="w-[25%]" src={benodigdheid.imgsrc} alt={benodigdheid.naamTaal1}></img>
+                                    <h1 className="w-[75%] content-center">{benodigdheid.naamTaal1}</h1>
+                                </div>
+                            </button>
+                        </li>
+                    ))}
             </ul>
-        </div>
+            <button onClick={() => {setToggleForeGround(false)}} className="w-[100%] p-4 rounded-b-lg border-t-1 bg-[#FFF] cursor-pointer">Annuleren</button>
+
+            </div>
+        </>
     )
 }
 

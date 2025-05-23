@@ -1,7 +1,7 @@
 import { Link } from "react-router"
 import { useState, useEffect } from "react";
 
-function CategorieElement({object, id, uiSettings}){
+function CategorieElement({benodigdheid, id, uiSettings}){
     const [subCategorie, setSubCategorie] = useState("false");
 
 
@@ -30,7 +30,7 @@ function CategorieElement({object, id, uiSettings}){
         }
 
         function handleClick(){
-            alert(object.naamTaal1);
+            alert(benodigdheid.naamTaal1);
         }
 
         return (
@@ -41,12 +41,12 @@ function CategorieElement({object, id, uiSettings}){
                     <Link to={"/benodigdheden/" + id}>
                         <button className={`${uiSettings.font} mt-10 mx-15`}>
                             <div className={`w-[310px] h-[330px] text-2xl text-center inline-block rounded-[10px] bg-[${uiSettings.colorPalette.colorOne}] cursor-pointer shadow-[0_20px_${uiSettings.colorPalette.colorOneShadow}]`}>
-                                <h1 className="font-bold">{object.naamTaal1}</h1>
+                                <h1 className="font-bold">{benodigdheid.naamTaal1}</h1>
                                 <div className="line px-[10px] border-b-[2px] border-black"></div>
-                                <h1>{object.naamTaal2}</h1>
+                                <h1>{benodigdheid.naamTaal2}</h1>
                                 <img
                                     className="pictogram ml-[10%] w-[80%] text-center select-none" 
-                                    src={object.imgsrc} alt={object.naamTaal1}>
+                                    src={benodigdheid.imgsrc} alt={benodigdheid.naamTaal1}>
                                 </img>
                             </div>
                         </button>
@@ -54,12 +54,12 @@ function CategorieElement({object, id, uiSettings}){
                     ) : (
                     <button className={`${uiSettings.font} mt-10 mx-15`} onClick={handleClick}>
                         <div className={`w-[310px] h-[330px] text-2xl text-center inline-block rounded-[10px] bg-[${uiSettings.colorPalette.colorOne}] cursor-pointer shadow-[0_20px_${uiSettings.colorPalette.colorOneShadow}]`}>
-                            <h1 className="font-bold">{object.naamTaal1}</h1>
+                            <h1 className="font-bold">{benodigdheid.naamTaal1}</h1>
                             <div className="line px-[10px] border-b-[2px] border-black"></div>
-                            <h1>{object.naamTaal2}</h1>
+                            <h1>{benodigdheid.naamTaal2}</h1>
                             <img 
                                 className="pictogram ml-[10%] w-[80%] text-center select-none" 
-                                src={object.imgsrc} alt="image">
+                                src={benodigdheid.imgsrc} alt="image">
                             </img>
                         </div>
                     </button>

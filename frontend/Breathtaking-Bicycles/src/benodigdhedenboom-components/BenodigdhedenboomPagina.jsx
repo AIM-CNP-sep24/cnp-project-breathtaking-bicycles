@@ -11,6 +11,7 @@ function BenodigdhedenboomPagina(){
     const [toggleForeground, setToggleForeGround] = useState(false);
     const [geklikteCategorie, setGeklikteCategorie] = useState(0);
     const [geselecteerdeCategorieenArray, setGeselecteerdeCategorieenArray] = useState([null, null, null, null, null, null]);
+    const [zoekTekst, setZoekTekst] = useState("");
     const [laagNr, setLaagNr] = useState(0);
     const taal1 = "NL";
     const taal2 = "EN";
@@ -83,11 +84,15 @@ function BenodigdhedenboomPagina(){
                     }
                     setBenodigdhedenArray(tempArray);
                 } else if (data.length < 6){
-                    const tempArray = new Array(6);
+                    const tempArray = ["null", "null", "null", "null", "null", "null"];
                     setBenodigdhedenArray(data);
-                    tempArray = benodigdhedenArray;
+                    data.map((benodigdheid, i) => {
+                        tempArray[i] = benodigdheid;
+                    })
+                    
+                    
                     for (let index = 0; index < 6; index++){
-                        if (tempArray[index].id != null){
+                        if (tempArray[index] == "null"){
                             tempArray[index] = VulMetLeegElement();
                         }
                     }
@@ -130,8 +135,8 @@ function BenodigdhedenboomPagina(){
     }
 
     function opslaanClick(){
-        benodigdhedenArray.map(function(object, i) {
-            stuurBenodigdhedenWijziging(object);
+        benodigdhedenArray.map((benodigdheid) => {
+            stuurBenodigdhedenWijziging(benodigdheid);
             
         })
     }
@@ -140,25 +145,23 @@ function BenodigdhedenboomPagina(){
     <>
 
         {toggleForeground ? (<>
-        <dialog open>
-            <SelectieMenu geklikteCategorie={geklikteCategorie} setToggleForeGround={setToggleForeGround} alleBenodigdheden={alleBenodigdhedenArray} huidigeBenodigdheden={benodigdhedenArray} setBenodigdheden={setBenodigdhedenArray} setGeselecteerdeCategorieenArray={setGeselecteerdeCategorieenArray} geselecteerdeCategorieenArray={geselecteerdeCategorieenArray} />
-        </dialog>
-            {/* <div className="fixed inset:0 bg-black bg-black/50 flex justify-center z-50 w-[100%] h-[100%] overflow-hidden">
-                <SelectieMenu geklikteCategorie={geklikteCategorie} setToggleForeGround={setToggleForeGround} alleBenodigdheden={alleBenodigdhedenArray} huidigeBenodigdheden={benodigdhedenArray} setBenodigdheden={setBenodigdhedenArray} setGeselecteerdeCategorieenArray={setGeselecteerdeCategorieenArray} geselecteerdeCategorieenArray={geselecteerdeCategorieenArray} />
-            </div> */}
+
+            <div className="fixed inset:0 bg-black/50 flex justify-center z-50 w-[100%] h-[100%]" >
+                <SelectieMenu geklikteCategorie={geklikteCategorie} setToggleForeGround={setToggleForeGround} alleBenodigdheden={alleBenodigdhedenArray} huidigeBenodigdheden={benodigdhedenArray} setBenodigdheden={setBenodigdhedenArray} setGeselecteerdeCategorieenArray={setGeselecteerdeCategorieenArray} geselecteerdeCategorieenArray={geselecteerdeCategorieenArray} zoekTekst={zoekTekst} setZoekTekst={setZoekTekst}/>
+            </div>
         </>) : (<></>)}
         <h1 className="text-center text-4xl font-bold px-10">{title}</h1>
-        <div className="grid-rows-3 text-center mx-5">
-            {benodigdhedenArray.map(function(object, i) {
+        <div className="grid grid-cols-2 text-center mx-5">
+            {benodigdhedenArray.map((benodigdheid, i) => {
                 return<>
-                <BenodigdhedenBoomCategorieElement index={i} object={object} benodigdheden={alleBenodigdhedenArray} setToggleForeGround={setToggleForeGround} setGeklikteCategorie={setGeklikteCategorie}/>
+                <BenodigdhedenBoomCategorieElement index={i} benodigdheid={benodigdheid} benodigdheden={alleBenodigdhedenArray} setToggleForeGround={setToggleForeGround} setGeklikteCategorie={setGeklikteCategorie} laag={laagNr}/>
                 </>
             })}
         </div>
         <div>
-            <button className="bg-[#DDA853] cursor-pointer p-3 mt-15 text-center w-[20%] rounded-lg mx-[40%]" onClick={opslaanClick}>Opslaan</button>
+            <button className="bg-[#DDA853] cursor-pointer p-3 my-10 text-center w-[20%] rounded-lg mx-[40%]" onClick={opslaanClick}>Opslaan</button>
         </div>
-        <h2 className="mt-24 font-bold text-center text-3xl">Benodigdheid toevoegen</h2>
+        {/* <h2 className="mt-24 font-bold text-center text-3xl">Benodigdheid toevoegen</h2>
         <form className="text-center mb-0">
             <div className="grid grid-cols-2 mt-5">
                 <div className="mx-[15%] w-[70%]">
@@ -186,8 +189,8 @@ function BenodigdhedenboomPagina(){
             </select>
             <br />
             <input type="submit" value="Verwijderen" className="mt-5 border-[#FF0000] border-2 bg-[#FFAAAA] text-[#FF0000] px-3 py-1 rounded-[10px] text-xl"></input>
-        </form>
-         </div>
+        </form> */}
+         {/* </div> */}
          </>
     )
 }
