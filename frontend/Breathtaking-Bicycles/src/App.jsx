@@ -1,12 +1,13 @@
 import BenodigdhedenPagina from './BenodigdhedenPagina.jsx'
-import {Routes, Route} from 'react-router'
+import {Routes, Route,} from 'react-router'
 import Header from './header.jsx'
 import Textfield from './translate-components/textfield.jsx'
 import Index from './Index.jsx'
 import BenodigdhedenboomPagina from './benodigdhedenboom-components/BenodigdhedenboomPagina.jsx'
-import Login from './Login.jsx'
+import Login from './login/Login.jsx'
 import { useEffect, useState } from 'react'
 import InstelPagina from './instel-pagina/InstelPagina.jsx'
+import ProtectedRoute from './login/ProtectedRoute.jsx'
 
 async function getColorPalettes(){
   const url = "http://localhost:8080/kleurpaletten";
@@ -42,13 +43,16 @@ function App() {
   return (
     <>
      <Header />
-      <Routes>          
-        <Route path={"benodigdheden/:parentId"} element={<BenodigdhedenPagina uiSettings={uiSettings}/>} />
-        <Route path="instelmenu" element={ <InstelPagina uiSettings={uiSettings} colorPalettes={colorPalettes}/>} />
-        <Route path="vertalen" element={<Textfield />} />
-        <Route path="" element={<Index />} />
-        <Route path="boomstructuurbeheer/:parentId" element={<BenodigdhedenboomPagina />} />
+      <Routes>     
         <Route path="login" element={<Login />} />
+
+        {/* protected routes */}
+        <Route path={"benodigdheden/:parentId"} element={<ProtectedRoute><BenodigdhedenPagina uiSettings={uiSettings}/></ProtectedRoute>} />
+        <Route path="instelmenu" element={<ProtectedRoute><InstelPagina uiSettings={uiSettings} colorPalettes={colorPalettes}/></ProtectedRoute>} />
+        <Route path="vertalen" element={<ProtectedRoute><Textfield /></ProtectedRoute>} />
+        <Route path="" element={<ProtectedRoute><Index /></ProtectedRoute>} />
+        <Route path="boomstructuurbeheer/:parentId" element={<ProtectedRoute><BenodigdhedenboomPagina /></ProtectedRoute>} />
+        
       </Routes>
     </>
   )

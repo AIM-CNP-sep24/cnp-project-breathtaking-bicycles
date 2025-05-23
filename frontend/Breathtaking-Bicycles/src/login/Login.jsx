@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import InstelPagina from './instel-pagina/InstelPagina.jsx'
-import { Route } from 'react-router';
+import LogoutButton from './LogoutButton';
 
 function Login() {
     const [username, setUsername] = useState('');
@@ -29,11 +28,8 @@ function Login() {
             const token = data.token;
         
             localStorage.setItem('jwtToken', token);
-
-            console.log('Login successful, token saved.');
-            console.log(token);
+             window.location.href = '/instelmenu';
             
-            <Route path='./instel-pagina/InstelPagina.jsx'></Route>
 
         } catch (err) {
             setError(err.message);
