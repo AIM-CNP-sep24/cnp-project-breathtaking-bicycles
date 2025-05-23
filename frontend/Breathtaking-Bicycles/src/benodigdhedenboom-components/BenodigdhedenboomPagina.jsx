@@ -9,7 +9,6 @@ function BenodigdhedenboomPagina(){
     const [geselecteerdeCategorieenArray, setGeselecteerdeCategorieenArray] = useState([null, null, null, null, null, null]);
     const [benodigdhedenArray, setBenodigdhedenArray] = useState([]);
     const [alleBenodigdhedenArray, setAlleBenodigdhedenArray] = useState([]);
-    const [parentBenodigdheid, setParentBenodigdheid] = useState([]);
     const [geklikteCategorie, setGeklikteCategorie] = useState(0);
     const [laagNr, setLaagNr] = useState(0);
     const [terugKnopId, setTerugKnopId] = useState(0);
