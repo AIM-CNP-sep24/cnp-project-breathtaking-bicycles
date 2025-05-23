@@ -1,5 +1,9 @@
-const TerugKnop = ({ onClick, className }) => {
+import {Link} from 'react-router'
+
+const TerugKnop = ({ onClick, className, parentId }) => {
     return (
+
+//         <Link to={"/benodigdheden/" + parentId}>
         <button
             onClick={onClick}
             className={`cursor-pointer relative px-4 rounded-xl w-50 h-20 ${className}`}
@@ -7,6 +11,7 @@ const TerugKnop = ({ onClick, className }) => {
         >
             <p className="text-white text-5xl font-bold text-center">Terug</p>
         </button>
+        // </Link>
     );
 };
 

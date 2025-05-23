@@ -1,19 +1,20 @@
 import { Link, Route, Routes, useParams} from 'react-router'
 import { useState, useEffect } from 'react';
 import CategorieElement from './CategorieElement';
-import TerugKnop from './TerugKnop.jsx';
+import TerugKnop from './TerugKnop';
 
-function BenodigdhedenPagina(){
+function BenodigdhedenPagina({uiSettings}){
     const [titel, setTitel] = useState("");
     const [benodigdhedenArray, setBenodigdhedenArray] = useState([]);
     const {parentId} = useParams();
+
     const taal1 = "NL";
     const taal2 = "EN";
     // Haal het ID uit de URL om zo de volgende benodigdheden te genereren. 
     useEffect(() => {
         haalBenodigdhedenOp(parentId, taal1, taal2);
         haalTitelOp(parentId, taal1, taal2);
-        }, [parentId, taal1, taal2]
+        }, [parentId]
     );
 
     async function haalBenodigdhedenOp(parentId, taal1, taal2){
@@ -30,7 +31,7 @@ function BenodigdhedenPagina(){
 
             if(response.ok){
                 const data = await response.json();
-                setBenodigdhedenArray(data);
+               setBenodigdhedenArray(data);
             }
         } catch (error){
             console.log(error);
@@ -70,6 +71,7 @@ function BenodigdhedenPagina(){
                             <TerugKnop
                                 onClick={() => window.history.back()}
                                 className="left-4"
+                                parentId={parentId}
                             />
                         </div>
                         <div className=" w-[100%]">
@@ -83,9 +85,9 @@ function BenodigdhedenPagina(){
             
 
             <div className="grid-rows-3 text-center mx-5">
-                {benodigdhedenArray.map(function(object, i) {
+                {benodigdhedenArray.map((benodigdheid, i) => {
                     return <>
-                        <CategorieElement key={i} object={object} id={object.id.toString()}/>
+                        <CategorieElement key={i} benodigdheid={benodigdheid} id={benodigdheid.id.toString()} uiSettings={uiSettings}/>
                     </>
                 })}
             </div>

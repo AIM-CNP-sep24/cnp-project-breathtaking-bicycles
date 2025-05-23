@@ -25,7 +25,7 @@ public class BenodigdheidController {
         this.benodigdheidRepository = benodigdheidRepository;
     }
 
-    @GetMapping("/alle-benodigdhedenOphalen")
+    @GetMapping("/alle-benodigdheden-ophalen")
     public List<Benodigdheid> getAlleBenodigdheden(@RequestHeader("taal1") String taal1, @RequestHeader("taal2") String taal2){
         return benodigdheidRepository.getAlleBenodigdheden(taal1, taal2);
     }
@@ -33,6 +33,12 @@ public class BenodigdheidController {
     @GetMapping("/benodigdheden-ophalen")
     public List<Benodigdheid> getBenodigdhedenOphaalData(@RequestHeader ("taal1") String taal1, @RequestHeader ("taal2") String taal2, @RequestHeader ("parentId") int parentId ) throws ServletRequestBindingException {
         return benodigdheidRepository.getBenodigdheidOphaalData(parentId, taal1, taal2);
+    }
+
+    @PostMapping("/boomstructuur-wijzigen")
+    public String boomstructuurWijzigen(@RequestBody Benodigdheid benodigdheid){
+        benodigdheidRepository.haalBenodigdheidUitBoomStructuur(benodigdheid.parentId);
+        return benodigdheidRepository.plaatsBenodigdheidInBoom(benodigdheid.parentId, benodigdheid.rangnr, benodigdheid.laag, benodigdheid.id);
     }
 
     @PostMapping("/maak-benodigdheid")
@@ -66,7 +72,6 @@ public class BenodigdheidController {
         } else {
             status = false;
         }
-        System.out.println(status);
         Map<String, String> response = new HashMap<>();
         String message = "Succes";
         response.put("message", message);
@@ -86,6 +91,17 @@ public class BenodigdheidController {
     @GetMapping("/benodigdheid-childs-ophalen")
     public boolean getBenodigdheidChilds(@RequestHeader("parentId") int parentId){
         return benodigdheidRepository.getBenodigdheidChilds(parentId);
+    }
+
+    @PostMapping("/benodigdheden-uit-boomstructuur-halen")
+    public String haalBenodigdheidUitBoomStructuur(@RequestBody int parentId){
+        benodigdheidRepository.haalBenodigdheidUitBoomStructuur(parentId);
+        return "succes";
+    }
+
+    @GetMapping("/enkel-benodigdheid-ophalen")
+    public int haalEnkelBenodigdheidOp(@RequestHeader("id") int id){
+        return benodigdheidRepository.haalEnkelBenodigdheidOp(id);
     }
 
 

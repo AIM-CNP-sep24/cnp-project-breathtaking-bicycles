@@ -19,11 +19,11 @@ public class BenodigdheidRepository {
     }
 
     public List<Benodigdheid> getAlleBenodigdheden(String taal1, String taal2){
-        return jdbcTemplate.query("SELECT b.id, MAX(CASE WHEN t.code = ? THEN bv.tekst END) AS naamTaal1, MAX(CASE WHEN t.code = ? THEN bv.tekst END) AS naamTaal2, b.parent_id, b.laag, b.rangnr, b.imgsrc FROM benodigdheid b LEFT OUTER JOIN benodigdheid_vertaling bv ON b.id = bv.benodigdheid_id LEFT OUTER JOIN taal t on bv.taal_id = t.id WHERE t.code IN (?, ?) GROUP BY b.id, b.parent_id, b.laag, b.rangnr, b.imgsrc ORDER BY id ASC", new BenodigdhedenRowMapper(), taal1, taal2, taal1, taal2);
+        return jdbcTemplate.query("SELECT b.id, MAX(CASE WHEN t.code = ? THEN bv.tekst END) AS naamTaal1, MAX(CASE WHEN t.code = ? THEN bv.tekst END) AS naamTaal2, b.parent_id, b.laag, b.rangnr, b.imgsrc FROM benodigdheid b LEFT OUTER JOIN benodigdheid_vertaling bv ON b.id = bv.benodigdheid_id LEFT OUTER JOIN taal t on bv.taal_id = t.id WHERE t.code IN (?, ?) AND b.id != 0 GROUP BY b.id, b.parent_id, b.laag, b.rangnr, b.imgsrc ORDER BY id ASC", new BenodigdhedenRowMapper(), taal1, taal2, taal1, taal2);
     }
 
     public List<Benodigdheid> getBenodigdheidOphaalData(int parentId, String taal1, String taal2){
-        return jdbcTemplate.query("SELECT b.id, MAX(CASE WHEN t.code = ? THEN bv.tekst END) AS naamTaal1, MAX(CASE WHEN t.code = ? THEN bv.tekst END) AS naamTaal2, b.parent_id, b.laag, b.rangnr, b.imgsrc FROM benodigdheid b LEFT OUTER JOIN benodigdheid_vertaling bv ON b.id = bv.benodigdheid_id LEFT OUTER JOIN taal t on bv.taal_id = t.id WHERE t.code IN (?, ?) AND b.parent_id = ? GROUP BY b.id, b.parent_id, b.laag, b.rangnr, b.imgsrc ORDER BY rangnr ASC", new BenodigdhedenRowMapper(), taal1, taal2, taal1, taal2, parentId);
+        return jdbcTemplate.query("SELECT b.id, MAX(CASE WHEN t.code = ? THEN bv.tekst END) AS naamTaal1, MAX(CASE WHEN t.code = ? THEN bv.tekst END) AS naamTaal2, b.parent_id, b.laag, b.rangnr, b.imgsrc FROM benodigdheid b LEFT OUTER JOIN benodigdheid_vertaling bv ON b.id = bv.benodigdheid_id LEFT OUTER JOIN taal t on bv.taal_id = t.id WHERE t.code IN (?, ?) AND b.parent_id = ? AND b.id != 0 GROUP BY b.id, b.parent_id, b.laag, b.rangnr, b.imgsrc ORDER BY rangnr ASC", new BenodigdhedenRowMapper(), taal1, taal2, taal1, taal2, parentId);
     }
 
     public boolean maakBenodigdheid(BenodigdheidInvoerData benodigdheidInvoerData, ArrayList<VertalingData> vertalingData){
@@ -49,10 +49,13 @@ public class BenodigdheidRepository {
     }
 
     public String plaatsBenodigdheidInBoom(int parentId, int rangnr, int laag, int benodigdheidId){
-        jdbcTemplate.update("UPDATE benodigdheid SET parent_id = ? WHERE id = ?", parentId, benodigdheidId);
-        jdbcTemplate.update("UPDATE benodigdheid SET rangnr = ? WHERE id = ?", rangnr, benodigdheidId);
-        jdbcTemplate.update("UPDATE benodigdheid SET laag = ? WHERE id = ?", laag, benodigdheidId);
+        jdbcTemplate.update("UPDATE benodigdheid SET parent_id = ?, rangnr = ?, laag = ? WHERE id = ?", parentId, rangnr, laag, benodigdheidId);
         return ("succes");
+    }
+
+    public String haalBenodigdheidUitBoomStructuur(int parentId){
+        jdbcTemplate.update("UPDATE benodigdheid SET parent_id = null, rangnr = null, laag = null WHERE parent_id = ?", parentId);
+        return("Succes");
     }
 
     public int getHoogsteBenodigdheidId(){
@@ -100,7 +103,7 @@ public class BenodigdheidRepository {
             ArrayList<VertalingData> vertaaldeTekstList = new ArrayList<>();
             int benodigdheidId = getHoogsteBenodigdheidId();
             benodigdheidId += 1;
-            List<Taal> talenLijst= taalRepository.getTalen();
+            List<Taal> talenLijst = taalRepository.getTalen();
             for (int index = 0; index < talenLijst.size(); index++){
                 VertalingData vertalingData = new VertalingData();
                 vertalingData.tekst = taalRepository.vertaalIngevoerdeNaam(tekst, talenLijst.get(index).code);
@@ -113,6 +116,10 @@ public class BenodigdheidRepository {
             //todo
             return null;
         }
+    }
+
+    public int haalEnkelBenodigdheidOp(int id){
+        return jdbcTemplate.queryForObject("SELECT id FROM benodigdheid WHERE id = ?", Integer.class, id);
     }
 
 }
