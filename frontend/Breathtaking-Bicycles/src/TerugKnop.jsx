@@ -1,11 +1,11 @@
-const TerugKnop = ({ onClick, className }) => {
+const TerugKnop = ({ onClick, className, uiSettings }) => {
     return (
         <button
             onClick={onClick}
             className={`cursor-pointer relative px-4 rounded-xl w-50 h-20 ${className}`}
-            style={{ backgroundColor: '#DDA853'}}
+            style={{ backgroundColor: uiSettings.colorPalette.colorFour}}
         >
-            <p className="text-white text-5xl font-bold text-center">Terug</p>
+            <p className={`${uiSettings.font} text-white text-5xl font-bold text-center`}>Terug</p>
         </button>
     );
 };
