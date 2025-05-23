@@ -11,12 +11,6 @@ function Header({ onClickNoodknop, onChange }) {
         setVertaalPagina(!vertaalPagina);
     }
 
-    const handleOptionClick = (option) => {
-        onChange(option);
-        setMenuOpen(false); //sluit hamburgerdropdown na selectie
-    };
-
-
     return (
         //Backdrop wordt buiten header gerenderd, zodat dse header niet onder de backdrop valt
         <>
@@ -71,7 +65,7 @@ function Header({ onClickNoodknop, onChange }) {
 
                     <div className="flex-1 flex justify-center">
                         {vertaalPagina ? (
-                            <Link to="/benodigdheden/root">
+                            <Link to="/benodigdheden/0">
                                 <button
                                     className="bg-[#DDA853] rounded-[10px] cursor-pointer shadow-[0_10px_#BA8C43]"
                                     onClick={handleClick}

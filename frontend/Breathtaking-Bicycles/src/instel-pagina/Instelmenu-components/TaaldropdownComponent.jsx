@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 
 function LanguageSelection({ label, value, onChange, options }) {
     const [isOpen, setIsOpen] = useState(false);
