@@ -7,6 +7,7 @@ function BenodigdhedenPagina({uiSettings}){
     const [titel, setTitel] = useState("");
     const [benodigdhedenArray, setBenodigdhedenArray] = useState([]);
     const {parentId} = useParams();
+
     const taal1 = "NL";
     const taal2 = "EN";
     // Haal het ID uit de URL om zo de volgende benodigdheden te genereren. 
@@ -84,9 +85,9 @@ function BenodigdhedenPagina({uiSettings}){
             
 
             <div className="grid-rows-3 text-center mx-5">
-                {benodigdhedenArray.map(function(object, i) {
+                {benodigdhedenArray.map((benodigdheid, i) => {
                     return <>
-                        <CategorieElement key={i} object={object} id={object.id.toString()} uiSettings={uiSettings}/>
+                        <CategorieElement key={i} benodigdheid={benodigdheid} id={benodigdheid.id.toString()} uiSettings={uiSettings}/>
                     </>
                 })}
             </div>
