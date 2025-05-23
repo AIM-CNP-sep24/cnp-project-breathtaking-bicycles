@@ -31,6 +31,7 @@ function BenodigdhedenPagina({uiSettings}){
 
             if(response.ok){
                 const data = await response.json();
+                console.log(data)
                setBenodigdhedenArray(data);
             }
         } catch (error){

@@ -25,7 +25,8 @@ function InstelContainer({ colorPalettes, geselecteerdPalet, setGeselecteerdPale
                 <KleurenpaletKeuzeComponent colorPalettes={colorPalettes}
                     geselecteerdPalet={geselecteerdPalet}
                     setGeselecteerdPalet={setGeselecteerdPalet}
-                />
+                    
+                />  <button onClick={handleOpslaan}>Opslaan</button>
             </div>
         </div>
     );
