@@ -1,7 +1,7 @@
 import BenodigdhedenPagina from './BenodigdhedenPagina.jsx'
 import {Routes, Route} from 'react-router'
-import Header from './header.jsx'
-import Textfield from './translate-components/textfield.jsx'
+import Header from './Header.jsx'
+import Textfield from './translate-components/Textfield.jsx'
 import Index from './Index.jsx'
 import BenodigdhedenboomPagina from './benodigdhedenboom-components/BenodigdhedenboomPagina.jsx'
 import Login from './Login.jsx'
@@ -33,7 +33,7 @@ function App() {
       let colorPalettes = await getColorPalettes();
       setColorPalettes(colorPalettes)
       setUiSettings({colorPalette: colorPalettes[0],
-        font: "font-OpenDyslexic"
+        font: "standard"
       })
     }
     ColorPalettesFetch();
@@ -41,11 +41,11 @@ function App() {
   
   return (
     <>
-     <Header />
+     <Header uiSettings={uiSettings}/>
       <Routes>          
         <Route path={"benodigdheden/:parentId"} element={<BenodigdhedenPagina uiSettings={uiSettings}/>} />
         <Route path="instelmenu" element={<InstelPagina uiSettings={uiSettings} colorPalettes={colorPalettes}/>} />
-        <Route path="vertalen" element={<Textfield />} />
+        <Route path="vertalen" element={<Textfield uiSettings={uiSettings}/>} />
         <Route path="" element={<Index />} />
         <Route path="boomstructuurbeheer/:parentId" element={<BenodigdhedenboomPagina />} />
         <Route path="login" element={<Login />} />

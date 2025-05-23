@@ -1,9 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InstelContainer from "./InstelContainer";
 import InstelPreview from "./preview/InstelPreview";
 
 function InstelPagina({uiSettings,  colorPalettes}){
     const [geselecteerdPalet, setGeselecteerdPalet] = useState(1);
+    const [previewSettings, setPreviewSettings] = useState({font: "standard",
+        colorPalette: colorPalettes[0]
+    });
+
+    // useEffect(() => {
+    //     setPreviewSettings({font: "standard",
+    //         colorPalette: colorPalettes[0]
+    //     });
+    // }, []);
     
     return (
         <>

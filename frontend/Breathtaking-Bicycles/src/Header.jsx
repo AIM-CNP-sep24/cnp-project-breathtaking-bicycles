@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 import { Bars3Icon, ExclamationTriangleIcon, LanguageIcon, Squares2X2Icon } from '@heroicons/react/24/solid'
 import { useState, useRef } from 'react';
 
-function Header({ onClickNoodknop, onChange }) {
+function Header({ onClickNoodknop, uiSettings }) {
     const [vertaalPagina, setVertaalPagina] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const dropdownHamburgerRef = useRef(null); //ref voor de dropdown van hamburgermenu
@@ -21,26 +21,26 @@ function Header({ onClickNoodknop, onChange }) {
                 /> 
             )}
             <header ref={dropdownHamburgerRef}
-                className="bg-[#183B4E] p-3 w-full relative z-50"
+                className={`bg-[${uiSettings.colorPalette.colorThree}] p-3 w-full relative z-50`}
             >
                 <div className="w-full flex justify-between items-center px-4">
                     <div className="relative">
                         <button
                             onClick={() => {setMenuOpen((open) => !open)}}
                             className={`cursor-pointer transition-colors duration-200 p-2
-                                ${menuOpen ? 'bg-white border-white' : 'bg-[#183B4E]'}
+                                ${menuOpen ? 'bg-white border-white' : `bg-[${uiSettings.colorPalette.colorThree}]`}
     `                       }
                         >
-                            <Bars3Icon className={`h-20 w-17 transition-colors duration-200 ${menuOpen ? 'text-[#183B4E]' : 'text-white'}`} />
+                            <Bars3Icon className={`h-20 w-17 transition-colors duration-200 ${menuOpen ? `text-[${uiSettings.colorPalette.colorThree}]` : 'text-white'}`} />
                         </button>
                     </div>
 
                     {menuOpen && (
-                        <div className="absolute left-0 top-full w-full bg-[#183B4E] rounded-b-lg shadow-lg z-40">
+                        <div className={`absolute left-0 top-full w-full bg-[${uiSettings.colorPalette.colorThree}] rounded-b-lg shadow-lg z-40`}>
                             <div className="flex flex-row justify-center gap-20 py-4">
                                 <Link to="/boomstructuurbeheer/0">
                                     <button
-                                        className="block px-8 py-4 text-2xl w-full text-center font-bold text-[#ffffff] bg-[#27548A] rounded-lg shadow-md"
+                                        className={`block px-8 py-4 text-2xl w-full text-center font-bold text-white bg-[${uiSettings.colorPalette.colorThree}] rounded-lg shadow-md`}
                                         onClick={() => {
                                             setMenuOpen(false);
                                         }}
@@ -51,7 +51,7 @@ function Header({ onClickNoodknop, onChange }) {
 
                                 <Link to="/instelmenu">
                                     <button
-                                        className="block px-8 py-4 text-2xl w-full text-center font-bold text-[#ffffff] bg-[#27548A] rounded-lg shadow-md"
+                                        className={`block px-8 py-4 text-2xl w-full text-center font-bold text-white bg-[${uiSettings}] rounded-lg shadow-md`}
                                         onClick={() => {
                                             setMenuOpen(false);
                                         }}
@@ -67,7 +67,7 @@ function Header({ onClickNoodknop, onChange }) {
                         {vertaalPagina ? (
                             <Link to="/benodigdheden/0">
                                 <button
-                                    className="bg-[#DDA853] rounded-[10px] cursor-pointer shadow-[0_10px_#BA8C43]"
+                                    className={`bg-[${uiSettings.colorPalette.colorFour}] rounded-[10px] cursor-pointer shadow-[0_10px_${uiSettings.colorPalette.colorFourShadow}]`}
                                     onClick={handleClick}
                                 >
                                     <Squares2X2Icon className="h-20 w-40" />
@@ -77,7 +77,7 @@ function Header({ onClickNoodknop, onChange }) {
                         ) : (
                             <Link to="/vertalen">
                                 <button
-                                    className="bg-[#DDA853] rounded-[10px] cursor-pointer shadow-[0_10px_#BA8C43]"
+                                    className={`bg-[${uiSettings.colorPalette.colorFour}] rounded-[10px] cursor-pointer shadow-[0_10px_${uiSettings.colorPalette.colorFourShadow}]`}
                                     onClick={handleClick}
                                 >
                                     <LanguageIcon className="h-20 w-40" />

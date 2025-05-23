@@ -11,7 +11,7 @@ function InstelPreview({uiSettings}) {
                 <div className="bg-white p-28 rounded-lg flex flex-col items-center justify-center">
                     <h1 className={`${uiSettings.font} text-center text-4xl font-bold`}>Standaard Benodigdheden</h1>
                     <CategorieElement key={1} 
-                    object={{
+                    benodigdheid={{
                         id: 7,
                         naamTaal1: "Pizza",
                         naamTaal2: "Pizza",
