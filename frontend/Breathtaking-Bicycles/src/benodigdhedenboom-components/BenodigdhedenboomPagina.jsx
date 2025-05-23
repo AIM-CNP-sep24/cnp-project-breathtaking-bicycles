@@ -40,7 +40,6 @@ function BenodigdhedenboomPagina(){
             });
             if (response.ok){
                 const data = await response.json();
-                setParentBenodigdheid(data);
                 setLaagNr(data[0].laagnr);
                 setTerugKnopId(data[0].id);
                 toggleTerugKnopFunction(data);
@@ -152,7 +151,8 @@ function BenodigdhedenboomPagina(){
     function opslaanClick(){
         benodigdhedenArray.map((benodigdheid) => {
             stuurBenodigdhedenWijziging(benodigdheid);
-        })
+        });
+        alert("Wijzigingen opgeslagen")
     }
     
     function toggleTerugKnopFunction(parentBenodigdheid){
@@ -180,7 +180,7 @@ function BenodigdhedenboomPagina(){
                 <div className="flex flex-row">
                     <div className="w-1/4">
                         <Link to={"/boomstructuurbeheer/" + terugKnopId}>
-                            <button className="w-25 ml-3 mt-3 rounded-lg bg-[#DDA853] p-3"><ArrowUturnLeftIcon></ArrowUturnLeftIcon></button>
+                            <button className="w-25 ml-3 mt-3 rounded-lg bg-[#DDA853] p-3 shadow-[0_10px_#BA8C43]"><ArrowUturnLeftIcon></ArrowUturnLeftIcon></button>
                         </Link>
                     </div>
                     <h1 className=" w-1/2 text-center text-4xl font-bold px-10 mt-5">{title}</h1>
@@ -198,7 +198,7 @@ function BenodigdhedenboomPagina(){
             })}
         </div>
         <div>
-            <button className="bg-[#DDA853] cursor-pointer p-3 my-10 text-center w-[20%] rounded-lg mx-[40%]" onClick={opslaanClick}>Opslaan</button>
+            <button className="bg-[#DDA853] cursor-pointer p-3 my-10 text-center w-[20%] rounded-lg mx-[40%] shadow-[0_10px_#BA8C43]" onClick={opslaanClick}>Opslaan</button>
         </div>
         {/* <h2 className="mt-24 font-bold text-center text-3xl">Benodigdheid toevoegen</h2>
         <form className="text-center mb-0">
