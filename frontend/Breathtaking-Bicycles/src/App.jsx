@@ -8,6 +8,20 @@ import Login from './Login.jsx'
 import { useEffect, useState } from 'react'
 import InstelPagina from './instel-pagina/InstelPagina.jsx'
 
+// const uiSettings = {
+//     colorPalette: {
+//         colorOne: "#F5EEDC",
+//         colorOneShadow: "#E0D9C8",
+//         colorTwo: "#27548A",
+//         colorTwoShadow: "#1C406B",
+//         colorThree: "#183B4E",
+//         colorThreeShadow: "#132F3F",
+//         colorFour: "#DDA853",
+//         colorFourShadow: "#BA8C43",
+//     },
+//     font: "standard"
+// }
+
 async function getColorPalettes(){
   const url = "http://localhost:8080/kleurpaletten";
 
@@ -32,7 +46,7 @@ function App() {
     async function ColorPalettesFetch() {
       let colorPalettes = await getColorPalettes();
       setColorPalettes(colorPalettes)
-      setUiSettings({colorPalette: colorPalettes[0],
+      setUiSettings({colorPalette: colorPalettes[1],
         font: "font-OpenDyslexic"
       })
     }
@@ -41,9 +55,9 @@ function App() {
   
   return (
     <>
-     <Header />
+     <Header uiSettings={uiSettings}/>
       <Routes>          
-        <Route path={"benodigdheden/:parentId"} element={<BenodigdhedenPagina />} />
+        <Route path={"benodigdheden/:parentId"} element={<BenodigdhedenPagina uiSettings={uiSettings}/>} />
         <Route path="instelmenu" element={<InstelPagina uiSettings={uiSettings} colorPalettes={colorPalettes}/>} />
         <Route path="vertalen" element={<Textfield />} />
         <Route path="" element={<Index />} />

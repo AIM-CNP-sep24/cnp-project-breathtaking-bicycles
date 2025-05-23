@@ -2,14 +2,14 @@ import { Link } from 'react-router';
 import { Bars3Icon, CurrencyRupeeIcon, ExclamationTriangleIcon, LanguageIcon, Squares2X2Icon } from '@heroicons/react/24/solid'
 import { useState } from 'react';
 
-function Header ({ onClickBurger, onClickNoodknop}) {
+function Header ({ onClickBurger, onClickNoodknop, uiSettings}) {
     const [vertaalPagina, setVertaalPagina] = useState(false);
     function handleClick(){
         setVertaalPagina(!vertaalPagina);
     }
 
     return (
-       <header className="bg-[#27548A] p-3">
+       <header className={`bg-[${uiSettings.colorPalette.colorTwo}] p-3`}>
         <div className="container mx-auto flex justify-between items-center">
             <button 
                 onClick={onClickBurger}
@@ -19,7 +19,7 @@ function Header ({ onClickBurger, onClickNoodknop}) {
             {vertaalPagina ? (
                 <Link to="/benodigdheden/0">
                     <button 
-                        className="bg-[#DDA853] rounded-[10px] cursor-pointer shadow-[0_10px_#BA8C43]" 
+                        className={`bg-[${uiSettings.colorPalette.colorFour}] rounded-[10px] cursor-pointer shadow-[0_10px_${uiSettings.colorPalette.colorFourShadow}]`} 
                         onClick={handleClick}
                     >
                         <Squares2X2Icon className="h-20 w-40"/>
@@ -28,7 +28,7 @@ function Header ({ onClickBurger, onClickNoodknop}) {
             ) : (
                 <Link to="/vertalen">
                     <button 
-                        className="bg-[#DDA853] rounded-[10px] cursor-pointer shadow-[0_10px_#BA8C43]" 
+                        className = {`bg-[${uiSettings.colorPalette.colorFour}] rounded-[10px] cursor-pointer shadow-[0_10px_${uiSettings.colorPalette.colorFourShadow}]`} 
                         onClick={handleClick}
                     >
                         <LanguageIcon className="h-20 w-40"/>
