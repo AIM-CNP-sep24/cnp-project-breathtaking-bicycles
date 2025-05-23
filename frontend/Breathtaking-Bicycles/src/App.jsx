@@ -1,6 +1,6 @@
 import BenodigdhedenPagina from './BenodigdhedenPagina.jsx'
 import {Routes, Route} from 'react-router'
-import Header from './header.jsx'
+import Header from './Header.jsx'
 import Textfield from './translate-components/Textfield.jsx'
 import Index from './Index.jsx'
 import BenodigdhedenboomPagina from './benodigdhedenboom-components/BenodigdhedenboomPagina.jsx'
@@ -18,7 +18,6 @@ async function getColorPalettes(){
     }
 
     const json = await response.json();
-    console.log(json)
     return json;
   } catch (error) {
     console.error(error.message);
