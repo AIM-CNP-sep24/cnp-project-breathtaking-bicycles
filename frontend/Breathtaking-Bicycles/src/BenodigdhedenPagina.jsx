@@ -7,15 +7,6 @@ function BenodigdhedenPagina({uiSettings}){
     const [titel, setTitel] = useState("");
     const [benodigdhedenArray, setBenodigdhedenArray] = useState([]);
     const {parentId} = useParams();
-    // const uiSettings = {
-    //     colorPallete: {
-    //         "color-one": "#F5EEDC",
-    //         "color-two": "#27548A",
-    //         "color-three": "#183B4E",
-    //         "color-four": "#DDA853",
-    //     },
-    //     font: "standard"
-    // }
     const taal1 = "NL";
     const taal2 = "EN";
     // Haal het ID uit de URL om zo de volgende benodigdheden te genereren. 
@@ -82,12 +73,12 @@ function BenodigdhedenPagina({uiSettings}){
                             />
                         </div>
                         <div className=" w-[100%]">
-                            <h1 className="text-center text-4xl font-bold mt-8">{titel}</h1>
+                            <h1 className={`${uiSettings.font} text-center text-4xl font-bold mt-8`}>{titel}</h1>
                         </div>
                     </div>
                 );
             }
-            return <h1 className="text-center text-4xl font-bold px-10">{titel}</h1>;
+            return <h1 className={`${uiSettings.font} text-center text-4xl font-bold px-10`}>{titel}</h1>;
         })()}
             
 
