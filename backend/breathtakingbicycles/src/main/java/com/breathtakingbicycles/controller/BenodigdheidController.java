@@ -99,9 +99,9 @@ public class BenodigdheidController {
         return "succes";
     }
 
-    @GetMapping("/enkel-benodigdheid-ophalen")
-    public int haalEnkelBenodigdheidOp(@RequestHeader("id") int id){
-        return benodigdheidRepository.haalEnkelBenodigdheidOp(id);
+    @GetMapping("/parent-benodigdheid-ophalen")
+    public List<Benodigdheid> haalParentBenodigdheidOp(@RequestHeader("id") int id, @RequestHeader("taal1") String taal1, @RequestHeader("taal2") String taal2){
+        return benodigdheidRepository.haalParentBenodigdheidOp(id, taal1, taal2);
     }
 
 
