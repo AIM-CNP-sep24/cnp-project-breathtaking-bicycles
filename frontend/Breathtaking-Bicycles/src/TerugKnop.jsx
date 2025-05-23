@@ -1,7 +1,5 @@
 const TerugKnop = ({ onClick, className, uiSettings }) => {
-import {Link} from 'react-router'
     return (
-
 //         <Link to={"/benodigdheden/" + parentId}>
         <button
             onClick={onClick}
