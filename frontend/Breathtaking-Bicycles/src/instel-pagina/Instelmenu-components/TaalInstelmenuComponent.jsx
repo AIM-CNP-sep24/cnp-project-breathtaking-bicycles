@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { ArrowsRightLeftIcon } from '@heroicons/react/24/outline';
 import LanguageSelection from './TaaldropdownComponent';
 
-function TaalInstelmenuComponent() {
+function TaalInstelmenuComponent( {disabled}) {
     const [selectedLanguageZorgvrager, setSelectedLanguageZorgvrager] = useState('');
     const [selectedLanguageZorgverlener, setSelectedLanguageZorgverlener] = useState('');
     const [languages, setLanguages] = useState([]); // array om de talen op te slaan
@@ -45,9 +45,11 @@ function TaalInstelmenuComponent() {
                         value={selectedLanguageZorgverlener}
                         onChange={(value) => setSelectedLanguageZorgverlener(value)}
                         options={languages.filter((lang) => lang.naam !== selectedLanguageZorgvrager)} // Filter op basis van de naam van de taal
+                        disabled={disabled}
                     />
                     <button
                         onClick={switchLanguage}
+                        disabled={disabled}
                     >
                         <ArrowsRightLeftIcon className="h-20 w-20 text-black" />
                     </button>
@@ -57,6 +59,7 @@ function TaalInstelmenuComponent() {
                         value={selectedLanguageZorgvrager}
                         onChange={(value) => setSelectedLanguageZorgvrager(value)}
                         options={languages.filter((lang) => lang.naam !== selectedLanguageZorgverlener)} // Filter op basis van de naam van de taal
+                        disabled={disabled}
                     />
                 </div>
             </div>
