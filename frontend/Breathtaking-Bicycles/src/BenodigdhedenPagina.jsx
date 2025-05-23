@@ -7,7 +7,6 @@ function BenodigdhedenPagina({uiSettings}){
     const [titel, setTitel] = useState("");
     const [benodigdhedenArray, setBenodigdhedenArray] = useState([]);
     const {parentId} = useParams();
-
     const taal1 = "NL";
     const taal2 = "EN";
     // Haal het ID uit de URL om zo de volgende benodigdheden te genereren. 
