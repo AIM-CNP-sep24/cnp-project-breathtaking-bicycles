@@ -27,13 +27,14 @@ async function getColorPalettes(){
 function App() {
   const [uiSettings, setUiSettings] = useState({font:"", colorPalette:""})
   const [colorPalettes, setColorPalettes] = useState([])
+  const [fonts, setFonts] = useState(["standard", "OpenDyslexic"])
 
   useEffect(() => {
     async function ColorPalettesFetch() {
       let colorPalettes = await getColorPalettes();
       setColorPalettes(colorPalettes)
       setUiSettings({colorPalette: colorPalettes[0],
-        font: "standard"
+        font: [0]
       })
     }
     ColorPalettesFetch();
@@ -44,7 +45,7 @@ function App() {
      <Header uiSettings={uiSettings}/>
       <Routes>          
         <Route path={"benodigdheden/:parentId"} element={<BenodigdhedenPagina uiSettings={uiSettings}/>} />
-        <Route path="instelmenu" element={<InstelPagina uiSettings={uiSettings} colorPalettes={colorPalettes}/>} />
+        <Route path="instelmenu" element={<InstelPagina uiSettings={uiSettings} colorPalettes={colorPalettes} fonts={fonts}/>} />
         <Route path="vertalen" element={<Textfield uiSettings={uiSettings}/>} />
         <Route path="" element={<Index />} />
         <Route path="boomstructuurbeheer/:parentId" element={<BenodigdhedenboomPagina />} />
