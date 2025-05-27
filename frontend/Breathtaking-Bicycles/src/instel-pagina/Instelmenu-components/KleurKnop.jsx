@@ -1,7 +1,7 @@
 function KleurKnop({colorPalette,  geselecteerdPalet, setGeselecteerdPalet, disabled}) {
     return (
         <div className="flex flex-col">
-            <button className={`cursor-pointer ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+            <button className={`${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
                     onClick={() => {setGeselecteerdPalet(colorPalette.id)}}
                     disabled={disabled}>
                     <p hidden>Kleurpalet knop</p>
