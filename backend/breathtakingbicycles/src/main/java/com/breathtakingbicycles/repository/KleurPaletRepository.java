@@ -1,9 +1,7 @@
-package com.breathtakingbicycles.dao;
+package com.breathtakingbicycles.repository;
 
 import com.breathtakingbicycles.domein.KleurPalet;
-import com.breathtakingbicycles.domein.Taal;
 import com.breathtakingbicycles.repository.KleurPaletRowMapper;
-import com.breathtakingbicycles.repository.TaalRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -11,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class KleurPaletDao {
+public class KleurPaletRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 

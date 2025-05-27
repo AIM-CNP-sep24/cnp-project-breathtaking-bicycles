@@ -40,13 +40,12 @@ function BenodigdhedenboomPagina(){
             });
             if (response.ok){
                 const data = await response.json();
-                setParentBenodigdheid(data);
                 setLaagNr(data[0].laagnr);
                 setTerugKnopId(data[0].id);
                 toggleTerugKnopFunction(data);
             }
         } catch (error) {
-
+            console.error(error)
         }
     }
 
@@ -73,7 +72,7 @@ function BenodigdhedenboomPagina(){
                 }
             }
         } catch (error){
-            console.log(error);
+            console.error(error);
         }
     }
 
@@ -105,7 +104,6 @@ function BenodigdhedenboomPagina(){
                         tempArray[i] = benodigdheid;
                     })
                     
-                    
                     for (let index = 0; index < 6; index++){
                         if (tempArray[index] == "null"){
                             tempArray[index] = VulMetLeegElement();
@@ -117,7 +115,7 @@ function BenodigdhedenboomPagina(){
                 }
             }
         } catch (error){
-            console.log(error);
+            console.error(error);
         }
     }
 
@@ -131,13 +129,12 @@ function BenodigdhedenboomPagina(){
                     },
                     body: JSON.stringify({"parentId": parentId, "laag": laagNr, "rangnr": benodigdheid.rangnr, "id": benodigdheid.id})
                 });
-                if (response.ok){
-                    console.log("Succes");
+                if (!response.ok){
+                    console.log("Er ging iets mis");
                 }
             } catch (error) {
-
+                console.error(error);
             }
-    // }
     }
 
     function VulMetLeegElement(){
@@ -159,7 +156,7 @@ function BenodigdhedenboomPagina(){
         if (parentId === 0){
             setToggleTerugKnop(false);
         } else {
-            if (parentBenodigdheid.id != -1){
+            if (parentBenodigdheid[0].id != -1){
                 setToggleTerugKnop(true);
             } else {
                 setToggleTerugKnop(false);
@@ -193,7 +190,7 @@ function BenodigdhedenboomPagina(){
         <div className="grid grid-cols-2 text-center mx-5">
             {benodigdhedenArray.map((benodigdheid, i) => {
                 return<>
-                <BenodigdhedenBoomCategorieElement index={i} benodigdheid={benodigdheid} benodigdheden={alleBenodigdhedenArray} setToggleForeGround={setToggleForeGround} setGeklikteCategorie={setGeklikteCategorie} laag={laagNr}/>
+                    <BenodigdhedenBoomCategorieElement index={i} benodigdheid={benodigdheid} benodigdheden={alleBenodigdhedenArray} setToggleForeGround={setToggleForeGround} setGeklikteCategorie={setGeklikteCategorie} laag={laagNr}/>
                 </>
             })}
         </div>

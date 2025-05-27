@@ -2,9 +2,12 @@ package com.breathtakingbicycles.repository;
 
 import com.breathtakingbicycles.domein.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import javax.xml.crypto.Data;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,35 +30,56 @@ public class BenodigdheidRepository {
     }
 
     public boolean maakBenodigdheid(BenodigdheidInvoerData benodigdheidInvoerData, ArrayList<VertalingData> vertalingData){
-        int benodigdheidId = getHoogsteBenodigdheidId();
-        jdbcTemplate.update("INSERT INTO benodigdheid (id, imgsrc) VALUES (?, ?)",benodigdheidId, benodigdheidInvoerData.imgsrc);
-        for (int index = 0; index < vertalingData.size(); index++){
-            int benodigdheidVertalingId = getHoogsteBenodigdheidVertalingId();
-            benodigdheidVertalingId += 1;
-            jdbcTemplate.update("INSERT INTO benodigdheid_vertaling (id, taal_id, benodigdheid_id, tekst) VALUES (?, ?, ?, ?) ", benodigdheidVertalingId, vertalingData.get(index).taalId, vertalingData.get(index).benodigdeidId, vertalingData.get(index).tekst);
+        try {
+            int benodigdheidId = getHoogsteBenodigdheidId();
+            jdbcTemplate.update("INSERT INTO benodigdheid (id, imgsrc) VALUES (?, ?)", benodigdheidId, benodigdheidInvoerData.imgsrc);
+            for (int index = 0; index < vertalingData.size(); index++) {
+                int benodigdheidVertalingId = getHoogsteBenodigdheidVertalingId();
+                benodigdheidVertalingId += 1;
+                jdbcTemplate.update("INSERT INTO benodigdheid_vertaling (id, taal_id, benodigdheid_id, tekst) VALUES (?, ?, ?, ?) ", benodigdheidVertalingId, vertalingData.get(index).taalId, vertalingData.get(index).benodigdeidId, vertalingData.get(index).tekst);
+            }
+            return true;
+        } catch (DataAccessException e){
+            return false;
         }
-        return true;
     }
 
     public boolean verwijderBenodigdheid(int benodigdheidId){
-        jdbcTemplate.update("DELETE FROM benodigdheid WHERE id = ?", benodigdheidId);
-        jdbcTemplate.update("DELETE FROM benodigdheid_vertaling WHERE id = ?", benodigdheidId);
-        return true;
+        try {
+            jdbcTemplate.update("DELETE FROM benodigdheid WHERE id = ?", benodigdheidId);
+            jdbcTemplate.update("DELETE FROM benodigdheid_vertaling WHERE id = ?", benodigdheidId);
+            return true;
+        } catch (DataAccessException e){
+            return false;
+        }
     }
 
     public boolean voegBenodigdheidTaalToe(int id, int benodigdheidId, String tekst, int taalId){
-        jdbcTemplate.update("INSERT INTO benodigdheid_vertaling (id, benodigdheid_id, tekst, taal_id) VALUES (?, ?, ?, ?)", id, benodigdheidId, tekst, taalId);
-        return true;
+        try {
+            jdbcTemplate.update("INSERT INTO benodigdheid_vertaling (id, benodigdheid_id, tekst, taal_id) VALUES (?, ?, ?, ?)", id, benodigdheidId, tekst, taalId);
+            return true;
+        } catch (DataAccessException e){
+            return false;
+        }
     }
 
-    public String plaatsBenodigdheidInBoom(int parentId, int rangnr, int laag, int benodigdheidId){
-        jdbcTemplate.update("UPDATE benodigdheid SET parent_id = ?, rangnr = ?, laag = ? WHERE id = ?", parentId, rangnr, laag, benodigdheidId);
-        return ("succes");
+    public boolean plaatsBenodigdheidInBoom(int parentId, int rangnr, int laag, int benodigdheidId) throws SQLException{
+        try {
+            jdbcTemplate.update("UPDATE benodigdheid SET parent_id = ?, rangnr = ?, laag = ? WHERE id = ?", parentId, rangnr, laag, benodigdheidId);
+            return true;
+        } catch (DataAccessException e){
+            return false;
+        }
+
     }
 
-    public String haalBenodigdheidUitBoomStructuur(int parentId){
-        jdbcTemplate.update("UPDATE benodigdheid SET parent_id = null, rangnr = null, laag = null WHERE parent_id = ?", parentId);
-        return("Succes");
+    public boolean haalBenodigdheidUitBoomStructuur(int parentId) {
+        try {
+            jdbcTemplate.update("UPDATE benodigdheid SET parent_id = null, rangnr = null, laag = null WHERE parent_id = ?", parentId);
+            return true;
+        } catch (DataAccessException e) {
+            return false;
+        }
     }
 
     public int getHoogsteBenodigdheidId(){
