@@ -9,18 +9,16 @@ function FontInstelmenuComponent({ disabled, setFonts, selectedFont }) {
                 <h1 className="text-4xl font-bold mb-8 text-center">Font Keuze</h1>
                 <div className="flex flex-row gap-16 items-center justify-center">
                             <StandardFontKnop
-                                onClick={() => {
-                                     setFonts('standard'), 
-                                     console.log(selectedFont + 'font selected')
-                                }}
+                                onClick={() => 
+                                     setFonts('standard')
+                                }
                                 disabled={disabled}
                                 selected={selectedFont === 'standard'}
                             />
                             <DyslexicFontKnop
-                                onClick={() => {
-                                    setFonts('OpenDyslexic'),
-                                    console.log(selectedFont + ' font selected')
-                                }}
+                                onClick={() => 
+                                    setFonts('OpenDyslexic')
+                                }
                                 disabled={disabled}
                                 selected={selectedFont === 'OpenDyslexic'}
                             />

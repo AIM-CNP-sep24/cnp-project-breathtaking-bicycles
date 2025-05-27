@@ -8,12 +8,6 @@ function InstelPagina({uiSettings, colorPalettes, fonts}) {
     const [previewSettings, setPreviewSettings] = useState({font: "standard",
         colorPalette: colorPalettes[0]
     });
-
-    // useEffect(() => {
-    //     setPreviewSettings({font: "standard",
-    //         colorPalette: colorPalettes[0]
-    //     });
-    // }, []);
     
     return (
         <>
