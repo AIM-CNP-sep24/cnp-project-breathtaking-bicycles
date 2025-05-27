@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './LogoutButton';
 import LogoutButton from './LogoutButton';
 
 function Login() {
@@ -73,6 +74,7 @@ function Login() {
                             Login
                         </p>
                     </button>
+                    <LogoutButton></LogoutButton>
                 </form>
             </div>
         </div>
