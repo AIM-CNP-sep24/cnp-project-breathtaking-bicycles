@@ -9,7 +9,7 @@ const DyslexicFontKnop = ({ onClick, className, selected }) => {
             selected={('OpenDyslexic')}
         >
             <p className="text-2xl text-center text-white font-OpenDyslexic text-[#27548A]">
-                Dyslectie  
+                Dyslexie  
             </p>
         </button>
     );
