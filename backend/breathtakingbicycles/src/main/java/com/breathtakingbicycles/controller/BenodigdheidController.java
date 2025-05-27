@@ -48,18 +48,11 @@ public class BenodigdheidController {
     public ResponseEntity<Map<String, String>> boomstructuurWijzigen(@RequestBody Benodigdheid benodigdheid) throws SQLException {
         Map<String, String> response = new HashMap<>();
         String message;
-        if (!benodigdheidRepository.haalBenodigdheidUitBoomStructuur(benodigdheid.parentId)) {
+        if (!benodigdheidRepository.haalBenodigdheidUitBoomStructuur(benodigdheid.parentId) || !benodigdheidRepository.plaatsBenodigdheidInBoom(benodigdheid.parentId, benodigdheid.rangnr, benodigdheid.laag, benodigdheid.id)) {
             message = "Er ging iets mis in het plaatsen van de benodigdheid";
             response.put("message", message);
             return ResponseEntity.status(400).body(response);
         }
-
-        if (!benodigdheidRepository.plaatsBenodigdheidInBoom(benodigdheid.parentId, benodigdheid.rangnr, benodigdheid.laag, benodigdheid.id)) {
-            message = "Er ging iets mis in het plaatsen van de benodigdheid";
-            response.put("message", message);
-            return ResponseEntity.status(400).body(response);
-        }
-
         message = "Boomstructuur gewijzigd";
         response.put("message", message);
         return ResponseEntity.status(200).body(response);
