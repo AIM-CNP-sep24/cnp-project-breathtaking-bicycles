@@ -27,14 +27,14 @@ async function getColorPalettes(){
 function App() {
   const [uiSettings, setUiSettings] = useState({font:"", colorPalette:""})
   const [colorPalettes, setColorPalettes] = useState([])
-  const [fonts, setFonts] = useState(["standard", "OpenDyslexic"])
+  const fonts = ["standard", "OpenDyslexic"]
 
   useEffect(() => {
     async function ColorPalettesFetch() {
       let colorPalettes = await getColorPalettes();
       setColorPalettes(colorPalettes)
       setUiSettings({colorPalette: colorPalettes[0],
-        font: [0]
+        font: fonts[0]
       })
     }
     ColorPalettesFetch();

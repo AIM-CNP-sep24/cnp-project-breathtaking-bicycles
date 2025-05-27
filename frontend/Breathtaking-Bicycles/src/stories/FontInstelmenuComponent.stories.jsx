@@ -36,7 +36,7 @@ export const InteractieveFontSwitch = () => {
   return (
     <FontInstelmenuComponent
       disabled={false}
-      setFonts={setSelectedFont}
+      setSelectedFont={setSelectedFont}
       selectedFont={selectedFont}
     />
   );

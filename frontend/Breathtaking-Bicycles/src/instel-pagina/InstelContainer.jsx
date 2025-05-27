@@ -15,7 +15,7 @@ import FontInstelmenuComponent from "./Instelmenu-components/FontInstelmenuCompo
                 />
                 <FontInstelmenuComponent
                     fonts={fonts}
-                    setFonts={setSelectedFont}
+                    setSelectedFont={setSelectedFont}
                     selectedFont={selectedFont} />
             </div>
         </div>
