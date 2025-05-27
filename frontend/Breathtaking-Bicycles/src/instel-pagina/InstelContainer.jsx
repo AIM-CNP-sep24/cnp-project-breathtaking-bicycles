@@ -9,11 +9,11 @@ function InstelContainer({ colorPalettes, geselecteerdPalet, setGeselecteerdPale
     const [isAanpasbaar, setIsAanpasbaar] = useState(true); // state om bij te houden of de instellingen aanpasbaar zijn
     const [melding, setMelding] = useState(null); // state om de melding op te slaan
 
-    const handleAanpassen = () => {
+    function handleAanpassen () {
         setIsAanpasbaar(true); // stel in dat de instellingen weer aanpasbaar zijn
     }
 
-    const handleOpslaan = async () => {
+    async function handleOpslaan() {
         try {
             setIsAanpasbaar(false); // stel in dat de instellingen niet meer aanpasbaar zijn
             //bij succes
@@ -26,8 +26,8 @@ function InstelContainer({ colorPalettes, geselecteerdPalet, setGeselecteerdPale
     };
 
     return (
-        <div className="container p-10 h-200">
-            <div className="relative flex-col items-center h-[100%] rounded-lg bg-[#F5EEDC]">
+        <div className="container p-10 h-300">
+            <div className="flex-col items-center h-[100%] rounded-lg bg-[#F5EEDC]">
                 <div className="flex justify-end w-full mb-4 px-4 py-4">
                     {isAanpasbaar ? (
                         <Opslaanknop

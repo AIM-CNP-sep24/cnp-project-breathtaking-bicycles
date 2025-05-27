@@ -19,7 +19,7 @@ function LanguageSelection({ label, value, onChange, options, disabled }) {
         >
             <h2 className="text-3xl font-bold mb-7">{label}</h2>
             <div
-                className={`p-4 border border-gray-300 rounded-lg text-xl bg-grey shadow-md cursor-pointer focus:outline-none focus:ring-2 focus:ring-black ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`p-4 border border-gray-300 rounded-lg text-xl bg-grey shadow-md focus:outline-none focus:ring-2 focus:ring-black ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}}`}
                 onClick={() => setIsOpen(!isOpen)}
             >
                 {value || 'Selecteer een taal'}
