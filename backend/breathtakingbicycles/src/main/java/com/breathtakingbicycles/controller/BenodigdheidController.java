@@ -29,7 +29,7 @@ public class BenodigdheidController {
     public List<Benodigdheid> getAlleBenodigdheden(@RequestHeader("taal1") String taal1, @RequestHeader("taal2") String taal2){
         List<Benodigdheid> benodigdhedenList = benodigdheidRepository.getAlleBenodigdheden(taal1, taal2);
 
-        if (benodigdhedenList == null){throw new GeenBenodigdhedenException("Geen benodigdheden gevonden");}
+        if (benodigdhedenList == null){throw new GeenBenodigdhedenException("Geen benodigdheden gevonden.");}
 
         return benodigdhedenList;
     }
@@ -38,7 +38,7 @@ public class BenodigdheidController {
     public List<Benodigdheid> getBenodigdhedenOphaalData(@RequestHeader ("taal1") String taal1, @RequestHeader ("taal2") String taal2, @RequestHeader ("parentId") int parentId ) throws ServletRequestBindingException {
         List<Benodigdheid> benodigdheidList = benodigdheidRepository.getBenodigdheidOphaalData(parentId, taal1, taal2);
 
-        if (benodigdheidList == null){throw new GeenBenodigdhedenException("Geen benodigdheden gevonden");}
+        if (benodigdheidList == null){throw new GeenBenodigdhedenException("Geen benodigdheden gevonden.");}
 
         return benodigdheidList;
     }
@@ -48,21 +48,21 @@ public class BenodigdheidController {
     public ResponseEntity<Map<String, String>> boomstructuurWijzigen(@RequestBody Benodigdheid benodigdheid) throws SQLException {
         Map<String, String> response = new HashMap<>();
         String message;
-        if (benodigdheidRepository.haalBenodigdheidUitBoomStructuur(benodigdheid.parentId)) {
-            if (benodigdheidRepository.plaatsBenodigdheidInBoom(benodigdheid.parentId, benodigdheid.rangnr, benodigdheid.laag, benodigdheid.id)) {
-                message = "Boomstructuur gewijzigd";
-                response.put("message", message);
-                return ResponseEntity.status(200).body(response);
-            } else {
-                message = "Er ging iets mis in het plaatsen van de benodigdheid";
-                response.put("message", message);
-                return ResponseEntity.status(400).body(response);
-            }
-        } else {
+        if (!benodigdheidRepository.haalBenodigdheidUitBoomStructuur(benodigdheid.parentId)) {
             message = "Er ging iets mis in het plaatsen van de benodigdheid";
             response.put("message", message);
             return ResponseEntity.status(400).body(response);
         }
+
+        if (!benodigdheidRepository.plaatsBenodigdheidInBoom(benodigdheid.parentId, benodigdheid.rangnr, benodigdheid.laag, benodigdheid.id)) {
+            message = "Er ging iets mis in het plaatsen van de benodigdheid";
+            response.put("message", message);
+            return ResponseEntity.status(400).body(response);
+        }
+
+        message = "Boomstructuur gewijzigd";
+        response.put("message", message);
+        return ResponseEntity.status(200).body(response);
     }
 
     @PostMapping("/maak-benodigdheid")
@@ -72,16 +72,16 @@ public class BenodigdheidController {
         if (benodigdheidRepository.checkOfBenodigdheidNaamAlBestaat(invoerData.naam)) {
             ArrayList<VertalingData> vertalingData = benodigdheidRepository.maakVertalingData(invoerData.naam);
             if (benodigdheidRepository.maakBenodigdheid(invoerData, vertalingData)) {
-                message = "Benodigdheid toegevoegd";
+                message = "Benodigdheid toegevoegd.";
                 response.put("message", message);
                 return (ResponseEntity.status(200).body(response));
             } else {
-                message = "Er is iets mis gegaan";
+                message = "Er is iets mis gegaan.";
                 response.put("message", message);
                 return (ResponseEntity.status(403).body(response));
             }
         } else {
-            message = "Benodigdheid bestaat al";
+            message = "Benodigdheid bestaat al.";
             response.put("message", message);
             return (ResponseEntity.status(403).body(response));
         }
@@ -90,28 +90,22 @@ public class BenodigdheidController {
     @PostMapping("/verwijder-benodigdheden")
     public ResponseEntity<Map <String, String>> verwijderBenodigdheid(@RequestHeader("benodigdheidId") int benodigdheidId){
         Map<String, String> response = new HashMap<>();
-        if (benodigdheidRepository.checkOfBenodigdheidBestaat(benodigdheidId)) {
-            if(benodigdheidRepository.verwijderBenodigdheid(benodigdheidId)) {
-                String message = "Benodigdheid verwijderd";
-                response.put("message", message);
-                return (ResponseEntity.status(200).body(response));
-            } else {
-                String message = "Er is iets misgegaan";
-                response.put("message", message);
-                return(ResponseEntity.status(400).body(response));
-            }
-        } else {
-            String message = "Er is iets misgegaan";
+        String message;
+        if (!benodigdheidRepository.checkOfBenodigdheidBestaat(benodigdheidId) || !benodigdheidRepository.verwijderBenodigdheid(benodigdheidId)) {
+            message = "Er is iets misgegaan.";
             response.put("message", message);
-            return(ResponseEntity.status(400).body(response));
+            return (ResponseEntity.status(400).body(response));
         }
+        message = "Benodigdheid verwijderd.";
+        response.put("message", message);
+        return (ResponseEntity.status(200).body(response));
     }
 
     @GetMapping("/hoogste-benodigdheid-id")
     public int getHoogsteBenodigdheidId(){
         int id = benodigdheidRepository.getHoogsteBenodigdheidId();
 
-        if (id == 0) {throw new GeenBenodigdhedenException("Geen benodigdheden gevonden");}
+        if (id == 0) {throw new GeenBenodigdhedenException("Geen benodigdheden gevonden.");}
 
         return id;
     }
@@ -120,13 +114,14 @@ public class BenodigdheidController {
     public List<BenodigdheidTitel> getBenodigdheidTitel(@RequestHeader("parentId") int parentId, @RequestHeader("taal1") String taal1, @RequestHeader("taal2") String taal2){
     List<BenodigdheidTitel> benodigdheidTitelList = benodigdheidRepository.getBenodigdheidTitel(parentId, taal1, taal2);
 
-        if (benodigdheidTitelList == null) {throw new GeenBenodigdhedenException("Geen benodigdheidtitel gevonden");}
+        if (benodigdheidTitelList == null) {throw new GeenBenodigdhedenException("Geen benodigdheidtitel gevonden.");}
 
         return benodigdheidTitelList;
     }
 
     @GetMapping("/benodigdheid-childs-ophalen")
     public boolean getBenodigdheidChilds(@RequestHeader("parentId") int parentId){
+
         return benodigdheidRepository.getBenodigdheidChilds(parentId);
     }
 
@@ -134,7 +129,7 @@ public class BenodigdheidController {
     public List<Benodigdheid> haalParentBenodigdheidOp(@RequestHeader("id") int id, @RequestHeader("taal1") String taal1, @RequestHeader("taal2") String taal2){
         List<Benodigdheid> benodigdheidList = benodigdheidRepository.haalParentBenodigdheidOp(id, taal1, taal2);
 
-        if (benodigdheidList == null) { throw new GeenBenodigdhedenException("Geen benodigdheden gevonden");}
+        if (benodigdheidList == null) { throw new GeenBenodigdhedenException("Geen benodigdheden gevonden.");}
 
         return benodigdheidList;
     }
