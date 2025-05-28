@@ -17,10 +17,10 @@ function FontInstelmenuComponent({ disabled, setSelectedFont, selectedFont }) {
                             />
                             <DyslexicFontKnop
                                 onClick={() => 
-                                    setSelectedFont('OpenDyslexic')
+                                    setSelectedFont('font-OpenDyslexic')
                                 }
                                 disabled={disabled}
-                                selected={selectedFont === 'OpenDyslexic'}
+                                selected={selectedFont === 'font-OpenDyslexic'}
                             />
                     </div>
             </div>

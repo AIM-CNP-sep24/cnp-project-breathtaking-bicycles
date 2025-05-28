@@ -2,18 +2,18 @@ import { useEffect, useRef, useState } from "react";
 import InstelContainer from "./InstelContainer";
 import InstelPreview from "./preview/InstelPreview";
 
-function InstelPagina({uiSettings, colorPalettes}){
+function InstelPagina({uiSettings, colorPalettes, fonts}){
     const [geselecteerdPalet, setGeselecteerdPalet] = useState(1);
     const [previewSettings, setPreviewSettings] = useState({font: "standard", colorPalette: {}});
     const [selectedFont, setSelectedFont] = useState("standard");
 
     useEffect(() => {
         if (colorPalettes.length > 0) {
-            setPreviewSettings({font: "standard",
+            setPreviewSettings({font: selectedFont,
                 colorPalette: colorPalettes[geselecteerdPalet -1]
             });
         }
-    }, [colorPalettes, geselecteerdPalet]);
+    }, [colorPalettes, geselecteerdPalet, selectedFont]);
     
     return (
         <>
