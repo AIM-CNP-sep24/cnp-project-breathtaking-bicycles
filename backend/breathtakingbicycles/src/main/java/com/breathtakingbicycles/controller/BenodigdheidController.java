@@ -35,7 +35,7 @@ public class BenodigdheidController {
     }
 
     @GetMapping("/benodigdheden-ophalen")
-    public List<Benodigdheid> getBenodigdhedenOphaalData(@RequestHeader ("taal1") String taal1, @RequestHeader ("taal2") String taal2, @RequestHeader ("parentId") int parentId ) throws ServletRequestBindingException {
+    public List<Benodigdheid> getBenodigdhedenOphaalData(@RequestHeader ("taal1") String taal1, @RequestHeader ("taal2") String taal2, @RequestHeader ("parentId") int parentId ) {
         List<Benodigdheid> benodigdheidList = benodigdheidRepository.getBenodigdheidOphaalData(parentId, taal1, taal2);
 
         if (benodigdheidList == null){throw new GeenBenodigdhedenException("Geen benodigdheden gevonden.");}
@@ -43,52 +43,44 @@ public class BenodigdheidController {
         return benodigdheidList;
     }
 
-
     @PostMapping("/boomstructuur-wijzigen")
-    public ResponseEntity<Map<String, String>> boomstructuurWijzigen(@RequestBody Benodigdheid benodigdheid) throws SQLException {
+    public ResponseEntity<Map<String, String>> boomstructuurWijzigen(@RequestBody Benodigdheid benodigdheid) {
         Map<String, String> response = new HashMap<>();
         String message;
-        if (!benodigdheidRepository.haalBenodigdheidUitBoomStructuur(benodigdheid.parentId) || !benodigdheidRepository.plaatsBenodigdheidInBoom(benodigdheid.parentId, benodigdheid.rangnr, benodigdheid.laag, benodigdheid.id)) {
-            message = "Er ging iets mis in het plaatsen van de benodigdheid";
-            response.put("message", message);
-            return ResponseEntity.status(400).body(response);
-        }
+        benodigdheidRepository.haalBenodigdheidUitBoomStructuur(benodigdheid.parentId);
+        benodigdheidRepository.plaatsBenodigdheidInBoom(benodigdheid.parentId, benodigdheid.rangnr, benodigdheid.laag, benodigdheid.id);
         message = "Boomstructuur gewijzigd";
         response.put("message", message);
         return ResponseEntity.status(200).body(response);
     }
 
-    @PostMapping("/maak-benodigdheid")
-    public ResponseEntity<Map<String, String>> maakBenodigdheid(@RequestHeader("body") BenodigdheidInvoerData invoerData) {
-        Map<String, String> response = new HashMap<>();
-        String message;
-        if (benodigdheidRepository.checkOfBenodigdheidNaamAlBestaat(invoerData.naam)) {
-            ArrayList<VertalingData> vertalingData = benodigdheidRepository.maakVertalingData(invoerData.naam);
-            if (benodigdheidRepository.maakBenodigdheid(invoerData, vertalingData)) {
-                message = "Benodigdheid toegevoegd.";
-                response.put("message", message);
-                return (ResponseEntity.status(200).body(response));
-            } else {
-                message = "Er is iets mis gegaan.";
-                response.put("message", message);
-                return (ResponseEntity.status(403).body(response));
-            }
-        } else {
-            message = "Benodigdheid bestaat al.";
-            response.put("message", message);
-            return (ResponseEntity.status(403).body(response));
-        }
-    }
+//    @PostMapping("/maak-benodigdheid")
+//    public ResponseEntity<Map<String, String>> maakBenodigdheid(@RequestHeader("body") BenodigdheidInvoerData invoerData) {
+//        Map<String, String> response = new HashMap<>();
+//        String message;
+//        if (benodigdheidRepository.checkOfBenodigdheidNaamAlBestaat(invoerData.naam)) {
+//            ArrayList<VertalingData> vertalingData = benodigdheidRepository.maakVertalingData(invoerData.naam);
+//            if (benodigdheidRepository.maakBenodigdheid(invoerData, vertalingData)) {
+//                message = "Benodigdheid toegevoegd.";
+//                response.put("message", message);
+//                return (ResponseEntity.status(200).body(response));
+//            } else {
+//                message = "Er is iets mis gegaan.";
+//                response.put("message", message);
+//                return (ResponseEntity.status(403).body(response));
+//            }
+//        } else {
+//            message = "Benodigdheid bestaat al.";
+//            response.put("message", message);
+//            return (ResponseEntity.status(403).body(response));
+//        }
+//    }
 
     @PostMapping("/verwijder-benodigdheden")
     public ResponseEntity<Map <String, String>> verwijderBenodigdheid(@RequestHeader("benodigdheidId") int benodigdheidId){
         Map<String, String> response = new HashMap<>();
         String message;
-        if (!benodigdheidRepository.checkOfBenodigdheidBestaat(benodigdheidId) || !benodigdheidRepository.verwijderBenodigdheid(benodigdheidId)) {
-            message = "Er is iets misgegaan.";
-            response.put("message", message);
-            return (ResponseEntity.status(400).body(response));
-        }
+        benodigdheidRepository.verwijderBenodigdheid(benodigdheidId);
         message = "Benodigdheid verwijderd.";
         response.put("message", message);
         return (ResponseEntity.status(200).body(response));
