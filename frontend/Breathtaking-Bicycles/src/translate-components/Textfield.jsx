@@ -67,9 +67,6 @@ function Textfield({uiSettings}) {
     }
   };
 
-  function handleMicrofoon(){
-
-  }
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -102,7 +99,7 @@ function Textfield({uiSettings}) {
         />
         <div className="flex flex-row justify-center ml-[30%] mr-[30%]">
           <TranslateButton onClick={handleTranslate} uiSettings={uiSettings}/>
-          <MicrofoonButton onClick={handleMicrofoon} uiSettings={uiSettings}/>
+          <MicrofoonButton uiSettings={uiSettings}/>
         </div>
       </div>
     </div>

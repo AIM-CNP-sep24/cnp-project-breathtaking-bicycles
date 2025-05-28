@@ -1,7 +1,6 @@
 import { MicrophoneIcon } from "@heroicons/react/24/solid";
 
 function MicrofoonButton ({uiSettings}){
-console.log(uiSettings);
     return(
     <button 
         className={`w-20 h-20 ml-auto mr-auto cursor-pointer rounded-full bg-[${uiSettings.colorPalette.colorFour}] 
