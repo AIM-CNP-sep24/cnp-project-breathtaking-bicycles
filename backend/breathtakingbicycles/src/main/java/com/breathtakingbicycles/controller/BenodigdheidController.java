@@ -46,43 +46,17 @@ public class BenodigdheidController {
     @PostMapping("/boomstructuur-wijzigen")
     public ResponseEntity<Map<String, String>> boomstructuurWijzigen(@RequestBody Benodigdheid benodigdheid) {
         Map<String, String> response = new HashMap<>();
-        String message;
         benodigdheidRepository.haalBenodigdheidUitBoomStructuur(benodigdheid.parentId);
         benodigdheidRepository.plaatsBenodigdheidInBoom(benodigdheid.parentId, benodigdheid.rangnr, benodigdheid.laag, benodigdheid.id);
-        message = "Boomstructuur gewijzigd";
-        response.put("message", message);
+        response.put("message", "Boomstructuur gewijzigd.");
         return ResponseEntity.status(200).body(response);
     }
-
-//    @PostMapping("/maak-benodigdheid")
-//    public ResponseEntity<Map<String, String>> maakBenodigdheid(@RequestHeader("body") BenodigdheidInvoerData invoerData) {
-//        Map<String, String> response = new HashMap<>();
-//        String message;
-//        if (benodigdheidRepository.checkOfBenodigdheidNaamAlBestaat(invoerData.naam)) {
-//            ArrayList<VertalingData> vertalingData = benodigdheidRepository.maakVertalingData(invoerData.naam);
-//            if (benodigdheidRepository.maakBenodigdheid(invoerData, vertalingData)) {
-//                message = "Benodigdheid toegevoegd.";
-//                response.put("message", message);
-//                return (ResponseEntity.status(200).body(response));
-//            } else {
-//                message = "Er is iets mis gegaan.";
-//                response.put("message", message);
-//                return (ResponseEntity.status(403).body(response));
-//            }
-//        } else {
-//            message = "Benodigdheid bestaat al.";
-//            response.put("message", message);
-//            return (ResponseEntity.status(403).body(response));
-//        }
-//    }
 
     @PostMapping("/verwijder-benodigdheden")
     public ResponseEntity<Map <String, String>> verwijderBenodigdheid(@RequestHeader("benodigdheidId") int benodigdheidId){
         Map<String, String> response = new HashMap<>();
-        String message;
         benodigdheidRepository.verwijderBenodigdheid(benodigdheidId);
-        message = "Benodigdheid verwijderd.";
-        response.put("message", message);
+        response.put("message", "Benodigdheid verwijderd.");
         return (ResponseEntity.status(200).body(response));
     }
 
