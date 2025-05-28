@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import TranslateButton from "./TranslateButton.jsx";
+import MicrofoonButton from "./MicrofoonButton.jsx";
 
 function Textfield({uiSettings}) {
   const [text, setText] = useState("");
@@ -66,6 +67,10 @@ function Textfield({uiSettings}) {
     }
   };
 
+  function handleMicrofoon(){
+
+  }
+
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [submittedMessages]);
@@ -95,7 +100,10 @@ function Textfield({uiSettings}) {
           value={text}
           onKeyDown={handleKeyDown}
         />
-        <TranslateButton onClick={handleTranslate} uiSettings={uiSettings}/>
+        <div className="flex flex-row justify-center ml-[30%] mr-[30%]">
+          <TranslateButton onClick={handleTranslate} uiSettings={uiSettings}/>
+          <MicrofoonButton onClick={handleMicrofoon} uiSettings={uiSettings}/>
+        </div>
       </div>
     </div>
   );
