@@ -20,4 +20,3 @@ StandaardWeergave.args = { url: '/benodigdheden/root' };
 
 export const EtenEnDrinkenWeergave = Template.bind({});
 EtenEnDrinkenWeergave.args = { url: '/benodigdheden/1' };
-

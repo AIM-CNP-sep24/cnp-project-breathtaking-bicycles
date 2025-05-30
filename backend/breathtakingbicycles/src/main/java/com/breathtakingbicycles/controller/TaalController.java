@@ -22,10 +22,6 @@ public class TaalController {
 
     @GetMapping("/talen-ophalen")
     public List<Taal> getTalen(){
-        List<Taal> talenList = taalRepository.getTalen();
-
-        if (talenList == null){throw new GeenTalenException("Geen talen gevonden");}
-
-        return talenList;
+        return taalRepository.getTalen();
     }
 }

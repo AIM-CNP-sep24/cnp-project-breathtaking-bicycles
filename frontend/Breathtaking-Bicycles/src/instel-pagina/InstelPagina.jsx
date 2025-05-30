@@ -2,20 +2,15 @@ import { useState } from "react";
 import InstelContainer from "./InstelContainer";
 import InstelPreview from "./preview/InstelPreview";
 
-function InstelPagina({uiSettings, colorPalettes, fonts}) {
+function InstelPagina({uiSettings,  colorPalettes}){
     const [geselecteerdPalet, setGeselecteerdPalet] = useState(1);
-    const [selectedFont, setSelectedFont] = useState("standard");
     
     return (
         <>
-            <InstelContainer
-            uiSettings={uiSettings}
+            <InstelContainer uiSettings={uiSettings}
             colorPalettes={colorPalettes}
             geselecteerdPalet={geselecteerdPalet}
-            setGeselecteerdPalet={setGeselecteerdPalet}
-            fonts={fonts}
-            selectedFont={selectedFont}
-            setSelectedFont={setSelectedFont}/>
+            setGeselecteerdPalet={setGeselecteerdPalet}/>
             <InstelPreview uiSettings={uiSettings}/>
         </>
     )
