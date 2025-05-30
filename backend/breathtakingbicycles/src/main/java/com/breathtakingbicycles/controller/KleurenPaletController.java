@@ -1,6 +1,6 @@
 package com.breathtakingbicycles.controller;
 
-import com.breathtakingbicycles.dao.KleurPaletDao;
+import com.breathtakingbicycles.repository.KleurPaletRepository;
 import com.breathtakingbicycles.domein.KleurPalet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,10 +13,14 @@ import java.util.List;
 @RestController
 public class KleurenPaletController {
     @Autowired
-    KleurPaletDao kleurPaletDao;
+    KleurPaletRepository kleurPaletRepository;
 
     @GetMapping("/kleurpaletten")
     public List<KleurPalet> getKleurpaletten(){
-        return kleurPaletDao.getKleurpaletten();
+        List<KleurPalet> kleurPalettenList = kleurPaletRepository.getKleurpaletten();
+
+        if (kleurPalettenList == null){throw new GeenKleurenPalettenException("Geen kleurenpaletten gevonden.");}
+
+        return kleurPalettenList;
     }
 }

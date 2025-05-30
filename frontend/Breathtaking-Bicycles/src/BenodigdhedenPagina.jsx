@@ -70,16 +70,16 @@ function BenodigdhedenPagina({uiSettings}){
                             <TerugKnop
                                 onClick={() => window.history.back()}
                                 className="left-4"
-                                parentId={parentId}
+                                uiSettings={uiSettings}
                             />
                         </div>
                         <div className=" w-[100%]">
-                            <h1 className="text-center text-4xl font-bold mt-8">{titel}</h1>
+                            <h1 className={`${uiSettings.font} w-full text-center text-4xl font-bold mt-8`}>{titel}</h1>
                         </div>
                     </div>
                 );
             }
-            return <h1 className="text-center text-4xl font-bold px-10">{titel}</h1>;
+            return <h1 className={`${uiSettings.font} w-full text-center text-4xl font-bold px-10`}>{titel}</h1>;
         })()}
             
 
