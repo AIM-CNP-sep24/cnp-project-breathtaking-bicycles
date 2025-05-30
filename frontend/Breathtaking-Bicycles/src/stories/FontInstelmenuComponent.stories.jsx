@@ -27,7 +27,7 @@ export const DyslexieFontGeselecteerd = Template.bind({});
 DyslexieFontGeselecteerd.args = {
   disabled: false,
   setSelectedFont: action('Font veranderd naar'),
-  selectedFont: 'OpenDyslexic',
+  selectedFont: 'font-OpenDyslexic',
 };
 
 DyslexieFontGeselecteerd.play = async ({ canvasElement }) => {
@@ -57,7 +57,7 @@ export const InteractieveFontSwitch = () => {
   return (
     <FontInstelmenuComponent
       disabled={false}
-      setSelectedFont={setSelectedFont}
+      setSelectedFont={handleFontChange}
       selectedFont={selectedFont}
     />
   );
