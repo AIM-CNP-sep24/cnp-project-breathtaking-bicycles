@@ -1,7 +1,12 @@
-function KleurKnop({colorPalette,  geselecteerdPalet, setGeselecteerdPalet}) {
+function KleurKnop({colorPalette,  geselecteerdPalet, setGeselecteerdPalet, disabled}) {
     return (
-        <div className="flex flex-col">
-            <button className="cursor-pointer" onClick={() => {setGeselecteerdPalet(colorPalette.id)}}>
+        <div 
+        className="flex flex-col"
+        disabled={disabled}
+        >
+            <button className={`${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                    onClick={() => {setGeselecteerdPalet(colorPalette.id)}}
+                    disabled={disabled}>
                     <p hidden>Kleurpalet knop</p>
                     <div className={`bg-[${colorPalette.colorOne}] py-10 px-26 rounded-t-lg`}></div>
                     <div className={`bg-[${colorPalette.colorTwo}] py-4 px-26`}></div>
