@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import TranslateButton from "./TranslateButton.jsx";
-import MicrofoonButton from "./MicrofoonButton.jsx";
 
-function Textfield({uiSettings}) {
+function Textfield() {
   const [text, setText] = useState("");
   const [submittedMessages, setSubmittedMessages] = useState([]);
   const messagesEndRef = useRef(null);
@@ -67,22 +66,21 @@ function Textfield({uiSettings}) {
     }
   };
 
-
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [submittedMessages]);
 
   return (
-    <div className="flex flex-col justify-center pt-120 px-4 bg-white overflow-hidden">  
-      <div className={`${uiSettings.font} w-full mx-auto`}>
+    <div className="flex flex-col justify-center pt-120 px-4 bg-white overflow-hidden">
+      <div className=" w-full mx-auto">
         {/* Message History */}
-        <div className="max-h-64 overflow-y-auto mb-6 rounded">
+        <div className="max-h-64 overflow-y-auto  mb-6 rounded">
           {submittedMessages.map((msg, index) => (
             <div
               key={index}
-              className={`pr-4 pl-4 mb-2 m-2 bg-[${uiSettings.colorPalette.colorOne}] pb-2 pt-2 rounded`}
+              className="pr-4 pl-4 mb-2 m-2 bg-[#F5EEDC] pb-2 pt-2 rounded"
             >
-              <p className="text-md italic mb-1">{msg.original}</p>
+              <p className="text-md text-gray-500 italic mb-1">{msg.original}</p>
               <p className="text-2xl break-words">{msg.translated}</p>
             </div>
           ))}
@@ -92,15 +90,12 @@ function Textfield({uiSettings}) {
         {/* Text Input */}
         <textarea
           placeholder="type uw text hier"
-          className="text-2xl resize-none border-2 border-[#F5EEDC] py-4 px-6 mb-10 rounded w-full"
+          className="resize-none border-2 border-[#F5EEDC] pb-15 mb-15 pl-2 rounded mr-10 w-full"
           onChange={(e) => setText(e.target.value)}
           value={text}
           onKeyDown={handleKeyDown}
         />
-        <div className="flex flex-row justify-center ml-[30%] mr-[30%]">
-          <TranslateButton onClick={handleTranslate} uiSettings={uiSettings}/>
-          <MicrofoonButton uiSettings={uiSettings}/>
-        </div>
+        <TranslateButton onClick={handleTranslate} />
       </div>
     </div>
   );

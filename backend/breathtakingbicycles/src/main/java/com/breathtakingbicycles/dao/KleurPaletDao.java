@@ -1,24 +1,21 @@
-package com.breathtakingbicycles.repository;
+package com.breathtakingbicycles.dao;
 
 import com.breathtakingbicycles.domein.KleurPalet;
+import com.breathtakingbicycles.domein.Taal;
 import com.breathtakingbicycles.repository.KleurPaletRowMapper;
+import com.breathtakingbicycles.repository.TaalRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class KleurPaletRepository {
+public class KleurPaletDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     public List<KleurPalet> getKleurpaletten(){
-        try {
-            return jdbcTemplate.query("SELECT * FROM kleurenpalet", new KleurPaletRowMapper());
-        } catch (EmptyResultDataAccessException erdae) {
-            throw erdae;
-        }
+        return jdbcTemplate.query("SELECT * FROM kleurenpalet", new KleurPaletRowMapper());
     }
 }
