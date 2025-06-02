@@ -13,7 +13,8 @@ function KleurKnop({colorPalette,  geselecteerdPalet, setGeselecteerdPalet, disa
                     <div className={`bg-[${colorPalette.colorThree}] py-4 px-26`}></div>
                     <div className={`bg-[${colorPalette.colorFour}] py-4 px-26 rounded-b-lg`}></div>
             </button>
-            {colorPalette.id == geselecteerdPalet ? <p className="text-center text-2xl font-bold">geselecteerd</p> : <></>}
+            <p className="text-center text-2xl font-bold">{colorPalette.naam}</p>
+            {colorPalette.id == geselecteerdPalet ? <p className="text-center text-2xl">geselecteerd</p> : <></>}
         </div>
     )
 }

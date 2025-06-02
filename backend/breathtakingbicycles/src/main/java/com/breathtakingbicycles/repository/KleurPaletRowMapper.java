@@ -11,6 +11,7 @@ public class KleurPaletRowMapper implements RowMapper<KleurPalet> {
     public KleurPalet mapRow(ResultSet rs, int rowNum) throws SQLException {
         KleurPalet kleurPalet = new KleurPalet();
         kleurPalet.id = rs.getInt("id");
+        kleurPalet.naam = rs.getString("naam");
         kleurPalet.colorOne = rs.getString("color_one");
         kleurPalet.colorOneShadow = rs.getString("color_one_shadow");
         kleurPalet.colorTwo = rs.getString("color_two");
