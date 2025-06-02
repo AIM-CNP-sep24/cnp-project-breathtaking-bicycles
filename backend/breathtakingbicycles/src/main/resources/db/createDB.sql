@@ -63,6 +63,7 @@ CREATE TABLE benodigdheid_vertaling (
 
 CREATE TABLE kleurenpalet (
     id bigint NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    naam varchar(126) NOT NULL,
     color_one varchar(7) NOT NULL,
     color_one_shadow varchar(7) NOT NULL,
     color_two varchar(7) NOT NULL,

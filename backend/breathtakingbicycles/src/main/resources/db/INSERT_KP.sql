@@ -1,6 +1,5 @@
-USE breathtakingbicycles
-
 INSERT INTO kleurenpalet (
+    naam,
     color_one,
     color_one_shadow,
     color_two,
@@ -9,18 +8,20 @@ INSERT INTO kleurenpalet (
     color_three_shadow,
     color_four,
     color_four_shadow)
-    VALUES ('#F5EEDC',
-    '#E0D9C8',
-    '#27548A',
-    '#1C406B',
-    '#183B4E',
-    '#132F3F',
-    '#DDA853',
-    '#BA8C43')
+VALUES ('Standaard palet',
+        '#F5EEDC',
+        '#E0D9C8',
+        '#27548A',
+        '#1C406B',
+        '#183B4E',
+        '#132F3F',
+        '#DDA853',
+        '#BA8C43')
 
     USE breathtakingbicycles
 
 INSERT INTO kleurenpalet (
+    naam,
     color_one,
     color_one_shadow,
     color_two,
@@ -29,7 +30,8 @@ INSERT INTO kleurenpalet (
     color_three_shadow,
     color_four,
     color_four_shadow)
-    VALUES ('#FFBE85',
+VALUES ('Kleurenblinden palet',
+    '#FFBE85',
     '#CF9868',
     '#4090C2',
     '#3378A3',
