@@ -1,6 +1,6 @@
 import KleurKnop from './KleurKnop';
 
-function KleurenpaletKeuzeComponent({colorPalettes, geselecteerdPalet, setGeselecteerdPalet}) {
+function KleurenpaletKeuzeComponent({colorPalettes, geselecteerdPalet, setGeselecteerdPalet, disabled}) {
     return (
         <div className="container p-10 justify-start">
             <div className="flex flex-col h-[100%] rounded-lg bg-white p-6">
@@ -9,7 +9,8 @@ function KleurenpaletKeuzeComponent({colorPalettes, geselecteerdPalet, setGesele
                     {colorPalettes.map((colorPalette) => (
                         <KleurKnop colorPalette={colorPalette} 
                         geselecteerdPalet={geselecteerdPalet}
-                        setGeselecteerdPalet={setGeselecteerdPalet} />
+                        setGeselecteerdPalet={setGeselecteerdPalet}
+                        disabled={disabled} />
                     ))}
                 </div>
             </div>
