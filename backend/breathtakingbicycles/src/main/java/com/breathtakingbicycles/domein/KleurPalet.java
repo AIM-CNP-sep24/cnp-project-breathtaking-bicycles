@@ -2,6 +2,7 @@ package com.breathtakingbicycles.domein;
 
 public class KleurPalet {
     public int id;
+    public String naam;
     public String colorOne;
     public String colorOneShadow;
     public String colorTwo;
