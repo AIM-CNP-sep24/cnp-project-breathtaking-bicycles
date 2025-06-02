@@ -36,6 +36,7 @@ function App() {
       setUiSettings({colorPalette: colorPalettes[0],
         font: fonts[0]
       })
+      console.log(colorPalettes)
     }
     ColorPalettesFetch();
   }, [])
