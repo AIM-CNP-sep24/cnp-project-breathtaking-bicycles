@@ -1,5 +1,5 @@
 
-function Opslaanknop ({ onClick, className }){
+function Opslaanknop ({ onClick }){
     return (
         <button
             onClick={onClick}
