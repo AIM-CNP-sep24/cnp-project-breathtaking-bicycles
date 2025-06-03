@@ -6,8 +6,15 @@ import Aanpasknop from "./Instelmenu-components/Aanpasknop.jsx";
 import MeldingComponent from "./Instelmenu-components/MeldingComponent.jsx";
 import { useState } from 'react';
 
- function InstelContainer({colorPalettes, geselecteerdPalet, setGeselecteerdPalet, fonts, setSelectedFont, selectedFont, disabled}) {
-     const [isAanpasbaar, setIsAanpasbaar] = useState(true); // state om bij te houden of de instellingen aanpasbaar zijn
+ function InstelContainer({isAanpasbaar, 
+    setIsAanpasbaar, 
+    colorPalettes, 
+    selectedLanguageZorgvrager, setSelectedLanguageZorgvrager, 
+    selectedLanguageZorgverlener, setSelectedLanguageZorgverlener,
+    selectedPalet, setSelectedPalet, 
+    fonts, 
+    setSelectedFont, selectedFont, 
+    disabled}) {
      const [melding, setMelding] = useState(null); // state om de melding op te slaan
 
      function handleAanpassen () {
@@ -48,11 +55,15 @@ import { useState } from 'react';
                     melding={melding}
                     disabled={!isAanpasbaar} />
                 <TaalInstelmenuComponent 
+                    selectedLanguageZorgvrager={selectedLanguageZorgvrager}
+                    setSelectedLanguageZorgvrager={setSelectedLanguageZorgvrager}
+                    selectedLanguageZorgverlener={selectedLanguageZorgverlener}
+                    setSelectedLanguageZorgverlener={setSelectedLanguageZorgverlener}
                     disabled={!isAanpasbaar} />
                 <KleurenpaletKeuzeComponent
                     colorPalettes={colorPalettes} 
-                    geselecteerdPalet={geselecteerdPalet}
-                    setGeselecteerdPalet={setGeselecteerdPalet}
+                    selectedPalet={selectedPalet}
+                    setSelectedPalet={setSelectedPalet}
                     disabled={!isAanpasbaar}
                 />
                 <FontInstelmenuComponent

@@ -20,6 +20,7 @@ const Template = ({ url = '/instelmenu', ...args }) => (
 
 const uiSettings = {
     colorPalette: {
+        naam: "Standaard palet",
         colorOne: "#F5EEDC",
         colorOneShadow: "#E0D9C8",
         colorTwo: "#27548A",
@@ -36,6 +37,7 @@ const fonts = ["standard", "font-OpenDyslexic"];
 
 const colorPalettes = [{
     "id": 1,
+    "naam": "Standaard palet",
     "colorOne": "#F5EEDC",
     "colorOneShadow": "#E0D9C8",
     "colorTwo": "#27548A",
@@ -46,6 +48,7 @@ const colorPalettes = [{
     "colorFourShadow": "#BA8C43"
 },{
     "id": 2,
+    "naam": "Kleurenblinen palet",
     "colorOne": "#FFBE85",
     "colorOneShadow": "#CF9868",
     "colorTwo": "#4090C2",

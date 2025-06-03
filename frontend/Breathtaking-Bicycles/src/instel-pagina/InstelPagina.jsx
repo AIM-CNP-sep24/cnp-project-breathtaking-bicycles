@@ -1,30 +1,55 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import InstelContainer from "./InstelContainer";
 import InstelPreview from "./preview/InstelPreview";
 
-function InstelPagina({uiSettings, colorPalettes, fonts}){
-    const [geselecteerdPalet, setGeselecteerdPalet] = useState(1);
+function InstelPagina({selectedFont, 
+    setSelectedFont, 
+    selectedPalet, 
+    setSelectedPalet, 
+    uiSettings, 
+    setUiSettings, 
+    colorPalettes, 
+    fonts,
+    selectedLanguageZorgverlener,
+    setSelectedLanguageZorgverlener,
+    selectedLanguageZorgvrager,
+    setSelectedLanguageZorgvrager}){
     const [previewSettings, setPreviewSettings] = useState({font: "standard", colorPalette: {}});
-    const [selectedFont, setSelectedFont] = useState("standard");
+    const [isAanpasbaar, setIsAanpasbaar] = useState(true); // state om bij te houden of de instellingen aanpasbaar zijn
 
     useEffect(() => {
         if (colorPalettes.length > 0) {
             setPreviewSettings({font: selectedFont,
-                colorPalette: colorPalettes[geselecteerdPalet -1]
+                colorPalette: colorPalettes[selectedPalet -1]
             });
         }
-    }, [colorPalettes, geselecteerdPalet, selectedFont]);
+    }, [colorPalettes, selectedPalet, selectedFont]);
+
+    useEffect(() => {
+        if(!isAanpasbaar) {
+            setUiSettings({colorPalette: colorPalettes[selectedPalet -1],
+                font: selectedFont
+            })
+        }
+    }, [isAanpasbaar])
     
     return (
         <>
             <InstelContainer
+            isAanpasbaar={isAanpasbaar}
+            setIsAanpasbaar={setIsAanpasbaar}
             uiSettings={uiSettings}
+            setUiSettings={setUiSettings}
             colorPalettes={colorPalettes}
-            geselecteerdPalet={geselecteerdPalet}
-            setGeselecteerdPalet={setGeselecteerdPalet}
+            selectedPalet={selectedPalet}
+            setSelectedPalet={setSelectedPalet}
             fonts={fonts}
             selectedFont={selectedFont}
-            setSelectedFont={setSelectedFont}/>
+            setSelectedFont={setSelectedFont}
+            selectedLanguageZorgvrager={selectedLanguageZorgvrager}
+            setSelectedLanguageZorgvrager={setSelectedLanguageZorgvrager}
+            selectedLanguageZorgverlener={selectedLanguageZorgverlener}
+            setSelectedLanguageZorgverlener={setSelectedLanguageZorgverlener}/>
             <InstelPreview uiSettings={previewSettings}/>
         </>
     )

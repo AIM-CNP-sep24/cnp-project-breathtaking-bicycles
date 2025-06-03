@@ -28,6 +28,10 @@ function App() {
   const [uiSettings, setUiSettings] = useState({font:"", colorPalette:""})
   const [colorPalettes, setColorPalettes] = useState([])
   const fonts = ["standard", "font-OpenDyslexic"]
+  const [selectedPalet, setSelectedPalet] = useState(1);
+  const [selectedFont, setSelectedFont] = useState("standard");
+  const [selectedLanguageZorgvrager, setSelectedLanguageZorgvrager] = useState({});
+  const [selectedLanguageZorgverlener, setSelectedLanguageZorgverlener] = useState({});
 
   useEffect(() => {
     async function ColorPalettesFetch() {
@@ -36,7 +40,6 @@ function App() {
       setUiSettings({colorPalette: colorPalettes[0],
         font: fonts[0]
       })
-      console.log(colorPalettes)
     }
     ColorPalettesFetch();
   }, [])
@@ -46,8 +49,24 @@ function App() {
      <Header uiSettings={uiSettings}/>
       <Routes>          
         <Route path={"benodigdheden/:parentId"} element={<BenodigdhedenPagina uiSettings={uiSettings}/>} />
-        <Route path="instelmenu" element={<InstelPagina uiSettings={uiSettings} colorPalettes={colorPalettes} fonts={fonts}/>} />
-        <Route path="vertalen" element={<Textfield uiSettings={uiSettings}/>} />
+        <Route path="instelmenu" element={<InstelPagina 
+          selectedPalet={selectedPalet}
+          setSelectedPalet={setSelectedPalet}
+          selectedFont={selectedFont}
+          setSelectedFont={setSelectedFont}
+          uiSettings={uiSettings}
+          setUiSettings={setUiSettings}
+          colorPalettes={colorPalettes}
+          fonts={fonts}
+          selectedLanguageZorgverlener={selectedLanguageZorgverlener}
+          setSelectedLanguageZorgverlener={setSelectedLanguageZorgverlener}
+          selectedLanguageZorgvrager={selectedLanguageZorgvrager}
+          setSelectedLanguageZorgvrager={setSelectedLanguageZorgvrager}/>} 
+        />
+        <Route path="vertalen" element={<Textfield uiSettings={uiSettings} 
+          selectedLanguageZorgverlener={selectedLanguageZorgverlener}
+          selectedLanguageZorgvrager={selectedLanguageZorgvrager}/>} 
+        />
         <Route path="" element={<Index />} />
         <Route path="boomstructuurbeheer/:parentId" element={<BenodigdhedenboomPagina />} />
         <Route path="login" element={<Login />} />
