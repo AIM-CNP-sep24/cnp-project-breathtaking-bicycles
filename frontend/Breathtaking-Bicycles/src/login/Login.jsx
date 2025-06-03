@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './LogoutButton';
 import LogoutButton from './LogoutButton';
 
 function Login() {
@@ -29,7 +28,7 @@ function Login() {
             const token = data.token;
         
             localStorage.setItem('jwtToken', token);
-             window.location.href = '/instelmenu';
+             window.location.href = '/benodigdheden/0';
             
 
         } catch (err) {

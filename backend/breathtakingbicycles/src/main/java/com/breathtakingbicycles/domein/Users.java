@@ -1,7 +1,6 @@
 package com.breathtakingbicycles.domein;
 
 import jakarta.persistence.*;
-import java.util.Set;
 
 @Entity
 public class Users {
@@ -12,10 +11,10 @@ public class Users {
 
     private String username;
     private String password;
-    private boolean enabled;
+    private boolean enabled = true;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    private Set<String> roles;
+    // Comma-separated roles like "ROLE_USER,ROLE_ADMIN"
+    private String roles;
 
     public Long getId() {
         return id;
@@ -49,11 +48,11 @@ public class Users {
         this.enabled = enabled;
     }
 
-    public Set<String> getRoles() {
+    public String getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<String> roles) {
+    public void setRoles(String roles) {
         this.roles = roles;
     }
 }
