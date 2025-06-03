@@ -2,22 +2,41 @@ import React, { useEffect, useRef, useState } from "react";
 import TranslateButton from "./TranslateButton.jsx";
 import MicrofoonButton from "./MicrofoonButton.jsx";
 
+
 function Textfield({uiSettings}) {
   const [text, setText] = useState("");
   const [submittedMessages, setSubmittedMessages] = useState([]);
+  const [toggleDialog, setToggleDialog] = useState(false);
+  const [recording, setRecording] = useState(true);
   const messagesEndRef = useRef(null);
   const enLanguageCode = "en";
   const nlLanguageCode = "nl";
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   const taalHerkenning = new SpeechRecognition();
-  const speechRecognitionList = new SpeechGrammarList();
   
-  //Spraakherkinning setup
+  //Spraakherkenning setup
   taalHerkenning.continous = false;
   taalHerkenning.lang = 'nl-NL';
 
 
   function handleMicrophoneClick() {
-
+    setRecording(!recording);
+    if (recording){
+      setToggleDialog(true);
+      console.log("start");
+      taalHerkenning.start();
+    } else {
+      setToggleDialog(false);
+      console.log("stop");
+      taalHerkenning.stop();
+    }
+    taalHerkenning.onresult = (event) => {
+      const result = event.results[0][0].transcript;
+      setText(result);
+      handleTranslate();
+      console.log(result);
+    }
+    
   }
 
   const handleTranslate = async () => {
@@ -84,6 +103,15 @@ function Textfield({uiSettings}) {
   }, [submittedMessages]);
 
   return (
+    <>
+    {toggleDialog ? (
+      <dialog className="h-[100%] w-[100%] bg-black/50" open>
+        <h1 className="bg-white" autoFocus>Hallo</h1>
+      </dialog>
+      ) : (
+        <></>
+      )
+        }
     <div className="flex flex-col justify-center pt-120 px-4 bg-white overflow-hidden">  
       <div className={`${uiSettings.font} w-full mx-auto`}>
         {/* Message History */}
@@ -114,6 +142,7 @@ function Textfield({uiSettings}) {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
