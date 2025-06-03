@@ -56,16 +56,18 @@ class LoginControllerTest {
     }
 
     @Test
-    void login_ThrowsException_WhenAuthenticationFails() {
+    void login_ReturnsUnauthorized_WhenAuthenticationFails() {
         // Arrange
         var loginRequest = new LoginController.LoginRequest("user", "wrongpassword");
         when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
                 .thenThrow(new BadCredentialsException("Bad credentials"));
 
-        // Act & Assert
-        assertThatThrownBy(() -> loginController.login(loginRequest))
-                .isInstanceOf(BadCredentialsException.class)
-                .hasMessageContaining("Bad credentials");
+        // Act
+        ResponseEntity<Map<String, String>> response = loginController.login(loginRequest);
+
+        // Assert
+        assertThat(response.getStatusCodeValue()).isEqualTo(401);
+        assertThat(response.getBody()).containsEntry("error", "Invalid username or password");
 
         verify(authenticationManager, times(1)).authenticate(any());
         verifyNoInteractions(jwtUtil);
