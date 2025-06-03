@@ -8,6 +8,17 @@ function Textfield({uiSettings}) {
   const messagesEndRef = useRef(null);
   const enLanguageCode = "en";
   const nlLanguageCode = "nl";
+  const taalHerkenning = new SpeechRecognition();
+  const speechRecognitionList = new SpeechGrammarList();
+  
+  //Spraakherkinning setup
+  taalHerkenning.continous = false;
+  taalHerkenning.lang = 'nl-NL';
+
+
+  function handleMicrophoneClick() {
+
+  }
 
   const handleTranslate = async () => {
     if (text.trim() !== "") {
@@ -99,7 +110,7 @@ function Textfield({uiSettings}) {
         />
         <div className="flex flex-row justify-center ml-[30%] mr-[30%]">
           <TranslateButton onClick={handleTranslate} uiSettings={uiSettings}/>
-          <MicrofoonButton uiSettings={uiSettings}/>
+          <MicrofoonButton uiSettings={uiSettings} handleMicrophoneClick={handleMicrophoneClick}/>
         </div>
       </div>
     </div>
