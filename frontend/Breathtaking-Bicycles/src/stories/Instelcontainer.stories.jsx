@@ -1,7 +1,7 @@
 import InstelContainer from "../instel-pagina/InstelContainer.jsx";
-import { useState } from 'react';
 import { MemoryRouter, Routes, Route } from "react-router";
 import { action } from '@storybook/addon-actions';
+import { within, userEvent, waitFor, fn, expect} from '@storybook/test';
 
 export default {
     title: 'InstelContainer',
@@ -14,10 +14,10 @@ export default {
 const Template = ({ url = '/instelmenu', ...args }) => (
     <MemoryRouter initialEntries={[url]}>
         <Routes>
-            <Route path="/instelmenu" element={<InstelContainer {...args} />} />
+            <Route path="/instelmenu" element={ <InstelContainer {...args} /> } />
         </Routes>
     </MemoryRouter>
-)
+);
 
 const talen = ["Nederlands", "Engels"];
 const fonts = ["standard", "font-OpenDyslexic"];
@@ -44,57 +44,31 @@ const colorPalettes = [{
     "colorFourShadow": "#7E8084"
 }];
 
-export const InstelContainerTestSucces = Template.bind({});
-InstelContainerTestSucces.args = {
-    disabled: false,
-    selectedFont: 'standard',
-    setSelectedFont: action('Font veranderd naar'),
-    selectedLanguageZorgverlener: 'Nederlands',
-    setSelectedLanguageZorgverlener: action('Taal veranderd naar'),
-    selectedLanguageZorgvrager: 'Engels',
-    setSelectedLanguageZorgvrager: action('Taal veranderd naar'),
-    geselecteerdPalet: colorPalettes[0],
-    setGeselecteerdPalet: action('Palet veranderd naar'),
-};
+const selectedFontSpy = fn();
+const selectedLanguageZorgverlenerSpy = fn();
+const selectedLanguageZorgvragerSpy = fn();
+const geselecteerdPaletSpy = fn();
 
-InstelContainerTestSucces.play = async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await userEvent.click(canvas.getByText('Dyslexie'));
-    await userEvent.click(canvas.getByText('opslaan'));
-     await waitFor(() => {
-        expect(canvas.getByText(/Instellingen opgeslagen/)).toBeInTheDocument();
-    });
-};
-
-
-export const InteractieveOpslaanTest = (colorPalettes) => {
-    const [selectedFont, setSelectedFont] = useState('standard');
-    const [selectedLanguageZorgvrager, setSelectedLanguageZorgvrager] = useState('');
-    const [selectedLanguageZorgverlener, setSelectedLanguageZorgverlener] = useState('');
-    const [geselecteerdPalet, setGeselecteerdPalet] = useState(1);
-
-
-    return (
-        <InstelContainer
-            setSelectedFont={setSelectedFont}
-            selectedFont={selectedFont}
-            selectedLanguageZorgvrager={selectedLanguageZorgvrager}
-            setSelectedLanguageZorgvrager={setSelectedLanguageZorgvrager}
-            selectedLanguageZorgverlener={selectedLanguageZorgverlener}
-            setSelectedLanguageZorgverlener={setSelectedLanguageZorgverlener}
-            colorPalettes={colorPalettes}
-            geselecteerdPalet={geselecteerdPalet}
-            setGeselecteerdPalet={setGeselecteerdPalet}
-        />
-    );
-};
-
-InteractieveOpslaanTest.play = async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    await userEvent.click(canvas.getByText('opslaan'));
-    await waitFor(() => {
-        expect(canvas.getByText(/Instellingen opgeslagen/)).toBeInTheDocument();
-    });
-
+export const InstelContainerKnoppenTest = {
+    args: {
+        selectedFont: fonts[0],
+        setSelectedFont: selectedFontSpy,
+        selectedLanguageZorgverlener: talen[0],
+        setSelectedLanguageZorgverlener: selectedLanguageZorgverlenerSpy,
+        selectedLanguageZorgvrager: talen[1],
+        setSelectedLanguageZorgvrager: selectedLanguageZorgvragerSpy,
+        colorPalettes: colorPalettes,
+        geselecteerdPalet: colorPalettes[0],
+        setGeselecteerdPalet: geselecteerdPaletSpy,
+    },
+    play: async ({ canvasElement }) => {
+        const canvas = within(canvasElement);
+        await userEvent.click(canvas.getByText('Dyslexie'));
+        await userEvent.click(canvas.getByText(/opslaan/i));
+        //await expect(selectedFontSpy).toHaveBeenCalledWith();
+        await waitFor(async () => {
+            expect(selectedFontSpy).toHaveBeenCalledTimes(1);
+           await expect(canvas.getByText(/Instellingen zijn succsevol opgeslagen!/i)).toBeInTheDocument();
+        });
+    }
 };
