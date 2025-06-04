@@ -2,12 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import TranslateButton from "./TranslateButton.jsx";
 import MicrofoonButton from "./MicrofoonButton.jsx";
 
-function Textfield({uiSettings}) {
+function Textfield({uiSettings, selectedLanguageZorgverlener, selectedLanguageZorgvrager}) {
   const [text, setText] = useState("");
   const [submittedMessages, setSubmittedMessages] = useState([]);
   const messagesEndRef = useRef(null);
-  const enLanguageCode = "en";
-  const nlLanguageCode = "nl";
 
   const handleTranslate = async () => {
     if (text.trim() !== "") {
@@ -21,10 +19,10 @@ function Textfield({uiSettings}) {
 
       const [detectedLanguageObject] = await detectionResponse.json();
       let targetLanguage;
-      if (detectedLanguageObject.language === "nl") {
-        targetLanguage = enLanguageCode;
-      } else if (detectedLanguageObject.language === "en") {
-        targetLanguage = nlLanguageCode;
+      if (detectedLanguageObject.language == selectedLanguageZorgvrager.code.toLowerCase()) {
+        targetLanguage = selectedLanguageZorgverlener.code.toLowerCase();
+      } else if (detectedLanguageObject.language == selectedLanguageZorgverlener.code.toLowerCase()) {
+        targetLanguage = selectedLanguageZorgvrager.code.toLowerCase();
       } else {
         console.log("This feature has only been worked out for nl en translation.");
         return;

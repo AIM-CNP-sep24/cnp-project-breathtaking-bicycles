@@ -2,9 +2,7 @@ import { useState, useEffect } from 'react';
 import { ArrowsRightLeftIcon } from '@heroicons/react/24/outline';
 import LanguageSelection from './TaaldropdownComponent';
 
-function TaalInstelmenuComponent({ disabled }) {
-    const [selectedLanguageZorgvrager, setSelectedLanguageZorgvrager] = useState('');
-    const [selectedLanguageZorgverlener, setSelectedLanguageZorgverlener] = useState('');
+function TaalInstelmenuComponent({ disabled, selectedLanguageZorgvrager, setSelectedLanguageZorgvrager, selectedLanguageZorgverlener, setSelectedLanguageZorgverlener }) {
     const [languages, setLanguages] = useState([]); // array om de talen op te slaan
 
      //talen array: data wordt opgehaald van de backend
