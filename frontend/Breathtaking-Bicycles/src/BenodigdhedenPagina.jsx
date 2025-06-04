@@ -83,11 +83,10 @@ function BenodigdhedenPagina({uiSettings}){
             return <h1 className={`${uiSettings.font} w-full text-center text-4xl font-bold px-10`}>{titel}</h1>;
         })()}
             
-
             <div className="grid-rows-3 text-center mx-5">
                 {benodigdhedenArray.map((benodigdheid, i) => {
                     return <>
-                        <CategorieElement key={i} benodigdheid={benodigdheid} id={benodigdheid.id.toString()} uiSettings={uiSettings}/>
+                        <CategorieElement key={i} benodigdheid={benodigdheid} id={benodigdheid.id.toString()} uiSettings={uiSettings} />
                     </>
                 })}
             </div>

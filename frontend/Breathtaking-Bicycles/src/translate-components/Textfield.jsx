@@ -5,38 +5,47 @@ import MicrofoonButton from "./MicrofoonButton.jsx";
 function Textfield({uiSettings, selectedLanguageZorgverlener, selectedLanguageZorgvrager}) {
   const [text, setText] = useState("");
   const [submittedMessages, setSubmittedMessages] = useState([]);
-  const [toggleDialog, setToggleDialog] = useState(false);
   const [recording, setRecording] = useState(true);
   const messagesEndRef = useRef(null);
+  const shouldRestartRef = useRef(true);
   const enLanguageCode = "en";
   const nlLanguageCode = "nl";
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   const taalHerkenning = new SpeechRecognition();
   
   //Spraakherkenning setup
-  taalHerkenning.continous = false;
   taalHerkenning.lang = 'nl-NL';
+  taalHerkenning.continuous = true;
+  taalHerkenning.interimResults = true;
 
 
   function handleMicrophoneClick() {
     setRecording(!recording);
     if (recording){
-      setToggleDialog(true);
+      shouldRestartRef.current = true;
       console.log("start");
       taalHerkenning.start();
     } else {
-      setToggleDialog(false);
+      shouldRestartRef.current = false;
       console.log("stop");
       taalHerkenning.stop();
     }
+    
     taalHerkenning.onresult = (event) => {
       const result = event.results[0][0].transcript;
       setText(result);
       handleTranslate();
       console.log(result);
     }
-    
+
+    taalHerkenning.onend = () => {
+      console.log(shouldRestartRef);
+      if (shouldRestartRef.current == true){
+        taalHerkenning.start();
+      }
+    }
   }
+
 
   const handleTranslate = async () => {
     if (text.trim() !== "") {
@@ -103,14 +112,6 @@ function Textfield({uiSettings, selectedLanguageZorgverlener, selectedLanguageZo
 
   return (
     <>
-    {toggleDialog ? (
-      <dialog className="h-[100%] w-[100%] bg-black/50" open>
-        <h1 className="bg-white" autoFocus>Hallo</h1>
-      </dialog>
-      ) : (
-        <></>
-      )
-        }
     <div className="flex flex-col justify-center pt-120 px-4 bg-white overflow-hidden">  
       <div className={`${uiSettings.font} w-full mx-auto`}>
         {/* Message History */}
@@ -129,7 +130,7 @@ function Textfield({uiSettings, selectedLanguageZorgverlener, selectedLanguageZo
 
         {/* Text Input */}
         <textarea
-          placeholder="type uw text hier"
+          placeholder="Type uw text hier:"
           className="text-2xl resize-none border-2 border-[#F5EEDC] py-4 px-6 mb-10 rounded w-full"
           onChange={(e) => setText(e.target.value)}
           value={text}
@@ -137,8 +138,15 @@ function Textfield({uiSettings, selectedLanguageZorgverlener, selectedLanguageZo
         />
         <div className="flex flex-row justify-center ml-[30%] mr-[30%]">
           <TranslateButton onClick={handleTranslate} uiSettings={uiSettings}/>
-          <MicrofoonButton uiSettings={uiSettings} handleMicrophoneClick={handleMicrophoneClick}/>
+          <MicrofoonButton uiSettings={uiSettings} handleMicrophoneClick={handleMicrophoneClick} recording={recording}/>
         </div>
+        {recording ? (<></>) : (
+          <>
+            <div className="text-3xl mt-20 text-center">
+              <h1>Aan het luisteren...</h1>
+            </div>
+          </>
+        )}
       </div>
     </div>
     </>
