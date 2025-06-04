@@ -30,7 +30,7 @@ public class KleurPaletRepositoryTest {
     }
 
     @Test
-    void testGetKleurpaletten_geefLjstVanKleurpaletten() {
+    void testGetKleurpaletten_geefLijstVanKleurpaletten() {
         KleurPalet kleurPalet = new KleurPalet();
         when(jdbcTemplate.query(anyString(), any(KleurPaletRowMapper.class)))
                 .thenReturn(Arrays.asList(kleurPalet));
