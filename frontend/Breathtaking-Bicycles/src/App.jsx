@@ -1,7 +1,7 @@
 import BenodigdhedenPagina from './BenodigdhedenPagina.jsx'
-import {Routes, Route,} from 'react-router'
-import Header from './header.jsx'
-import Textfield from './translate-components/textfield.jsx'
+import {Routes, Route} from 'react-router'
+import Header from './Header.jsx'
+import Textfield from './translate-components/Textfield.jsx'
 import Index from './Index.jsx'
 import BenodigdhedenboomPagina from './benodigdhedenboom-components/BenodigdhedenboomPagina.jsx'
 import Login from './login/Login.jsx'
@@ -28,13 +28,18 @@ async function getColorPalettes(){
 function App() {
   const [uiSettings, setUiSettings] = useState({font:"", colorPalette:""})
   const [colorPalettes, setColorPalettes] = useState([])
+  const fonts = ["standard", "font-OpenDyslexic"]
+  const [selectedPalet, setSelectedPalet] = useState(1);
+  const [selectedFont, setSelectedFont] = useState("standard");
+  const [selectedLanguageZorgvrager, setSelectedLanguageZorgvrager] = useState({});
+  const [selectedLanguageZorgverlener, setSelectedLanguageZorgverlener] = useState({});
 
   useEffect(() => {
     async function ColorPalettesFetch() {
       let colorPalettes = await getColorPalettes();
       setColorPalettes(colorPalettes)
       setUiSettings({colorPalette: colorPalettes[0],
-        font: "font-OpenDyslexic"
+        font: fonts[0]
       })
     }
     ColorPalettesFetch();
@@ -42,8 +47,29 @@ function App() {
   
   return (
     <>
-     <Header />
-      <Routes>     
+     <Header uiSettings={uiSettings}/>
+      <Routes>          
+        <Route path={"benodigdheden/:parentId"} element={<BenodigdhedenPagina uiSettings={uiSettings}/>} />
+        <Route path="instelmenu" element={<InstelPagina 
+          selectedPalet={selectedPalet}
+          setSelectedPalet={setSelectedPalet}
+          selectedFont={selectedFont}
+          setSelectedFont={setSelectedFont}
+          uiSettings={uiSettings}
+          setUiSettings={setUiSettings}
+          colorPalettes={colorPalettes}
+          fonts={fonts}
+          selectedLanguageZorgverlener={selectedLanguageZorgverlener}
+          setSelectedLanguageZorgverlener={setSelectedLanguageZorgverlener}
+          selectedLanguageZorgvrager={selectedLanguageZorgvrager}
+          setSelectedLanguageZorgvrager={setSelectedLanguageZorgvrager}/>} 
+        />
+        <Route path="vertalen" element={<Textfield uiSettings={uiSettings} 
+          selectedLanguageZorgverlener={selectedLanguageZorgverlener}
+          selectedLanguageZorgvrager={selectedLanguageZorgvrager}/>} 
+        />
+        <Route path="" element={<Index />} />
+        <Route path="boomstructuurbeheer/:parentId" element={<BenodigdhedenboomPagina />} />
         <Route path="login" element={<Login />} />
 
         {/* protected routes */}

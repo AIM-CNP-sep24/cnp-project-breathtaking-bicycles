@@ -1,12 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import TranslateButton from "./TranslateButton.jsx";
+import MicrofoonButton from "./MicrofoonButton.jsx";
 
-function Textfield() {
+function Textfield({uiSettings, selectedLanguageZorgverlener, selectedLanguageZorgvrager}) {
   const [text, setText] = useState("");
   const [submittedMessages, setSubmittedMessages] = useState([]);
   const messagesEndRef = useRef(null);
-  const enLanguageCode = "en";
-  const nlLanguageCode = "nl";
 
   const handleTranslate = async () => {
     if (text.trim() !== "") {
@@ -20,10 +19,10 @@ function Textfield() {
 
       const [detectedLanguageObject] = await detectionResponse.json();
       let targetLanguage;
-      if (detectedLanguageObject.language === "nl") {
-        targetLanguage = enLanguageCode;
-      } else if (detectedLanguageObject.language === "en") {
-        targetLanguage = nlLanguageCode;
+      if (detectedLanguageObject.language == selectedLanguageZorgvrager.code.toLowerCase()) {
+        targetLanguage = selectedLanguageZorgverlener.code.toLowerCase();
+      } else if (detectedLanguageObject.language == selectedLanguageZorgverlener.code.toLowerCase()) {
+        targetLanguage = selectedLanguageZorgvrager.code.toLowerCase();
       } else {
         console.log("This feature has only been worked out for nl en translation.");
         return;
@@ -66,21 +65,22 @@ function Textfield() {
     }
   };
 
+
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [submittedMessages]);
 
   return (
-    <div className="flex flex-col justify-center pt-120 px-4 bg-white overflow-hidden">
-      <div className=" w-full mx-auto">
+    <div className="flex flex-col justify-center pt-120 px-4 bg-white overflow-hidden">  
+      <div className={`${uiSettings.font} w-full mx-auto`}>
         {/* Message History */}
-        <div className="max-h-64 overflow-y-auto  mb-6 rounded">
+        <div className="max-h-64 overflow-y-auto mb-6 rounded">
           {submittedMessages.map((msg, index) => (
             <div
               key={index}
-              className="pr-4 pl-4 mb-2 m-2 bg-[#F5EEDC] pb-2 pt-2 rounded"
+              className={`pr-4 pl-4 mb-2 m-2 bg-[${uiSettings.colorPalette.colorOne}] pb-2 pt-2 rounded`}
             >
-              <p className="text-md text-gray-500 italic mb-1">{msg.original}</p>
+              <p className="text-md italic mb-1">{msg.original}</p>
               <p className="text-2xl break-words">{msg.translated}</p>
             </div>
           ))}
@@ -90,12 +90,15 @@ function Textfield() {
         {/* Text Input */}
         <textarea
           placeholder="type uw text hier"
-          className="resize-none border-2 border-[#F5EEDC] pb-15 mb-15 pl-2 rounded mr-10 w-full"
+          className="text-2xl resize-none border-2 border-[#F5EEDC] py-4 px-6 mb-10 rounded w-full"
           onChange={(e) => setText(e.target.value)}
           value={text}
           onKeyDown={handleKeyDown}
         />
-        <TranslateButton onClick={handleTranslate} />
+        <div className="flex flex-row justify-center ml-[30%] mr-[30%]">
+          <TranslateButton onClick={handleTranslate} uiSettings={uiSettings}/>
+          <MicrofoonButton uiSettings={uiSettings}/>
+        </div>
       </div>
     </div>
   );

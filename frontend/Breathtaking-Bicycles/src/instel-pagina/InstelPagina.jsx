@@ -1,17 +1,56 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InstelContainer from "./InstelContainer";
 import InstelPreview from "./preview/InstelPreview";
 
-function InstelPagina({uiSettings,  colorPalettes}){
-    const [geselecteerdPalet, setGeselecteerdPalet] = useState(1);
+function InstelPagina({selectedFont, 
+    setSelectedFont, 
+    selectedPalet, 
+    setSelectedPalet, 
+    uiSettings, 
+    setUiSettings, 
+    colorPalettes, 
+    fonts,
+    selectedLanguageZorgverlener,
+    setSelectedLanguageZorgverlener,
+    selectedLanguageZorgvrager,
+    setSelectedLanguageZorgvrager}){
+    const [previewSettings, setPreviewSettings] = useState({font: "standard", colorPalette: {}});
+    const [isAanpasbaar, setIsAanpasbaar] = useState(true); // state om bij te houden of de instellingen aanpasbaar zijn
+
+    useEffect(() => {
+        if (colorPalettes.length > 0) {
+            setPreviewSettings({font: selectedFont,
+                colorPalette: colorPalettes[selectedPalet -1]
+            });
+        }
+    }, [colorPalettes, selectedPalet, selectedFont]);
+
+    useEffect(() => {
+        if(!isAanpasbaar) {
+            setUiSettings({colorPalette: colorPalettes[selectedPalet -1],
+                font: selectedFont
+            })
+        }
+    }, [isAanpasbaar])
     
     return (
         <>
-            <InstelContainer uiSettings={uiSettings}
+            <InstelContainer
+            isAanpasbaar={isAanpasbaar}
+            setIsAanpasbaar={setIsAanpasbaar}
+            uiSettings={uiSettings}
+            setUiSettings={setUiSettings}
             colorPalettes={colorPalettes}
-            geselecteerdPalet={geselecteerdPalet}
-            setGeselecteerdPalet={setGeselecteerdPalet}/>
-            <InstelPreview uiSettings={uiSettings}/>
+            selectedPalet={selectedPalet}
+            setSelectedPalet={setSelectedPalet}
+            fonts={fonts}
+            selectedFont={selectedFont}
+            setSelectedFont={setSelectedFont}
+            selectedLanguageZorgvrager={selectedLanguageZorgvrager}
+            setSelectedLanguageZorgvrager={setSelectedLanguageZorgvrager}
+            selectedLanguageZorgverlener={selectedLanguageZorgverlener}
+            setSelectedLanguageZorgverlener={setSelectedLanguageZorgverlener}/>
+            <InstelPreview uiSettings={previewSettings}/>
         </>
     )
 }

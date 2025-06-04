@@ -2,9 +2,7 @@ import { useState, useEffect } from 'react';
 import { ArrowsRightLeftIcon } from '@heroicons/react/24/outline';
 import LanguageSelection from './TaaldropdownComponent';
 
-function TaalInstelmenuComponent() {
-    const [selectedLanguageZorgvrager, setSelectedLanguageZorgvrager] = useState('');
-    const [selectedLanguageZorgverlener, setSelectedLanguageZorgverlener] = useState('');
+function TaalInstelmenuComponent({ disabled, selectedLanguageZorgvrager, setSelectedLanguageZorgvrager, selectedLanguageZorgverlener, setSelectedLanguageZorgverlener }) {
     const [languages, setLanguages] = useState([]); // array om de talen op te slaan
 
      //talen array: data wordt opgehaald van de backend
@@ -36,7 +34,7 @@ function TaalInstelmenuComponent() {
         };
 
     return (
-        <div className="container p-15 h-100 justify-start">
+        <div className="container p-10 h-100 justify-start">
             <div className="flex flex-col h-[100%] rounded-lg bg-[#ffffff]">
                 <h1 className="text-4xl font-bold mb-4 text-center">Taalkeuze</h1>
                 <div className="flex justify-between w-full px-10">
@@ -45,11 +43,13 @@ function TaalInstelmenuComponent() {
                         value={selectedLanguageZorgverlener}
                         onChange={(value) => setSelectedLanguageZorgverlener(value)}
                         options={languages.filter((lang) => lang.naam !== selectedLanguageZorgvrager)} // Filter op basis van de naam van de taal
+                        disabled={disabled}
                     />
                     <button
                         onClick={switchLanguage}
+                        disabled={disabled}
                     >
-                        <ArrowsRightLeftIcon className="h-20 w-20 text-black" />
+                        <ArrowsRightLeftIcon className={` h-20 w-20 text-black ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`} />
                     </button>
 
                     <LanguageSelection
@@ -57,6 +57,7 @@ function TaalInstelmenuComponent() {
                         value={selectedLanguageZorgvrager}
                         onChange={(value) => setSelectedLanguageZorgvrager(value)}
                         options={languages.filter((lang) => lang.naam !== selectedLanguageZorgverlener)} // Filter op basis van de naam van de taal
+                        disabled={disabled}
                     />
                 </div>
             </div>
