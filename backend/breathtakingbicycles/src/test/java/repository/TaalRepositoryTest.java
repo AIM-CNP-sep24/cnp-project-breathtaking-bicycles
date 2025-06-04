@@ -43,7 +43,7 @@ public class TaalRepositoryTest {
         assertNotNull(result);
         assertEquals(1, result.size());
     }
-    
+
 
     @Test
     void testGetTalen_gooitExeptionBijEmptyResult() {
