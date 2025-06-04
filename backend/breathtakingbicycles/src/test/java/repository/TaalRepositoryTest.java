@@ -43,15 +43,7 @@ public class TaalRepositoryTest {
         assertNotNull(result);
         assertEquals(1, result.size());
     }
-
-    @Test
-    void testGetTalen_metLegeResultatenGeeftLegeLijst() {
-        when(jdbcTemplate.query(anyString(), any(TaalRowMapper.class)))
-                .thenReturn(Collections.emptyList());
-
-        List<Taal> result = taalRepository.getTalen();
-        assertTrue(result.isEmpty());
-    }
+    
 
     @Test
     void testGetTalen_gooitExeptionBijEmptyResult() {
