@@ -1,4 +1,3 @@
-
 function MeldingComponent({ melding }) {
     if (!melding) {
         return null;

@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 function CategorieElement({benodigdheid, id, uiSettings}){
     const [subCategorie, setSubCategorie] = useState("false");
 
-
         useEffect(() => {
             haalChildsOp(id);
         }, [id]);
@@ -30,7 +29,9 @@ function CategorieElement({benodigdheid, id, uiSettings}){
         }
 
         function handleClick(){
-            alert(benodigdheid.naamTaal1);
+            const spraak = new SpeechSynthesisUtterance(benodigdheid.naamTaal2);
+            spraak.lang = 'en-UK'
+            speechSynthesis.speak(spraak);
         }
 
         return (
