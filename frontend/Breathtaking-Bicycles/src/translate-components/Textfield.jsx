@@ -16,7 +16,6 @@ function Textfield({uiSettings, selectedLanguageZorgverlener, selectedLanguageZo
   //Spraakherkenning setup
   taalHerkenning.lang = 'nl-NL';
   taalHerkenning.continuous = true;
-  taalHerkenning.interimResults = true;
 
 
   function handleMicrophoneClick() {

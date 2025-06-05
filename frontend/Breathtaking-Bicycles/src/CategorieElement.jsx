@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 function CategorieElement({benodigdheid, id, uiSettings}){
     const [subCategorie, setSubCategorie] = useState("false");
 
-
         useEffect(() => {
             haalChildsOp(id);
         }, [id]);

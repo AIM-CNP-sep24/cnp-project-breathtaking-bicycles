@@ -48,7 +48,11 @@ function App() {
     <>
      <Header uiSettings={uiSettings}/>
       <Routes>          
-        <Route path={"benodigdheden/:parentId"} element={<BenodigdhedenPagina uiSettings={uiSettings}/>} />
+        <Route path={"benodigdheden/:parentId"} element={<BenodigdhedenPagina 
+          uiSettings={uiSettings} 
+          selectedLanguageZorgverlener={selectedLanguageZorgverlener} 
+          selectedLanguageZorgvrager={selectedLanguageZorgvrager}/>} 
+        />
         <Route path="instelmenu" element={<InstelPagina 
           selectedPalet={selectedPalet}
           setSelectedPalet={setSelectedPalet}
