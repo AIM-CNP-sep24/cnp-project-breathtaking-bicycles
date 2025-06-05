@@ -8,8 +8,6 @@ function Textfield({uiSettings, selectedLanguageZorgverlener, selectedLanguageZo
   const [recording, setRecording] = useState(true);
   const messagesEndRef = useRef(null);
   const shouldRestartRef = useRef(true);
-  const enLanguageCode = "en";
-  const nlLanguageCode = "nl";
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   const taalHerkenning = new SpeechRecognition();
   
