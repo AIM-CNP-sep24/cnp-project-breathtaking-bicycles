@@ -73,7 +73,7 @@ function Login() {
                             Login
                         </p>
                     </button>
-                    <LougoutButton />
+                    <LogoutButton/>
                 </form>
             </div>
         </div>
