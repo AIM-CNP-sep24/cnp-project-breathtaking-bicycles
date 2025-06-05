@@ -1,0 +1,14 @@
+# Software guidebook Breathtaking Bicycles
+
+Dit softwareproject houd zich bezig met het ontwikkelen van een webapplicatie die communicatie tussen zorgverleners en zorgvragers ondersteunt wanneer er sprake is van een taalbarrière. In zorgsituaties is het van groot belang dat informatie goed wordt begrepen voor beide kanten, en dit project geeft een digitale oplossing die dit mogelijk maakt.
+
+Binnen het project wordt een prototype gerealiseerd van een webapplicatie waarmee gebruikers gespreksonderwerpen kunnen selecteren, standaardzinnen kunnen laten vertalen, en ook zelf zinnen kunnen invoeren en laten vertalen. De applicatie is instelbaar: gebruikers kunnen de gebruikersinterface aanpassen met verschillende kleurpaletten en lettertypen, en ze kunnen de taal van de interface instellen. Beheerders krijgen daarnaast toegang tot specifieke functionaliteiten waarmee zij standaardbenodigdheden kunnen instellen via een boomstructuurbeheerscherm. Dit stelt hen in staat om de inhoud van de applicatie aan te passen aan de context van de gebruikers situatie.
+
+Het prototype functioneert los van bestaande softwareomgevingen en is dus niet afhankelijk van bestaande systemen binnen een zorginstelling. Dit biedt flexibiliteit tijdens het ontwikkelen en maakt het mogelijk om zonder integratiebeperkingen een oplossingsgericht ontwerp op te zetten. 
+
+De belangrijkste gebruikers van de applicatie zijn de zorgvrager, de zorgverlener en de beheerder. Voor zorgvrager en zorgverlener biedt het systeem een manier om ondanks taalverschillen met elkaar te communiceren, met name via de vertaalpagina en de pagina voor standaardbenodigdheden. De beheerder heeft op zijn beurt de mogelijkheid om de structuur en inhoud van die pagina’s aan te passen via het beheerscherm, zodat de applicatie actueel en relevant blijft voor de praktijk.
+
+De architectuur van het systeem is ontworpen op basis van de behoeften van deze gebruikersgroepen. De indeling in gebruikersrollen, de functionaliteiten en de interactie tussen gebruikersinterface en beheer zijn allemaal direct terug te voeren op concrete wensen en scenario’s. Het is daarbij belangrijk om inzicht te hebben in de achterliggende use cases of user stories die aan deze keuzes ten grondslag liggen. Als die in een eerder stadium zijn opgesteld, kunnen ze helpen om beter te onderbouwen hoe deze wensen daadwerkelijk zijn vertaald naar ontwerpbeslissingen. Eventueel zou een visuele weergave van de architectuur – zoals een componentendiagram – hierbij extra duidelijkheid kunnen verschaffen.
+
+Door de toepassing van modulaire functies, aanpasbare instellingen en een duidelijke rolverdeling tussen gebruikers wordt het systeem robuust, schaalbaar en gebruiksvriendelijk opgezet. Daarmee vormt het prototype een waardevolle eerste stap richting een oplossing die echt impact kan maken in de zorgpraktijk.
+
