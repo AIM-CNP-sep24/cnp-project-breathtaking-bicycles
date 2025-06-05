@@ -1,10 +1,10 @@
 package com.breathtakingbicycles.controller;
 
-
-
 import com.breathtakingbicycles.UsersService;
 import com.breathtakingbicycles.dto.RegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,9 +19,14 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String register(@RequestBody RegisterRequest request) {
-        usersService.registerUser(request.getUsername(), request.getPassword());
-        return "User registered successfully!";
+    public ResponseEntity<String> register(@RequestBody RegisterRequest request) {
+        try {
+            usersService.registerUser(request.getUsername(), request.getPassword());
+            return ResponseEntity.ok("User registered successfully!");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid input: " + e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred.");
+        }
     }
-
 }

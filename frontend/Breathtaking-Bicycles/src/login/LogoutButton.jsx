@@ -1,5 +1,5 @@
-const LogoutButton = () => {
-  const handleLogout = () => {
+function LogoutButton () {
+  function handleLogout () {
     localStorage.removeItem('jwtToken');
     window.location.href = '/login';
   };

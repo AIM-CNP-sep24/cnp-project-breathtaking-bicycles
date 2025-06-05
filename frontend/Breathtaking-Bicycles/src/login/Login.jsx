@@ -5,7 +5,7 @@ function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const handleLogin = async () => {
+    async function handleLogin () {
         setError('');
 
         try {
@@ -34,7 +34,7 @@ function Login() {
         } catch (err) {
             setError(err.message);
         }
-    };
+    }
 
 
     return (
@@ -73,7 +73,7 @@ function Login() {
                             Login
                         </p>
                     </button>
-                    <LogoutButton></LogoutButton>
+                    <LougoutButton />
                 </form>
             </div>
         </div>

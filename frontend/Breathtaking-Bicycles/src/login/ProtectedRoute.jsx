@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
-const isTokenValid = () => {
+function isTokenValid () {
   const token = localStorage.getItem('jwtToken');
   if (!token) return false;
 
@@ -13,7 +13,7 @@ const isTokenValid = () => {
   }
 };
 
-const ProtectedRoute = () => {
+function ProtectedRoute () {
   const isAuthenticated = isTokenValid();
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />;
 };
