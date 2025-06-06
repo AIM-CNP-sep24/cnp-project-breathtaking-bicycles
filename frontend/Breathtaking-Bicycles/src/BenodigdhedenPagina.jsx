@@ -82,8 +82,8 @@ function BenodigdhedenPagina({uiSettings, selectedLanguageZorgverlener, selected
         })()}
             
             <div className="grid-rows-3 text-center mx-5">
-                {benodigdhedenArray.map((benodigdheid) => {
-                    return (<CategorieElement key={benodigdheid.id} benodigdheid={benodigdheid} id={benodigdheid.id.toString()} uiSettings={uiSettings} />)
+                {benodigdhedenArray.map((benodigdheid, i) => {
+                    return (<CategorieElement key={i} benodigdheid={benodigdheid} id={benodigdheid.id.toString()} uiSettings={uiSettings}/>)
                 })}
             </div>
         </>

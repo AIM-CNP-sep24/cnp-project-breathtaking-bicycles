@@ -22,6 +22,7 @@ function Login() {
                         handleLogin();
                     }}
                     className="w-200 p-8 mx-auto rounded-[10px] bg-[#F5EEDC]"
+                    id="login-form"
                 >
                     <input
                         type="text"

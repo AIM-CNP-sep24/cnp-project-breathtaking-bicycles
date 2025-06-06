@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
-import { Bars3Icon, ExclamationTriangleIcon, LanguageIcon, Squares2X2Icon } from '@heroicons/react/24/solid'
+import { Bars3Icon, ExclamationTriangleIcon} from '@heroicons/react/24/solid'
+import { ChatBubbleLeftRightIcon, Squares2X2Icon  } from '@heroicons/react/24/outline';
 import { useState, useRef } from 'react';
 
 function Header({ onClickNoodknop, uiSettings }) {
@@ -80,7 +81,7 @@ function Header({ onClickNoodknop, uiSettings }) {
                                     className={`bg-[${uiSettings.colorPalette.colorFour}] rounded-[10px] cursor-pointer shadow-[0_10px_${uiSettings.colorPalette.colorFourShadow}]`}
                                     onClick={handleClick}
                                 >
-                                    <LanguageIcon className="h-20 w-40" />
+                                    <ChatBubbleLeftRightIcon className="h-20 w-40" />
                                 </button>
                             </Link>
                         )}

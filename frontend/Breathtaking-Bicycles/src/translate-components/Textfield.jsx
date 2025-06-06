@@ -132,6 +132,7 @@ function Textfield({uiSettings, selectedLanguageZorgverlener, selectedLanguageZo
           onChange={(e) => setText(e.target.value)}
           value={text}
           onKeyDown={handleKeyDown}
+          id="textfield-textarea"
         />
         <div className="flex flex-row justify-center ml-[30%] mr-[30%]">
           <TranslateButton onClick={handleTranslate} uiSettings={uiSettings}/>
