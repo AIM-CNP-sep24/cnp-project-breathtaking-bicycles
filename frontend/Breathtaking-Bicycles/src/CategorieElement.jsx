@@ -1,7 +1,7 @@
 import { Link } from "react-router"
 import { useState, useEffect } from "react";
 
-function CategorieElement({benodigdheid, id, uiSettings}){
+function CategorieElement({benodigdheid, id, uiSettings}) {
     const [subCategorie, setSubCategorie] = useState("false");
 
         useEffect(() => {
