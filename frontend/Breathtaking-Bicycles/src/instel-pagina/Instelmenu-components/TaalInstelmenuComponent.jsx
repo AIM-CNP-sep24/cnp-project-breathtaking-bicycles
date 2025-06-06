@@ -1,37 +1,42 @@
 import { useState, useEffect } from 'react';
 import { ArrowsRightLeftIcon } from '@heroicons/react/24/outline';
 import LanguageSelection from './TaaldropdownComponent';
+import { fetchLanguages } from '../taalService.js'; // Importeer de fetchLanguages functie
 
-function TaalInstelmenuComponent({ disabled, selectedLanguageZorgvrager, setSelectedLanguageZorgvrager, selectedLanguageZorgverlener, setSelectedLanguageZorgverlener }) {
-    const [languages, setLanguages] = useState([]); // array om de talen op te slaan
+/* voorstel Fritz
 
-     //talen array: data wordt opgehaald van de backend
+- functie fetchLanguages() ergens anders neerzetten. 
+bijv. in een nieuwe file genaamd taalService.js
+- deze functie exporteren en importeren in dit component.
+- dan de functie monkey patchen in InstelContainer.stories.jsx
+  - met monkeypatchen kun je een functie nabootsen in runtime
+  - de monkey patch zou je met vi.fn() kiunnen bewerkstellinigen en dan een Promise returnen die dan de array met talen meegeeft.
+- dan kun je de talen ophalen zonder dat je de backend nodig hebt.
+
+*/
+
+function TaalInstelmenuComponent({ disabled }) {
+    const [selectedLanguageZorgvrager, setSelectedLanguageZorgvrager] = useState('');
+    const [selectedLanguageZorgverlener, setSelectedLanguageZorgverlener] = useState('');
+    const [languages, setLanguages] = useState([]);
+
+    //talen array: data wordt opgehaald van de backend
     useEffect(() => {
-        //roep de functie aan om de talen op te halen
-        fetchLanguages();
+        async function loadLanguages() {
+            const data = await fetchLanguages();
+            setLanguages(data);
+        }
+        loadLanguages();
+
     }, []); // Lege dependency array zorgt ervoor dat de functie alleen bij het laden van het component wordt uitgevoerd
 
     //functie om de talen te switchen
-    function switchLanguage () {
+    function switchLanguage() {
         const selectedLanguageZorgrvragerCopy = selectedLanguageZorgvrager;
         setSelectedLanguageZorgvrager(selectedLanguageZorgverlener);
         setSelectedLanguageZorgverlener(selectedLanguageZorgrvragerCopy);
     };
 
-
-     //functie om de talen op te halen
-        async function fetchLanguages() {
-            try {
-                const response = await fetch("http://localhost:8080/talen-ophalen"); // URL van de backend
-                if (!response.ok) {
-                    throw new Error('Fout bij het ophalen van de talen');
-                }
-                const data = await response.json();
-                setLanguages(data);
-            } catch (error) {
-                console.error('Fout bij ophalen van talen:', error);
-            }
-        };
 
     return (
         <div className="container p-10 h-100 justify-start">
