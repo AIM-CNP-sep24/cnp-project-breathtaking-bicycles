@@ -46,7 +46,7 @@ public class TaalRepositoryTest {
 
 
     @Test
-    void testGetTalen_gooitExeptionBijEmptyResult() {
+    void testGetTalen_gooitExceptionBijEmptyResult() {
         when(jdbcTemplate.query(anyString(), any(TaalRowMapper.class)))
                 .thenThrow(new EmptyResultDataAccessException(1));
 
