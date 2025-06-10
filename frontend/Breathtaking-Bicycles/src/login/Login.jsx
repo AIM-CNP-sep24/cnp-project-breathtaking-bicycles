@@ -1,16 +1,41 @@
 import { useState } from 'react';
+import LogoutButton from './LogoutButton';
 
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    async function handleLogin () {
+        setError('');
 
-    const handleLogin = () => {
-        //TODO login handeling
+        try {
+            const response = await fetch('http://localhost:8080/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password,
+                }),
+            });
 
-        //Error handeling
-        setError('Gebruikersnaam of wachtwoord incorrect!');
-    };
+            if (!response.ok) {
+                throw new Error('Gebruikersnaam of wachtwoord incorrect!');
+            }
+
+            const data = await response.json();
+            const token = data.token;
+        
+            localStorage.setItem('jwtToken', token);
+             window.location.href = '/instelmenu';
+            
+
+        } catch (err) {
+            setError(err.message);
+        }
+    }
+
 
     return (
         <div className="flex flex-col justify-center px-4 h-200">
@@ -48,6 +73,7 @@ function Login() {
                             Login
                         </p>
                     </button>
+                    <LogoutButton/>
                 </form>
             </div>
         </div>
