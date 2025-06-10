@@ -28,7 +28,7 @@ function Login() {
             const token = data.token;
         
             localStorage.setItem('jwtToken', token);
-             window.location.href = '/benodigdheden/0';
+             window.location.href = '/instelmenu';
             
 
         } catch (err) {

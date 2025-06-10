@@ -90,33 +90,15 @@ function App() {
           selectedLanguageZorgvrager={selectedLanguageZorgvrager}
           />} 
         />
-        <Route path="instelmenu" element={<InstelPagina 
-          selectedPalet={selectedPalet}
-          setSelectedPalet={setSelectedPalet}
-          selectedFont={selectedFont}
-          setSelectedFont={setSelectedFont}
-          uiSettings={uiSettings}
-          setUiSettings={setUiSettings}
-          colorPalettes={colorPalettes}
-          fonts={fonts}
-          languages={languages}
-          selectedLanguageZorgverlener={selectedLanguageZorgverlener}
-          setSelectedLanguageZorgverlener={setSelectedLanguageZorgverlener}
-          selectedLanguageZorgvrager={selectedLanguageZorgvrager}
-          setSelectedLanguageZorgvrager={setSelectedLanguageZorgvrager}/>} 
-        />
         <Route path="vertalen" element={<Textfield uiSettings={uiSettings} 
           selectedLanguageZorgverlener={selectedLanguageZorgverlener}
           selectedLanguageZorgvrager={selectedLanguageZorgvrager}/>} 
         />
         <Route path="" element={<Index />} />
-        <Route path="boomstructuurbeheer/:parentId" element={<BenodigdhedenboomPagina />} />
-
         <Route path="login" element={<Login />} />
         
-        {/* All other routes protected */}
+        {/* Protected routes - only instelmenu and boomstructuurbeheer */}
         <Route element={<ProtectedRoute />}>
-          <Route path="benodigdheden/:parentId" element={<BenodigdhedenPagina uiSettings={uiSettings} />} />
           <Route path="instelmenu" element={
             <InstelPagina
               selectedPalet={selectedPalet}
@@ -127,20 +109,13 @@ function App() {
               setUiSettings={setUiSettings}
               colorPalettes={colorPalettes}
               fonts={fonts}
+              languages={languages}
               selectedLanguageZorgverlener={selectedLanguageZorgverlener}
               setSelectedLanguageZorgverlener={setSelectedLanguageZorgverlener}
               selectedLanguageZorgvrager={selectedLanguageZorgvrager}
               setSelectedLanguageZorgvrager={setSelectedLanguageZorgvrager}
             />
           } />
-          <Route path="vertalen" element={
-            <Textfield
-              uiSettings={uiSettings}
-              selectedLanguageZorgverlener={selectedLanguageZorgverlener}
-              selectedLanguageZorgvrager={selectedLanguageZorgvrager}
-            />
-          } />
-          <Route path="" element={<Index />} />
           <Route path="boomstructuurbeheer/:parentId" element={<BenodigdhedenboomPagina />} />
         </Route>
       </Routes>
