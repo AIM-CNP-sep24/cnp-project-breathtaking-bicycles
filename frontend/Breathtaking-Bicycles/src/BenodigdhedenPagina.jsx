@@ -10,7 +10,8 @@ function BenodigdhedenPagina({uiSettings, selectedLanguageZorgverlener, selected
 
     // Haal het ID uit de URL om zo de volgende benodigdheden te genereren. 
     useEffect(() => {
-            haalBenodigdhedenOp(parentId, selectedLanguageZorgvrager, selectedLanguageZorgverlener);
+        console.log(selectedLanguageZorgverlener);
+        haalBenodigdhedenOp(parentId, selectedLanguageZorgvrager, selectedLanguageZorgverlener);
         haalTitelOp(parentId, selectedLanguageZorgvrager, selectedLanguageZorgverlener);
         }, [parentId]
     );
