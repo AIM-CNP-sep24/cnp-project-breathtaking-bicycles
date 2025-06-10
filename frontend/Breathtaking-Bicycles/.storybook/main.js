@@ -13,6 +13,7 @@ const config = {
     "@chromatic-com/storybook",
     "@storybook/experimental-addon-test",
     "@storybook/addon-styling-webpack",
+    "@storybook/addon-msw",
     "msw-storybook-addon"
   ],
   "framework": {

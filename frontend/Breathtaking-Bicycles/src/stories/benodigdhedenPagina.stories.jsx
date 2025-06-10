@@ -26,7 +26,7 @@ export default {
                 }),
                 http.get('http://localhost:8080/benodigdheid-childs-ophalen', () => {
                     return HttpResponse.json(false);
-                })
+                }),
             ]
         }
     }

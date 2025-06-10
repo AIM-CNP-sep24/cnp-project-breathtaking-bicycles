@@ -2,7 +2,11 @@
 import '../src/index.css';
 import { initialize, mswLoader, mswDecorator } from 'msw-storybook-addon';
 
-initialize();
+initialize({
+  serviceWorker: {
+    url: './mockServiceWorker.js'
+  }
+});
 
 export const decorators = [mswDecorator];
 
