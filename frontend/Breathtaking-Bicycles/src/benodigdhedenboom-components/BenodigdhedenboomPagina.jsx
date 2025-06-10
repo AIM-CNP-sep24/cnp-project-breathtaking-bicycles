@@ -39,10 +39,15 @@ function BenodigdhedenboomPagina(){
                 }
             });
             if (response.ok){
+                if(id == 0){
+                    setLaagNr(0);
+                    setTerugKnopId(0);
+                } else {
                 const data = await response.json();
                 setLaagNr(data[0].laagnr);
                 setTerugKnopId(data[0].id);
                 toggleTerugKnopFunction(data);
+                }
             }
         } catch (error) {
             console.error(error)
