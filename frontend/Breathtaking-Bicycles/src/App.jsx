@@ -63,8 +63,6 @@ function App() {
     LanguagesFetch();
   }, [])
 
-  console.log("selectedLanguageZorgverlener ", selectedLanguageZorgverlener, " selectedLanguageZorgvrager ", selectedLanguageZorgvrager);
-
   useEffect(() => {
     async function ColorPalettesFetch() {
       let colorPalettes = await getColorPalettes();

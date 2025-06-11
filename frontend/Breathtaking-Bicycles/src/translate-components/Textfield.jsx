@@ -32,11 +32,9 @@ function Textfield({uiSettings, selectedLanguageZorgverlener, selectedLanguageZo
       const result = event.results[0][0].transcript;
       setText(result);
       handleTranslate();
-      console.log(result);
     }
 
     taalHerkenning.onend = () => {
-      console.log(shouldRestartRef);
       if (shouldRestartRef.current == true){
         taalHerkenning.start();
       }
