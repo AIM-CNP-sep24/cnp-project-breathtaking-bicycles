@@ -7,7 +7,7 @@ function KleurenpaletKeuzeComponent({colorPalettes, selectedPalet, setSelectedPa
                 <h1 className="text-4xl font-bold pb-8 text-center">Kleurenpalet Keuze</h1>
                 <div className="flex justify-evenly">
                     {colorPalettes.map((colorPalette) => (
-                        <KleurKnop colorPalette={colorPalette} 
+                        <KleurKnop key={colorPalette.id} colorPalette={colorPalette} 
                         selectedPalet={selectedPalet}
                         setSelectedPalet={setSelectedPalet}
                         disabled={disabled} />
