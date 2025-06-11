@@ -15,6 +15,10 @@ public class KleurenPaletController {
     @Autowired
     KleurPaletRepository kleurPaletRepository;
 
+    public KleurenPaletController(@Autowired KleurPaletRepository kleurPaletRepository) {
+        this.kleurPaletRepository = kleurPaletRepository;
+    }
+
     @GetMapping("/kleurpaletten")
     public List<KleurPalet> getKleurpaletten(){
         List<KleurPalet> kleurPalettenList = kleurPaletRepository.getKleurpaletten();

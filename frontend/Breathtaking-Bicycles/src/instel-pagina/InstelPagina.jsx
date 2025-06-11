@@ -8,7 +8,8 @@ function InstelPagina({selectedFont,
     setSelectedPalet, 
     uiSettings, 
     setUiSettings, 
-    colorPalettes, 
+    colorPalettes,
+    languages,
     fonts,
     selectedLanguageZorgverlener,
     setSelectedLanguageZorgverlener,
@@ -43,6 +44,7 @@ function InstelPagina({selectedFont,
             colorPalettes={colorPalettes}
             selectedPalet={selectedPalet}
             setSelectedPalet={setSelectedPalet}
+            languages={languages}
             fonts={fonts}
             selectedFont={selectedFont}
             setSelectedFont={setSelectedFont}

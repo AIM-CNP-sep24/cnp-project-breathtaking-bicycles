@@ -24,12 +24,4 @@ public class TaalRepository {
             throw erdae;
         }
     }
-
-    public String vertaalIngevoerdeNaam(String tekst, String taal){
-        if (Objects.equals(tekst, "hallo")){
-            return "hello";
-        } else {
-            return "pizza";
-        }
-    }
 }
