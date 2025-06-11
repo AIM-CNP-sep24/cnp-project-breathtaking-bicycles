@@ -12,3 +12,77 @@ De architectuur van het systeem is ontworpen op basis van de behoeften van deze 
 
 Door de toepassing van modulaire functies, aanpasbare instellingen en een duidelijke rolverdeling tussen gebruikers wordt het systeem robuust, schaalbaar en gebruiksvriendelijk opgezet. Daarmee vormt het prototype een waardevolle eerste stap richting een oplossing die echt impact kan maken in de zorgpraktijk.
 
+# Functioneel overzicht
+De belangrijkste onderdelen van onze applicatie zijn de volgende:
+- Standaard benodigdheden
+- Vertaling van (ingesproken) berichten
+- De aanpasbare UI
+- De in te stellen structuur van de standaardbenodigdheden
+- Login voor de zorgverlener
+
+---
+
+### Standaard benodigdheden
+Als eerste de standaardbenodigdheden, het doel hier van is dat zorgvragers makkelijk kunnen navigeren naar dingen die ze op een reguliere basis gebruiken, zoals eten & drinken en naar de wc gaan. Door op de grote iconen te klikken wordt de naam van de benodigdheid uitgesproken op de speakers, in de taal van de zorgverlener, zodat deze weet wat de zorgvrager graag wilt hebben. 
+
+
+<img src="./images/ScreenshotCnP4.png" alt="Screenshot vertaalpagina" width="500">
+
+---
+
+### Vertaalpagina
+Verder is het mogelijk om zelf berichten te vertalen, als die bijvoorbeeld niet bij de standaard benodigdheden staan, of iets complexer zijn. Als voert het bericht in in het tekstveld, en het systeem detecteerd automatisch of het in de taal van de zorgvrager of zorgverlener is, en geeft dan het vertaalde antwoord terug. 
+
+<img src="./images/ScreenshotCnP3.png" alt="Screenshot vertaalpagina" width="500">
+
+--- 
+
+### UI instelmenu
+Als derde is er een pagina om de UI in te stellen voor de zorgvrager. Als de zorgvrager een beperking heeft zoals kleurenblindheid of dyslexie, kan de interface hier op worden ingesteld doormiddel van andere kleurenpaletten en een speciaal font voor dyslexie. Onderaan de pagina is een preview waar je kan zien hoe de kleuren en lettertypes veranderen die geselecteerd zijn.  
+ 
+<img src="./images/ScreenshotCnP2.png" alt="Screenshot vertaalpagina" width="500">
+<img src="./images/ScreenshotCnP1.png" alt="Screenshot vertaalpagina" width="500">
+
+---
+
+### Standaardbenodigdheden instelmenu
+Als vierde hebben we een pagina om de structuur van de standaardbenodigdheden in te stellen. Door hier op een pictogram te klikken kun je uit de lijst van benodigdheden kiezen welke je op die plek wilt hebben, daarnaast kun je klikken op naar subcategorie gaan. Hier kun je dan vervolgens benodigdheden onder plaatsen, dus onder "Eten en Drinken", zou je dan "Een glas water" of "Een stuk fruit" kunnen zetten. In dezelfde lijst als het selecteren van de benodigdheden is het ook mogelijk om benodigdheden weg te halen.
+
+<img src="./images/ScreenshotCnP5.png" alt="Screenshot vertaalpagina" width="500">
+<img src="./images/ScreenshotCnP6.png" alt="Screenshot vertaalpagina" width="500">
+
+--- 
+
+### Inloggen
+Als laatste grote functionaliteit hebben we een pagina om in te loggen om bij beide instelmenu's te komen, dit is om te voorkomen dat de zorgvrager perongeluk op een instelmenu klikt, en instellingen aanpast. Het is mogelijk om hier in te loggen als zorgverlener en systeembeheerder. 
+
+<img src="./images/ScreenshotCnP7.png" alt="Screenshot vertaalpagina" width="500">
+
+---
+
+Verder is het belangrijk dat het hosten van de applicatie voldoet aan een aantal voorwaarden:
+- Het moet runnen op een op Chromium gebaseerde browser (Chrome, Edge, etc.) met uitzondering van Brave en Safari. Dit heeft te maken met de functionaliteit van de spraakherkenning. Deze wordt namelijk niet ondersteund op Firefox en een aantal andere browsers. 
+- Er moeten 2 docker containers worden gedraaid, 1 voor de database en 1 voor de LibreTranslate API.
+- De applicatie moet worden gedraaid op een tablet in de verticale stand. 
+
+---
+
+# Data
+
+## Database
+<img src="./images/DBdiagramSGB.png" alt="DB diagram" width="500">
+
+Hierboven is het diagram van onze database. We hebben een redelijk kleine database, met maar 5 tabellen. Alle tabellen zijn voorzien van een id-kolom. Bij benodigdheid zijn er een aantal kolommen die null kunnen zijn, dit heeft te maken met het feit dat niet alle benodigdheden tegelijkertijd worden gebruikt. Dus als ze geen rangnr, laagnr en parent_id hebben staan ze op non-actief. Verder heeft users een kolom "enabled", deze houdt in dat: ..///todo
+
+Er wordt gebruikt gemaakt van een Microsoft-SQL database voor Microsoft platforms en een Azure-SQL database voor Apple gebaseerde platforms deze worden gedraaid door middel van een Docker container. Voor het opzetten van de database staat in docker-compose.yml, die te vinden is in "cnp-project-breathtaking-bicycles/backend/breathtakingbicycles/src/main/resources/db", welke image er gebruikt moet worden voor zowel een Microsoft platform en een Apple platform. 
+
+In "application.properties" (te vinden in "cnp-project-breathtaking-bicycles/backend/breathtakingbicycles/src/main/resources") staat de connectie naar de database. Hier zijn ook de gebruikersnaam en het wachtwoord te vinden om toegang te kunnen verkrijgen naar de database. Voor de verbinding van de backend naar de database gebruiken we een JDBC-connectie. 
+
+De seedfiles voor de database zijn te vinden in "cnp-project-breathtaking-bicycles/backend/breathtakingbicycles/src/main/resources/db".
+
+## Andere data
+
+Wij gebruiker naast de database ook nog de LibreTranslate API, hier wordt de ingevoerde tekst naartoe verstuurd, deze wordt vervolgens vertaald naar de gewenste taal, om vervolgens de vertaalde tekst terug te geven. 
+
+
+
