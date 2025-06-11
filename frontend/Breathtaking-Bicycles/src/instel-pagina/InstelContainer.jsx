@@ -3,7 +3,7 @@ import KleurenpaletKeuzeComponent from "./Instelmenu-components/KleurenpaletKeuz
 import FontInstelmenuComponent from "./Instelmenu-components/FontInstelmenuComponent.jsx";
 import Opslaanknop from "./Instelmenu-components/Opslaanknop.jsx";
 import Aanpasknop from "./Instelmenu-components/Aanpasknop.jsx";
-import MeldingComponent from "./Instelmenu-components/Meldingcomponent.jsx";
+import MeldingComponent from "./Instelmenu-components/MeldingComponent.jsx";
 import { useState } from 'react';
 
  function InstelContainer({isAanpasbaar, 
