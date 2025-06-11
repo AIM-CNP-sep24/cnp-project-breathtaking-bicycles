@@ -3,7 +3,8 @@ import TaalInstelmenuComponent from "../instel-pagina/Instelmenu-components/Taal
 import { action } from '@storybook/addon-actions';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import { http, HttpResponse } from 'msw';
-import { fn } from '@storybook/test'
+import { fn, within, userEvent } from '@storybook/test'
+
 
 export default {
     title: 'stories/TaalInstelmenuComponent',
@@ -31,16 +32,19 @@ const Template = ({ url = '/instelmenu', ...args }) => (
 );
 
 
+
+
 export const DefaultGeselecteerdeTalen = Template.bind({});
-DefaultGeselecteerdeTalen.args = {
-    disabled: false,
+
+    DefaultGeselecteerdeTalen.args = {
+        disabled: false,
         languages: [
-        { id: 1, naam: 'Nederlands', code: 'NL' },
-        { id: 2, naam: 'Engels', code: 'EN' },
-    ],
-    selectedLanguageZorgvrager: { id: 1, naam: 'Nederlands', code: 'NL' },
-    selectedLanguageZorgverlener: { id: 2, naam: 'Engels', code: 'EN' },
-};
+            { id: 1, naam: 'Nederlands', code: 'NL' },
+            { id: 2, naam: 'Engels', code: 'EN' },
+        ],
+        selectedLanguageZorgvrager: { id: 1, naam: 'Nederlands', code: 'NL' },
+        selectedLanguageZorgverlener: { id: 2, naam: 'Engels', code: 'EN' },
+    };
 
 export const DisabledTaalInstelmenu = Template.bind({});
 DisabledTaalInstelmenu.args = {
@@ -54,15 +58,32 @@ DisabledTaalInstelmenu.args = {
 };
 
 export const TalenSwitch = Template.bind({});
+
+const setZorgvragerSpy  = fn();
+const setZorgverlenerSpy  = fn();
+const switchTaal = fn();
+
 TalenSwitch.args = {
     disabled: false,
     languages: [
         { id: 1, naam: 'Nederlands', code: 'NL' },
         { id: 2, naam: 'Engels', code: 'EN' },
     ],
-    selectedLanguageZorgvrager: { id: 1, naam: 'Nederlands', code: 'NL' },
-    selectedLanguageZorgverlener: { id: 2, naam: 'Engels', code: 'EN' },
-    setSelectedLanguageZorgvrager.fn() => action('Zorgvrager taal veranderd naar: '),
+    selectedLanguageZorgvrager: { id: 2, naam: 'Engels', code: 'EN' },
+    selectedLanguageZorgverlener: { id: 1, naam: 'Nederlands', code: 'NL' },
+    setSelectedLanguageZorgvrager: setZorgvragerSpy,
+    setSelectedLanguageZorgverlener: setZorgverlenerSpy,
+    switchLanguage: switchTaal,
 };
+
+TalenSwitch.play = async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    const button = canvas.getByRole('button', { name: /talen wisselen/i });
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await userEvent.click(button);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+}
 
 

@@ -28,6 +28,7 @@ function TaalInstelmenuComponent({ disabled, selectedLanguageZorgvrager, setSele
                     <button
                         onClick={switchLanguage}
                         disabled={disabled}
+                        aria-label="Talen wisselen"
                     >
                         <ArrowsRightLeftIcon className={` h-20 w-20 text-black ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`} />
                     </button>
