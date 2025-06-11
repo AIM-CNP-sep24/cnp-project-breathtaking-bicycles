@@ -3,7 +3,7 @@ import TaalInstelmenuComponent from "../instel-pagina/Instelmenu-components/Taal
 import { action } from '@storybook/addon-actions';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import { http, HttpResponse } from 'msw';
-import { fn, within, userEvent } from '@storybook/test'
+import { fn, within, userEvent, expect } from '@storybook/test'
 
 
 export default {
@@ -84,6 +84,8 @@ TalenSwitch.play = async ({ canvasElement }) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     await userEvent.click(button);
     await new Promise((resolve) => setTimeout(resolve, 1000));
+    expect(setZorgvragerSpy).toHaveBeenCalledWith({ id: 1, naam: 'Nederlands', code: 'NL' });
+    expect(setZorgverlenerSpy).toHaveBeenCalledWith({ id: 2, naam: 'Engels', code: 'EN' });
 }
 
 
