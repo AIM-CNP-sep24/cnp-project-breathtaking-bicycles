@@ -1,14 +1,15 @@
 import BenodigdhedenPagina from './BenodigdhedenPagina.jsx'
-import {Routes, Route} from 'react-router'
+import { Routes, Route } from 'react-router'
 import Header from './Header.jsx'
 import Textfield from './translate-components/Textfield.jsx'
 import Index from './Index.jsx'
 import BenodigdhedenboomPagina from './benodigdhedenboom-components/BenodigdhedenboomPagina.jsx'
-import Login from './Login.jsx'
+import Login from './login/Login.jsx'
 import { useEffect, useState } from 'react'
 import InstelPagina from './instel-pagina/InstelPagina.jsx'
+import ProtectedRoute from './login/ProtectedRoute.jsx'
 
-async function getColorPalettes(){
+async function getColorPalettes() {
   const url = "http://localhost:8080/kleurpaletten";
 
   try {
@@ -62,18 +63,18 @@ function App() {
     LanguagesFetch();
   }, [])
 
-  console.log("selectedLanguageZorgverlener ", selectedLanguageZorgverlener, " selectedLanguageZorgvrager ", selectedLanguageZorgvrager);
-
   useEffect(() => {
     async function ColorPalettesFetch() {
       let colorPalettes = await getColorPalettes();
       setColorPalettes(colorPalettes)
-      setUiSettings({colorPalette: colorPalettes[0],
+      setUiSettings({
+        colorPalette: colorPalettes[0],
         font: fonts[0]
       })
     }
     ColorPalettesFetch();
   }, [])
+
 
 
   
@@ -87,28 +88,34 @@ function App() {
           selectedLanguageZorgvrager={selectedLanguageZorgvrager}
           />} 
         />
-        <Route path="instelmenu" element={<InstelPagina 
-          selectedPalet={selectedPalet}
-          setSelectedPalet={setSelectedPalet}
-          selectedFont={selectedFont}
-          setSelectedFont={setSelectedFont}
-          uiSettings={uiSettings}
-          setUiSettings={setUiSettings}
-          colorPalettes={colorPalettes}
-          fonts={fonts}
-          languages={languages}
-          selectedLanguageZorgverlener={selectedLanguageZorgverlener}
-          setSelectedLanguageZorgverlener={setSelectedLanguageZorgverlener}
-          selectedLanguageZorgvrager={selectedLanguageZorgvrager}
-          setSelectedLanguageZorgvrager={setSelectedLanguageZorgvrager}/>} 
-        />
         <Route path="vertalen" element={<Textfield uiSettings={uiSettings} 
           selectedLanguageZorgverlener={selectedLanguageZorgverlener}
           selectedLanguageZorgvrager={selectedLanguageZorgvrager}/>} 
         />
         <Route path="" element={<Index />} />
-        <Route path="boomstructuurbeheer/:parentId" element={<BenodigdhedenboomPagina />} />
         <Route path="login" element={<Login />} />
+        
+        {/* Protected routes - only instelmenu and boomstructuurbeheer */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="instelmenu" element={
+            <InstelPagina
+              selectedPalet={selectedPalet}
+              setSelectedPalet={setSelectedPalet}
+              selectedFont={selectedFont}
+              setSelectedFont={setSelectedFont}
+              uiSettings={uiSettings}
+              setUiSettings={setUiSettings}
+              colorPalettes={colorPalettes}
+              fonts={fonts}
+              languages={languages}
+              selectedLanguageZorgverlener={selectedLanguageZorgverlener}
+              setSelectedLanguageZorgverlener={setSelectedLanguageZorgverlener}
+              selectedLanguageZorgvrager={selectedLanguageZorgvrager}
+              setSelectedLanguageZorgvrager={setSelectedLanguageZorgvrager}
+            />
+          } />
+          <Route path="boomstructuurbeheer/:parentId" element={<BenodigdhedenboomPagina />} />
+        </Route>
       </Routes>
     </>
   )
