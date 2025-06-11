@@ -1,6 +1,5 @@
 
 import TaalInstelmenuComponent from "../instel-pagina/Instelmenu-components/TaalInstelmenuComponent.jsx";
-import { action } from '@storybook/addon-actions';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import { http, HttpResponse } from 'msw';
 import { fn, within, userEvent, expect } from '@storybook/test'
