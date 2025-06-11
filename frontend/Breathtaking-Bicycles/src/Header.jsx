@@ -81,7 +81,7 @@ function Header({ onClickNoodknop, uiSettings }) {
                                     className={`bg-[${uiSettings.colorPalette.colorFour}] rounded-[10px] cursor-pointer shadow-[0_10px_${uiSettings.colorPalette.colorFourShadow}]`}
                                     onClick={handleClick}
                                 >
-                                    <ChatBubbleLeftRightIcon className="h-20 w-40" />
+                                    <ChatBubbleLeftRightIcon className={`h-20 w-40 text-[${uiSettings.colorPalette.colorThree}]`} />
                                 </button>
                             </Link>
                         )}
