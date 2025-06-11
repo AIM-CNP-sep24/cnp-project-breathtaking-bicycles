@@ -32,11 +32,9 @@ function Textfield({uiSettings, selectedLanguageZorgverlener, selectedLanguageZo
       const result = event.results[0][0].transcript;
       setText(result);
       handleTranslate();
-      console.log(result);
     }
 
     taalHerkenning.onend = () => {
-      console.log(shouldRestartRef);
       if (shouldRestartRef.current == true){
         taalHerkenning.start();
       }
@@ -132,6 +130,7 @@ function Textfield({uiSettings, selectedLanguageZorgverlener, selectedLanguageZo
           onChange={(e) => setText(e.target.value)}
           value={text}
           onKeyDown={handleKeyDown}
+          id="textfield-textarea"
         />
         <div className="flex flex-row justify-center ml-[30%] mr-[30%]">
           <TranslateButton onClick={handleTranslate} uiSettings={uiSettings}/>

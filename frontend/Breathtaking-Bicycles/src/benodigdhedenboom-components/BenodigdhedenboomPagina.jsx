@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router";
 import BenodigdhedenBoomCategorieElement from "./BenodigdhedenBoomCategorieElement";
 import SelectieMenu from "./SelectieMenu";
 import { ArrowUturnLeftIcon } from "@heroicons/react/24/solid";
+import BenodigdhedenBoomOpslaanKnop from "./BenodigdhedenBoomOpslaanKnop";
 
 
 function BenodigdhedenboomPagina(){
@@ -194,14 +195,10 @@ function BenodigdhedenboomPagina(){
         }
         <div className="grid grid-cols-2 text-center mx-5">
             {benodigdhedenArray.map((benodigdheid, i) => {
-                return<>
-                    <BenodigdhedenBoomCategorieElement index={i} benodigdheid={benodigdheid} benodigdheden={alleBenodigdhedenArray} setToggleForeGround={setToggleForeGround} setGeklikteCategorie={setGeklikteCategorie} laag={laagNr}/>
-                </>
+                return (<BenodigdhedenBoomCategorieElement key={benodigdheid.id} index={i} benodigdheid={benodigdheid} benodigdheden={alleBenodigdhedenArray} setToggleForeGround={setToggleForeGround} setGeklikteCategorie={setGeklikteCategorie} laag={laagNr}/>)
             })}
         </div>
-        <div>
-            <button className="bg-[#DDA853] cursor-pointer p-3 my-10 text-center w-[20%] rounded-lg mx-[40%]" onClick={opslaanClick}>Opslaan</button>
-        </div>
+        <BenodigdhedenBoomOpslaanKnop opslaanClick={opslaanClick} />
     </>
     )
 }
