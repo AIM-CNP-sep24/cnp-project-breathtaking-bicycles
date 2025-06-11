@@ -7,7 +7,8 @@ import MeldingComponent from "./Instelmenu-components/MeldingComponent.jsx";
 import { useState } from 'react';
 
  function InstelContainer({isAanpasbaar, 
-    setIsAanpasbaar, 
+    setIsAanpasbaar,
+    languages, 
     colorPalettes, 
     selectedLanguageZorgvrager, setSelectedLanguageZorgvrager, 
     selectedLanguageZorgverlener, setSelectedLanguageZorgverlener,
@@ -55,6 +56,7 @@ import { useState } from 'react';
                     melding={melding}
                     disabled={!isAanpasbaar} />
                 <TaalInstelmenuComponent 
+                    languages={languages}
                     selectedLanguageZorgvrager={selectedLanguageZorgvrager}
                     setSelectedLanguageZorgvrager={setSelectedLanguageZorgvrager}
                     selectedLanguageZorgverlener={selectedLanguageZorgverlener}

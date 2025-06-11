@@ -1,37 +1,17 @@
-import { useState, useEffect } from 'react';
+
 import { ArrowsRightLeftIcon } from '@heroicons/react/24/outline';
 import LanguageSelection from './TaaldropdownComponent';
 
-function TaalInstelmenuComponent({ disabled, selectedLanguageZorgvrager, setSelectedLanguageZorgvrager, selectedLanguageZorgverlener, setSelectedLanguageZorgverlener }) {
-    const [languages, setLanguages] = useState([]); // array om de talen op te slaan
+function TaalInstelmenuComponent({ disabled, selectedLanguageZorgvrager, setSelectedLanguageZorgvrager, selectedLanguageZorgverlener, setSelectedLanguageZorgverlener, languages }) {
 
-     //talen array: data wordt opgehaald van de backend
-    useEffect(() => {
-        //roep de functie aan om de talen op te halen
-        fetchLanguages();
-    }, []); // Lege dependency array zorgt ervoor dat de functie alleen bij het laden van het component wordt uitgevoerd
 
     //functie om de talen te switchen
     function switchLanguage () {
-        const selectedLanguageZorgrvragerCopy = selectedLanguageZorgvrager;
+        const selectedLanguageZorgvragerCopy = selectedLanguageZorgvrager;
         setSelectedLanguageZorgvrager(selectedLanguageZorgverlener);
-        setSelectedLanguageZorgverlener(selectedLanguageZorgrvragerCopy);
+        setSelectedLanguageZorgverlener(selectedLanguageZorgvragerCopy);
     };
 
-
-     //functie om de talen op te halen
-        async function fetchLanguages() {
-            try {
-                const response = await fetch("http://localhost:8080/talen-ophalen"); // URL van de backend
-                if (!response.ok) {
-                    throw new Error('Fout bij het ophalen van de talen');
-                }
-                const data = await response.json();
-                setLanguages(data);
-            } catch (error) {
-                console.error('Fout bij ophalen van talen:', error);
-            }
-        };
 
     return (
         <div className="container p-10 h-100 justify-start">
@@ -42,12 +22,13 @@ function TaalInstelmenuComponent({ disabled, selectedLanguageZorgvrager, setSele
                         label="Zorgverlener"
                         value={selectedLanguageZorgverlener}
                         onChange={(value) => setSelectedLanguageZorgverlener(value)}
-                        options={languages.filter((lang) => lang.naam !== selectedLanguageZorgvrager)} // Filter op basis van de naam van de taal
+                        options={languages.filter((language) => language.naam !== selectedLanguageZorgvrager?.naam)} // Filter op basis van de naam van de taal
                         disabled={disabled}
                     />
                     <button
                         onClick={switchLanguage}
                         disabled={disabled}
+                        aria-label="Talen wisselen"
                     >
                         <ArrowsRightLeftIcon className={` h-20 w-20 text-black ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`} />
                     </button>
@@ -56,7 +37,7 @@ function TaalInstelmenuComponent({ disabled, selectedLanguageZorgvrager, setSele
                         label="Zorgvrager"
                         value={selectedLanguageZorgvrager}
                         onChange={(value) => setSelectedLanguageZorgvrager(value)}
-                        options={languages.filter((lang) => lang.naam !== selectedLanguageZorgverlener)} // Filter op basis van de naam van de taal
+                        options={languages.filter((language) => language.naam !== selectedLanguageZorgverlener?.naam)} // Filter op basis van de naam van de taal
                         disabled={disabled}
                     />
                 </div>

@@ -10,7 +10,7 @@ function SelectieMenu({setToggleForeGround, alleBenodigdheden, huidigeBenodigdhe
         <div className="bg-white h-[900px] w-[40%] text-3xl mt-20 rounded-t-lg">
             <input type="text" className="w-[100%] px-5 py-5 bg-[#FFF] rounded-t-lg outline-0 border-b-1" placeholder="Zoek..." value={zoekTekst} onChange={(e) => setZoekTekst(e.target.value)} onClick={(e) => e.stopPropagation()}></input>
             <ul className="opacity-100 overflow-auto h-[800px]">
-                <li className="cursor-pointer ">
+                <li key={0} className="cursor-pointer">
                     <button className="p-3 w-[100%]" onClick={() => {
                         const tempArray = geselecteerdeCategorieenArray;
                         tempArray[geklikteCategorie] = vulMetLeegElement();
@@ -28,7 +28,7 @@ function SelectieMenu({setToggleForeGround, alleBenodigdheden, huidigeBenodigdhe
                     alleBenodigdheden.filter((benodigdheid) => 
                     benodigdheid.naamTaal1.toUpperCase().includes(zoekTekst.toUpperCase())).map((benodigdheid)=>(
                         
-                        <li className="cursor-pointer">
+                        <li key={benodigdheid.id} className="cursor-pointer">
                             <button className="p-3 cursor-pointer w-[100%]" onClick={
                             () => {
 
