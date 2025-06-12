@@ -5,7 +5,8 @@ import MicrofoonButton from "./MicrofoonButton.jsx";
 function Textfield({uiSettings, selectedLanguageZorgverlener, selectedLanguageZorgvrager}) {
   const [text, setText] = useState("");
   const [submittedMessages, setSubmittedMessages] = useState([]);
-  const [recording, setRecording] = useState(true);
+  const [recording, setRecording] = useState(false);
+  const [recordingStarted, setRecordingStarted] = useState(false);
   const messagesEndRef = useRef(null);
   const shouldRestartRef = useRef(true);
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -18,27 +19,6 @@ function Textfield({uiSettings, selectedLanguageZorgverlener, selectedLanguageZo
 
   function handleMicrophoneClick() {
     setRecording(!recording);
-    if (recording){
-      shouldRestartRef.current = true;
-      console.log("start");
-      taalHerkenning.start();
-    } else {
-      shouldRestartRef.current = false;
-      console.log("stop");
-      taalHerkenning.stop();
-    }
-    
-    taalHerkenning.onresult = (event) => {
-      const result = event.results[0][0].transcript;
-      setText(result);
-      handleTranslate();
-    }
-
-    taalHerkenning.onend = () => {
-      if (shouldRestartRef.current == true){
-        taalHerkenning.start();
-      }
-    }
   }
 
 
@@ -103,7 +83,32 @@ function Textfield({uiSettings, selectedLanguageZorgverlener, selectedLanguageZo
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [submittedMessages]);
+    if(recordingStarted){
+      console.log(1);
+      if (recording){
+        shouldRestartRef.current = true;
+        console.log("start");
+        taalHerkenning.start();
+      } else {
+        shouldRestartRef.current = false;
+        console.log("stop");
+        taalHerkenning.stop();
+      }
+      
+      taalHerkenning.onresult = (event) => {
+        const result = event.results[0][0].transcript;
+        setText(result);
+        handleTranslate();
+      }
+
+      taalHerkenning.onend = () => {
+        if (shouldRestartRef.current == true){
+          taalHerkenning.start();
+        }
+      }
+    }
+  setRecordingStarted(true);
+  }, [submittedMessages, recording]);
 
   return (
     <>
@@ -136,11 +141,11 @@ function Textfield({uiSettings, selectedLanguageZorgverlener, selectedLanguageZo
           <TranslateButton onClick={handleTranslate} uiSettings={uiSettings}/>
           <MicrofoonButton uiSettings={uiSettings} handleMicrophoneClick={handleMicrophoneClick} recording={recording}/>
         </div>
-        {recording ? (<></>) : (
-          <>
-            <div className="text-3xl mt-20 text-center">
+        {recording ? (<><div className="text-3xl mt-20 text-center">
               <h1>Aan het luisteren...</h1>
-            </div>
+            </div></>) : (
+          <>
+            
           </>
         )}
       </div>
