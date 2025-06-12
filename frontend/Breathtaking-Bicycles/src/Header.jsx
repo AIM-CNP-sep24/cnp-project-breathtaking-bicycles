@@ -27,12 +27,14 @@ function Header({ onClickNoodknop, uiSettings }) {
                 <div className="w-full flex justify-between items-center px-4">
                     <div className="relative">
                         <button
+                            aria-label="menu dropdown"
                             onClick={() => {setMenuOpen((open) => !open)}}
                             className={`cursor-pointer transition-colors duration-200 p-2
                                 ${menuOpen ? 'bg-white border-white' : `bg-[${uiSettings.colorPalette.colorThree}]`}
     `                       }
                         >
-                            <Bars3Icon className={`h-20 w-17 transition-colors duration-200 ${menuOpen ? `text-[${uiSettings.colorPalette.colorThree}]` : 'text-white'}`} />
+                            <Bars3Icon className={`h-20 w-17 transition-colors duration-200 ${menuOpen ? `text-[${uiSettings.colorPalette.colorThree}]` : 'text-white'}`}
+                             />
                         </button>
                     </div>
 
