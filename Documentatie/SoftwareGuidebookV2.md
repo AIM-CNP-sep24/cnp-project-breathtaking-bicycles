@@ -90,11 +90,15 @@ De applicatie is onderverdeeld in een aantal verschillende folders. De backend e
 
 De belangrijkste folders binnen de applicatie zijn de .github, backend en frontend folders. Binnen deze folders bevindt zich de code die door het project heen geschreven is met de daarbij horende testimplementaties. De tests voor de backend zijn te vinden in het folder "test" en de tests voor de frontend zijn te vinden in het folder "stories".
 
- In het .github folder staan de workflows die betrekking hebben op de pipeline die gebruikt werd tijdens dit project. De pipeline wordt verder besproken in het hoofdstuk Integratie.
-
+ In het .github folder staan de workflows die betrekking hebben tot de pipeline die gebruikt werd tijdens dit project. De pipeline wordt verder besproken in het hoofdstuk Integratie.
 
 
 ## Gebruikte Libraries en tools
+De backend van de applicatie, opgebouwd met behulp van Maven, is geschreven in Java met behulp van het Springboot framework. Springboot is een open source Java-framework waarmee applicaties gebouwd en gerunt kunnen worden zonder hulp van een externe webserver.
+
+De frontend bestaat uit componenten die met behulp van React, een javascript library, opgebouwd zijn.
+
+Voor het testen van de backend worden de Maven dependencies Mockito en JUnit Jupiter toegepast, zodat calls naar de database gemocked kunnen worden. Voor de frontend wordt de testtool Storybook toegepast. Storybook staat los van de applicatie. Hierdoor kunnen componenten makkelijk getest worden zonder de applicatie zelf te hoeven starten.
 
 # Data
 
