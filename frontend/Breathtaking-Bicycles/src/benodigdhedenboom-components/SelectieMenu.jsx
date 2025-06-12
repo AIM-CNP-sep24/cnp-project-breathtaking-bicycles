@@ -31,16 +31,17 @@ function SelectieMenu({setToggleForeGround, alleBenodigdheden, huidigeBenodigdhe
                         <li key={benodigdheid.id} className="cursor-pointer">
                             <button className="p-3 cursor-pointer w-[100%]" onClick={
                             () => {
-
+                                console.log(geklikteCategorie);
                                     const tempArray = geselecteerdeCategorieenArray;
                                     tempArray[geklikteCategorie] = benodigdheid;
                                     tempArray[geklikteCategorie].rangnr = geklikteCategorie;
+                                    console.log(tempArray);
                                     setGeselecteerdeCategorieenArray(tempArray)
                                     setToggleForeGround(false);
                                 }
                             }>
                                 <div className="flex flex-row align-items">
-                                    <img className="w-[25%]" src={benodigdheid.imgsrc} alt={benodigdheid.naamTaal1}></img>
+                                    <img className="w-[25%]" src={benodigdheid.imgsrc} alt={benodigdheid.naamTaal1 + "-image"}></img>
                                     <h1 className="w-[75%] content-center">{benodigdheid.naamTaal1}</h1>
                                 </div>
                             </button>

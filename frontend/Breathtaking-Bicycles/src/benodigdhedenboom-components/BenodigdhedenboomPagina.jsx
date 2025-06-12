@@ -45,6 +45,7 @@ function BenodigdhedenboomPagina(){
                     setTerugKnopId(0);
                 } else {
                 const data = await response.json();
+                console.log(response);
                 setLaagNr(data[0].laagnr);
                 setTerugKnopId(data[0].id);
                 toggleTerugKnopFunction(data);
@@ -186,11 +187,11 @@ function BenodigdhedenboomPagina(){
                             <button className="w-25 ml-3 mt-3 rounded-lg bg-[#DDA853] p-3"><ArrowUturnLeftIcon></ArrowUturnLeftIcon></button>
                         </Link>
                     </div>
-                    <h1 className=" w-1/2 text-center text-4xl font-bold px-10 mt-5">{title}</h1>
+                    <h1 className=" w-1/2 text-center text-4xl font-bold px-10 mt-5">{title || "Benodigdheden"}</h1>
                 </div>
             </>
         ) : (
-            <h1 className="text-center text-4xl font-bold px-10 mt-5 h-25">{title}</h1>
+            <h1 className="text-center text-4xl font-bold px-10 mt-5 h-25">{title || "Benodigdheden"}</h1>
             )
         }
         <div className="grid grid-cols-2 text-center mx-5">
