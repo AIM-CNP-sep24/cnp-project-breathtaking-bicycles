@@ -82,7 +82,9 @@ De seedfiles voor de database zijn te vinden in "cnp-project-breathtaking-bicycl
 
 ## Andere data
 
-Wij gebruiker naast de database ook nog de LibreTranslate API, hier wordt de ingevoerde tekst naartoe verstuurd, deze wordt vervolgens vertaald naar de gewenste taal, om vervolgens de vertaalde tekst terug te geven. 
+Wij gebruiker naast de database ook nog de LibreTranslate API, hier wordt de ingevoerde tekst naartoe verstuurd, deze wordt vervolgens vertaald naar de gewenste taal, om vervolgens de vertaalde tekst terug te geven.
+
+Ook gebruiken we de SpeechRecognition Browser API, deze neemt ingesproken tekst op, en geeft getranscribeerde tekst terug. 
 
 
 
