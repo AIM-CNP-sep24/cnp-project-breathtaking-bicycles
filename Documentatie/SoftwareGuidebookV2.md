@@ -31,14 +31,14 @@ Als eerste de standaardbenodigdheden, het doel hier van is dat zorgvragers makke
 ---
 
 ### Vertaalpagina
-Verder is het mogelijk om zelf berichten te vertalen, als die bijvoorbeeld niet bij de standaard benodigdheden staan, of iets complexer zijn. Als voert het bericht in in het tekstveld, en het systeem detecteerd automatisch of het in de taal van de zorgvrager of zorgverlener is, en geeft dan het vertaalde antwoord terug. 
+Verder is het mogelijk om zelf berichten te vertalen, als die bijvoorbeeld niet bij de standaard benodigdheden staan, of iets complexer zijn. Als het bericht is ingevoerd in het tekstveld en is verzonden, detecteerd het systeem automatisch in welke taal het is geschreven. Vervolgens geeft het systeem de tekst terug in de andere taal, dus als het is geschreven in de taal van de zorgvrager wordt het teruggegeven in de taal van de zorgverlener en vice versa. 
 
 <img src="./images/ScreenshotCnP3.png" alt="Screenshot vertaalpagina" width="500">
 
 --- 
 
 ### UI instelmenu
-Als derde is er een pagina om de UI in te stellen voor de zorgvrager. Als de zorgvrager een beperking heeft zoals kleurenblindheid of dyslexie, kan de interface hier op worden ingesteld doormiddel van andere kleurenpaletten en een speciaal font voor dyslexie. Onderaan de pagina is een preview waar je kan zien hoe de kleuren en lettertypes veranderen die geselecteerd zijn.  
+Als derde is er een pagina om de UI in te stellen voor de zorgvrager. Als de zorgvrager een beperking heeft zoals kleurenblindheid of dyslexie, kan de interface hier op worden ingesteld doormiddel van andere kleurenpaletten en een speciaal font voor dyslexie. Onderaan de pagina is een preview waar je kan zien hoe de kleuren en lettertypes die geselecteerd zijn veranderen.  
  
 <img src="./images/ScreenshotCnP2.png" alt="Screenshot vertaalpagina" width="500">
 <img src="./images/ScreenshotCnP1.png" alt="Screenshot vertaalpagina" width="500">
@@ -72,7 +72,7 @@ Verder is het belangrijk dat het hosten van de applicatie voldoet aan een aantal
 ## Database
 <img src="./images/DBdiagramSGB.png" alt="DB diagram" width="500">
 
-Hierboven is het diagram van onze database. We hebben een redelijk kleine database, met maar 5 tabellen. Alle tabellen zijn voorzien van een id-kolom. Bij benodigdheid zijn er een aantal kolommen die null kunnen zijn, dit heeft te maken met het feit dat niet alle benodigdheden tegelijkertijd worden gebruikt. Dus als ze geen rangnr, laagnr en parent_id hebben staan ze op non-actief. Verder heeft users een kolom "enabled", deze houdt in dat: ..///todo
+Hierboven is het diagram van onze database. We hebben een redelijk kleine database, met maar 5 tabellen. Alle tabellen zijn voorzien van een id-kolom. Bij benodigdheid zijn er een aantal kolommen die null kunnen zijn, dit heeft te maken met het feit dat niet alle benodigdheden tegelijkertijd worden gebruikt. Dus als ze geen rangnr, laagnr en parent_id hebben staan ze op non-actief. Verder heeft users een kolom "enabled", deze houdt in dat een account op dat moment actief is of niet.
 
 Er wordt gebruikt gemaakt van een Microsoft-SQL database voor Microsoft platforms en een Azure-SQL database voor Apple gebaseerde platforms deze worden gedraaid door middel van een Docker container. Voor het opzetten van de database staat in docker-compose.yml, die te vinden is in "cnp-project-breathtaking-bicycles/backend/breathtakingbicycles/src/main/resources/db", welke image er gebruikt moet worden voor zowel een Microsoft platform en een Apple platform. 
 
