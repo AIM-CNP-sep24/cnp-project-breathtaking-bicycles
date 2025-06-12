@@ -6,21 +6,72 @@ function Textfield({uiSettings, selectedLanguageZorgverlener, selectedLanguageZo
   const [text, setText] = useState("");
   const [submittedMessages, setSubmittedMessages] = useState([]);
   const [recording, setRecording] = useState(false);
-  const [recordingStarted, setRecordingStarted] = useState(false);
   const messagesEndRef = useRef(null);
-  const shouldRestartRef = useRef(true);
+  const recognitionRef = useRef(null);
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  const taalHerkenning = new SpeechRecognition();
-  
-  //Spraakherkenning setup
-  taalHerkenning.lang = 'nl-NL';
-  taalHerkenning.continuous = true;
 
+  useEffect(() => {
+    if (SpeechRecognition) {
+      recognitionRef.current = new SpeechRecognition();
+      recognitionRef.current.lang = 'nl-NL';
+      recognitionRef.current.continuous = true;
+      recognitionRef.current.interimResults = false;
+
+      recognitionRef.current.onresult = (event) => {
+        const result = event.results[event.results.length - 1][0].transcript;
+        setText(result);
+        handleTranslate();
+      };
+
+      recognitionRef.current.onend = () => {
+        if (recording) {
+          try {
+            recognitionRef.current.start();
+          } catch (error) {
+            console.log("Recognition restart failed:", error);
+          }
+        }
+      };
+
+      recognitionRef.current.onerror = (event) => {
+        console.log("Speech recognition error:", event.error);
+        if (event.error === 'not-allowed') {
+          setRecording(false);
+        }
+      };
+    }
+
+    return () => {
+      if (recognitionRef.current) {
+        recognitionRef.current.stop();
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!recognitionRef.current) return;
+
+    if (recording) {
+      try {
+        recognitionRef.current.start();
+        console.log("Speech recognition started");
+      } catch (error) {
+        console.log("Failed to start recognition:", error);
+        setRecording(false);
+      }
+    } else {
+      recognitionRef.current.stop();
+      console.log("Speech recognition stopped");
+    }
+  }, [recording]);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [submittedMessages]);
 
   function handleMicrophoneClick() {
     setRecording(!recording);
   }
-
 
   const handleTranslate = async () => {
     if (text.trim() !== "") {
@@ -79,36 +130,6 @@ function Textfield({uiSettings, selectedLanguageZorgverlener, selectedLanguageZo
       handleTranslate();
     }
   };
-
-
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    if(recordingStarted){
-      console.log(1);
-      if (recording){
-        shouldRestartRef.current = true;
-        console.log("start");
-        taalHerkenning.start();
-      } else {
-        shouldRestartRef.current = false;
-        console.log("stop");
-        taalHerkenning.stop();
-      }
-      
-      taalHerkenning.onresult = (event) => {
-        const result = event.results[0][0].transcript;
-        setText(result);
-        handleTranslate();
-      }
-
-      taalHerkenning.onend = () => {
-        if (shouldRestartRef.current == true){
-          taalHerkenning.start();
-        }
-      }
-    }
-  setRecordingStarted(true);
-  }, [submittedMessages, recording]);
 
   return (
     <>
