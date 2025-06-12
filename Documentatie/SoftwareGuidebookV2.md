@@ -66,6 +66,35 @@ Verder is het belangrijk dat het hosten van de applicatie voldoet aan een aantal
 - De applicatie moet worden gedraaid op een tablet in de verticale stand. 
 
 ---
+# Code
+
+## Klassediagram
+<img src="./images/ClassDiagramBreathtakingbicycles.png" alt="Klassediagram">
+
+Boven deze tekst is de klassendiagram van de backend van de applicatie te zien. Hierin zijn de belangrijkste klassen binnen de applicatie verwerkt en zijn de verbindingen die deze klassen met elkaar hebben in kaart gebracht. e backend van deze applicatie is niet heel groot en bevat eenvoudige en makkelijk te begrijpen klassen. 
+
+De klassen die binnen de applicatie het meeste doen zijn de repositoryklassen en de controllerklassen. De repositoryklassen, te vinden in het folder repository, halen de benodigde data uit de database door middel van sql query's. 
+
+In de controllerklassen, te vinden in het folder controller, zijn alle endpoints geïmplementeerd als ingangpunt van de API. 
+
+Voor de login functionaliteit is spring security gebruikt. De belangrijkste klassen hiervoor zijn de SecurityConfig, JwtUtil en de DatabaseUserDetailService. De Config klasse zorgt ervoor dat de login goed is ingesteld en de beveiliging binnen de applicatie dus gewaarborgd wordt. De klasse zorgt er dus voor dat niet alle pagina's binnen de applicatie direct bereikbaar zijn, maar dus beveiligd is met een login.
+De DatabaseUserDetailService is een klasse die de gebruikers uit de database ophaald en hiervan een spring security user object maakt. 
+
+### Tests
+Voor alle klassen die eerder dit hoofdstuk zijn beschreven zijn uittests geschreven voor zowel de happy als unhappy paths. Al deze unittests slagen en zijn te vinden in het test folder. 
+
+## Folderstructuur
+De applicatie is onderverdeeld in een aantal verschillende folders. De backend en frontend zijn beide gescheiden van elkaar. Hieronder is een schematische weergave te zien van onze folderstructuur met daarin de folders die het meest relevant zijn voor dit project.
+
+<img src="./images/folderstructuur.png" alt="folderstructuur">
+
+De belangrijkste folders binnen de applicatie zijn de .github, backend en frontend folders. Binnen deze folders bevindt zich de code die door het project heen geschreven is met de daarbij horende testimplementaties. De tests voor de backend zijn te vinden in het folder "test" en de tests voor de frontend zijn te vinden in het folder "stories".
+
+ In het .github folder staan de workflows die betrekking hebben op de pipeline die gebruikt werd tijdens dit project. De pipeline wordt verder besproken in het hoofdstuk Integratie.
+
+
+
+## Gebruikte Libraries en tools
 
 # Data
 
