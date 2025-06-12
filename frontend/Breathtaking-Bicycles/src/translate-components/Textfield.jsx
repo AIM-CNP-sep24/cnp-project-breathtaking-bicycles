@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import TranslateButton from "./TranslateButton.jsx";
 import MicrofoonButton from "./MicrofoonButton.jsx";
+import { SpeakerWaveIcon } from "@heroicons/react/24/solid";
 
 function Textfield({uiSettings, selectedLanguageZorgverlener, selectedLanguageZorgvrager}) {
   const [text, setText] = useState("");
@@ -140,11 +141,21 @@ function Textfield({uiSettings, selectedLanguageZorgverlener, selectedLanguageZo
           {submittedMessages.map((msg, index) => (
             <div
               key={index}
-              className={`pr-4 pl-4 mb-2 m-2 bg-[${uiSettings.colorPalette.colorOne}] pb-2 pt-2 rounded`}
+              className={`pr-4 pl-4 mb-2 m-2 bg-[${uiSettings.colorPalette.colorOne}] pb-2 pt-2 rounded flex justify-between items-center`}
+              onClick={() => {
+                console.log(msg)
+                const spraak = new SpeechSynthesisUtterance(msg.translated);
+                spraak.lang = 'en-UK'
+                speechSynthesis.speak(spraak);
+              }}
             >
+              <div className="grid grid-rows-2">
               <p className="text-md italic mb-1">{msg.original}</p>
               <p className="text-2xl break-words">{msg.translated}</p>
+              </div>
+              <SpeakerWaveIcon className="w-10 flex justify-end"/>
             </div>
+            
           ))}
           <div ref={messagesEndRef} />
         </div>
