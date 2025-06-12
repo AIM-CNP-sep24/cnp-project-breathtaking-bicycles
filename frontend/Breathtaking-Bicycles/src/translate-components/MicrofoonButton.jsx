@@ -7,10 +7,10 @@ function MicrofoonButton ({uiSettings, handleMicrophoneClick, recording}){
         hover:bg-[${uiSettings.colorPalette.colorFourShadow}] flex items-center justify-center overflow-hidden`}
         onClick={handleMicrophoneClick}
     > 
-    {recording ? (<MicrophoneIcon 
-                className="w-1/2 h-1/2 object-contain" 
-            />) : (<StopIcon 
+    {recording ? (<StopIcon 
                 className="w-1/2 h-1/2 object-contain"
+                />) : (<MicrophoneIcon 
+                    className="w-1/2 h-1/2 object-contain" 
                 />)
     }
             
