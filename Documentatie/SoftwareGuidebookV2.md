@@ -94,8 +94,7 @@ De belangrijkste folders binnen de applicatie zijn de .github, backend en fronte
 
 
 ## Gebruikte Libraries en tools
-De backend van de applicatie, opgebouwd met behulp van Maven, is geschreven in Java met behulp van het Springboot framework. Springboot is een open source Java-framework waarmee applicaties gebouwd en gerunt kunnen worden zonder hulp van een externe webserver.
-
+De backend van de applicatie, opgebouwd met behulp van Maven, is geschreven in Java met behulp van het Springboot framework. Springboot is een open source Java-framework waarmee applicaties gebouwd en gerunt kunnen worden zonder hulp van een externe webserver. Voor de de login is de customizable authentication and access-control Spring Security framework toegepast. De authenticatie en authorisatie zijn door middel van dit framework verwerkt in de applicatie, zodat niet alle pagina's unauthorized bereikbaar zijn voor de gebruiker. 
 De frontend bestaat uit componenten die met behulp van React, een javascript library, opgebouwd zijn.
 
 Voor het testen van de backend worden de Maven dependencies Mockito en JUnit Jupiter toegepast, zodat calls naar de database gemocked kunnen worden. Voor de frontend wordt de testtool Storybook toegepast. Storybook staat los van de applicatie. Hierdoor kunnen componenten makkelijk getest worden zonder de applicatie zelf te hoeven starten.
