@@ -6,7 +6,6 @@ CREATE TABLE taal (
     id bigint NOT NULL IDENTITY(1,1) PRIMARY KEY,
     naam varchar(100) NOT NULL,
     code varchar(10) NOT NULL,
-    imgsrc varchar(255) NOT NULL,
 );
 
 CREATE TABLE zin (
@@ -73,3 +72,11 @@ CREATE TABLE kleurenpalet (
     color_four varchar(7) NOT NULL,
     color_four_shadow varchar(7) NOT NULL,
 )
+
+CREATE TABLE users (
+    id BIGINT IDENTITY(1,1) PRIMARY KEY,
+    username NVARCHAR(255) NOT NULL,
+    password NVARCHAR(255) NOT NULL,
+    enabled BIT NOT NULL DEFAULT 1,
+    roles NVARCHAR(MAX) NULL
+);
