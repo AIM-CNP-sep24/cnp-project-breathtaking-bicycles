@@ -12,7 +12,9 @@ const config = {
     "@storybook/addon-onboarding",
     "@chromatic-com/storybook",
     "@storybook/experimental-addon-test",
-    "@storybook/addon-styling-webpack"
+    "@storybook/addon-styling-webpack",
+    "@storybook/addon-msw",
+    "msw-storybook-addon"
   ],
   "framework": {
     "name": "@storybook/react-vite",

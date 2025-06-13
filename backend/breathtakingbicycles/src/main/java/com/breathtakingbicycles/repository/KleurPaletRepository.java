@@ -14,6 +14,10 @@ public class KleurPaletRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    public KleurPaletRepository(@Autowired JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
     public List<KleurPalet> getKleurpaletten(){
         try {
             return jdbcTemplate.query("SELECT * FROM kleurenpalet", new KleurPaletRowMapper());

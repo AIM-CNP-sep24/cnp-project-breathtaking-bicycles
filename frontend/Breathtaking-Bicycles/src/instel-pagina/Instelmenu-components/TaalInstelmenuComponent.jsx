@@ -1,40 +1,15 @@
-import { useState, useEffect } from 'react';
+
 import { ArrowsRightLeftIcon } from '@heroicons/react/24/outline';
 import LanguageSelection from './TaaldropdownComponent';
-import { fetchLanguages } from '../taalService.js'; // Importeer de fetchLanguages functie
 
-/* voorstel Fritz
+function TaalInstelmenuComponent({ disabled, selectedLanguageZorgvrager, setSelectedLanguageZorgvrager, selectedLanguageZorgverlener, setSelectedLanguageZorgverlener, languages }) {
 
-- functie fetchLanguages() ergens anders neerzetten. 
-bijv. in een nieuwe file genaamd taalService.js
-- deze functie exporteren en importeren in dit component.
-- dan de functie monkey patchen in InstelContainer.stories.jsx
-  - met monkeypatchen kun je een functie nabootsen in runtime
-  - de monkey patch zou je met vi.fn() kiunnen bewerkstellinigen en dan een Promise returnen die dan de array met talen meegeeft.
-- dan kun je de talen ophalen zonder dat je de backend nodig hebt.
-
-*/
-
-function TaalInstelmenuComponent({ disabled }) {
-    const [selectedLanguageZorgvrager, setSelectedLanguageZorgvrager] = useState('');
-    const [selectedLanguageZorgverlener, setSelectedLanguageZorgverlener] = useState('');
-    const [languages, setLanguages] = useState([]);
-
-    //talen array: data wordt opgehaald van de backend
-    useEffect(() => {
-        async function loadLanguages() {
-            const data = await fetchLanguages();
-            setLanguages(data);
-        }
-        loadLanguages();
-
-    }, []); // Lege dependency array zorgt ervoor dat de functie alleen bij het laden van het component wordt uitgevoerd
 
     //functie om de talen te switchen
-    function switchLanguage() {
-        const selectedLanguageZorgrvragerCopy = selectedLanguageZorgvrager;
+    function switchLanguage () {
+        const selectedLanguageZorgvragerCopy = selectedLanguageZorgvrager;
         setSelectedLanguageZorgvrager(selectedLanguageZorgverlener);
-        setSelectedLanguageZorgverlener(selectedLanguageZorgrvragerCopy);
+        setSelectedLanguageZorgverlener(selectedLanguageZorgvragerCopy);
     };
 
 
@@ -47,12 +22,13 @@ function TaalInstelmenuComponent({ disabled }) {
                         label="Zorgverlener"
                         value={selectedLanguageZorgverlener}
                         onChange={(value) => setSelectedLanguageZorgverlener(value)}
-                        options={languages.filter((lang) => lang.naam !== selectedLanguageZorgvrager)} // Filter op basis van de naam van de taal
+                        options={languages.filter((language) => language.naam !== selectedLanguageZorgvrager?.naam)} // Filter op basis van de naam van de taal
                         disabled={disabled}
                     />
                     <button
                         onClick={switchLanguage}
                         disabled={disabled}
+                        aria-label="Talen wisselen"
                     >
                         <ArrowsRightLeftIcon className={` h-20 w-20 text-black ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`} />
                     </button>
@@ -61,7 +37,7 @@ function TaalInstelmenuComponent({ disabled }) {
                         label="Zorgvrager"
                         value={selectedLanguageZorgvrager}
                         onChange={(value) => setSelectedLanguageZorgvrager(value)}
-                        options={languages.filter((lang) => lang.naam !== selectedLanguageZorgverlener)} // Filter op basis van de naam van de taal
+                        options={languages.filter((language) => language.naam !== selectedLanguageZorgverlener?.naam)} // Filter op basis van de naam van de taal
                         disabled={disabled}
                     />
                 </div>
