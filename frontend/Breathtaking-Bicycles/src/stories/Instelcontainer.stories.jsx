@@ -136,6 +136,7 @@ InstelContainerTestOpslaanMislukt.play = async ({ canvasElement }) => {
         await canvas.findByText(/Opslaan mislukt. Probeer het opnieuw/i);
 }
 
+
 const selectedLanguageZorgverlenerSpy = fn();
 const selectedLanguageZorgvragerSpy = fn();
 const geselecteerdPaletSpy = fn();
