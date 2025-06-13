@@ -45,7 +45,6 @@ function BenodigdhedenboomPagina(){
                     setTerugKnopId(0);
                 } else {
                 const data = await response.json();
-                console.log(response);
                 setLaagNr(data[0].laagnr);
                 setTerugKnopId(data[0].id);
                 toggleTerugKnopFunction(data);

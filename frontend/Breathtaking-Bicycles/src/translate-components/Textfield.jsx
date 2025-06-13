@@ -143,7 +143,6 @@ function Textfield({uiSettings, selectedLanguageZorgverlener, selectedLanguageZo
               key={index}
               className={`pr-4 pl-4 mb-2 m-2 bg-[${uiSettings.colorPalette.colorOne}] pb-2 pt-2 rounded flex justify-between items-center`}
               onClick={() => {
-                console.log(msg)
                 const spraak = new SpeechSynthesisUtterance(msg.translated);
                 spraak.lang = 'en-UK'
                 speechSynthesis.speak(spraak);

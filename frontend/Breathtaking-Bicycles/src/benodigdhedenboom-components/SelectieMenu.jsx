@@ -31,11 +31,9 @@ function SelectieMenu({setToggleForeGround, alleBenodigdheden, huidigeBenodigdhe
                         <li key={benodigdheid.id} className="cursor-pointer">
                             <button className="p-3 cursor-pointer w-[100%]" onClick={
                             () => {
-                                console.log(geklikteCategorie);
                                     const tempArray = geselecteerdeCategorieenArray;
                                     tempArray[geklikteCategorie] = benodigdheid;
                                     tempArray[geklikteCategorie].rangnr = geklikteCategorie;
-                                    console.log(tempArray);
                                     setGeselecteerdeCategorieenArray(tempArray)
                                     setToggleForeGround(false);
                                 }
