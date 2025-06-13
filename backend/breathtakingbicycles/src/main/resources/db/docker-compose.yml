@@ -2,7 +2,8 @@ version: '3.8'
 
 services:
   sqlserver:
-#    Aanpassen naar mcr.microsoft.com/mssql/server:2022-latest voor windows gebruikers
+    # voor Microsoft gebaseerde platforms: mcr.microsoft.com/mssql/server:2022-latest
+    # Voor Apple gebaseerde platforms: mcr.microsoft.com/azure-sql-edge
     image: mcr.microsoft.com/azure-sql-edge
     container_name: sqlserver
     environment:

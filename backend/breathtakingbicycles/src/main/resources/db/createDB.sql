@@ -73,3 +73,11 @@ CREATE TABLE kleurenpalet (
     color_four varchar(7) NOT NULL,
     color_four_shadow varchar(7) NOT NULL,
 )
+
+CREATE TABLE users (
+    id BIGINT IDENTITY(1,1) PRIMARY KEY,
+    username NVARCHAR(255) NOT NULL,
+    password NVARCHAR(255) NOT NULL,
+    enabled BIT NOT NULL DEFAULT 1,
+    roles NVARCHAR(MAX) NULL
+);

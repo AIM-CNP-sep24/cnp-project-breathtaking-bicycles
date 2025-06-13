@@ -4,6 +4,7 @@ name: unit tests
 on:
   pull_request:
     paths-ignore:
+      - '**/*.md'
       - '**/*storybook-static/**'
 
 jobs:
