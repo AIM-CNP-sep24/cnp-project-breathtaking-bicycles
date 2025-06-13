@@ -16,6 +16,9 @@ INSERT INTO benodigdheid (id, parent_id, imgsrc, rangnr, laag) VALUES (10, 1, '.
 INSERT INTO benodigdheid (id, parent_id, imgsrc, rangnr, laag) VALUES (11, 1, '../src/img/Koffie-Icon.png', 5, 1)
 INSERT INTO benodigdheid (id, parent_id, imgsrc, rangnr, laag) VALUES (12, 1, '../src/img/Appel-Icon.png', 6, 1)
 
+INSERT INTO taal (naam, code) VALUES ('Nederlands', 'NL')
+INSERT INTO taal (naam, code) VALUES ('Engels', 'EN')
+
 INSERT INTO benodigdheid_vertaling (taal_id, benodigdheid_id, tekst) VALUES (1, 0, 'Standaard benodigdheden')
 INSERT INTO benodigdheid_vertaling (taal_id, benodigdheid_id, tekst) VALUES (1, 1, 'Eten & Drinken')
 INSERT INTO benodigdheid_vertaling (taal_id, benodigdheid_id, tekst) VALUES (2, 1, 'Food & Drinks')
@@ -42,8 +45,6 @@ INSERT INTO benodigdheid_vertaling (taal_id, benodigdheid_id, tekst) VALUES (2, 
 INSERT INTO benodigdheid_vertaling (taal_id, benodigdheid_id, tekst) VALUES (1, 12, 'Fruit')
 INSERT INTO benodigdheid_vertaling (taal_id, benodigdheid_id, tekst) VALUES (2, 12, 'Fruit')
 
-INSERT INTO taal (naam, code, id) VALUES ('Nederlands', 'NL', '1')
-INSERT INTO taal (naam, code, id) VALUES ('Engels', 'EN', '2')
 
 --wachtwoord is een hash voor StrongPassword123!
 INSERT INTO users (username, password, enabled, roles)
