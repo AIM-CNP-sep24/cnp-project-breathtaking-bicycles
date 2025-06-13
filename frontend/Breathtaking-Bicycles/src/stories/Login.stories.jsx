@@ -42,13 +42,11 @@ export const SuccessfulLogin = () => {
   return <Login />;
 };
 SuccessfulLogin.play = async ({ canvasElement }) => {
-  // Spy on window.location.assign to prevent navigation
   const originalAssign = window.location.assign;
   window.location.assign = (url) => {
     console.log('Redirect prevented to:', url);
   };
 
-  // Also spy on href setter if your code uses that
   let hrefValue = '';
   Object.defineProperty(window.location, 'href', {
     configurable: true,
@@ -59,7 +57,6 @@ SuccessfulLogin.play = async ({ canvasElement }) => {
     get: () => hrefValue,
   });
 
-  // Mock fetch as before
   mockFetch({ token: 'mocked-jwt-token' });
 
   const canvas = within(canvasElement);
@@ -71,7 +68,6 @@ SuccessfulLogin.play = async ({ canvasElement }) => {
     expect(localStorage.getItem('jwtToken')).toBe('mocked-jwt-token');
   });
 
-  // Optionally restore original assign method
   window.location.assign = originalAssign;
 };
 
