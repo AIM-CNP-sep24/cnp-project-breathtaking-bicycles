@@ -51,7 +51,8 @@ function InstelPagina({selectedFont,
             selectedLanguageZorgvrager={selectedLanguageZorgvrager}
             setSelectedLanguageZorgvrager={setSelectedLanguageZorgvrager}
             selectedLanguageZorgverlener={selectedLanguageZorgverlener}
-            setSelectedLanguageZorgverlener={setSelectedLanguageZorgverlener}/>
+            setSelectedLanguageZorgverlener={setSelectedLanguageZorgverlener}
+            disabled={disabled}/>
             <InstelPreview uiSettings={previewSettings}/>
         </>
     )

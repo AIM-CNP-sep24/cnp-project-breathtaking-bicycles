@@ -31,8 +31,6 @@ const Template = ({ url = '/instelmenu', ...args }) => (
 );
 
 
-
-
 export const DefaultGeselecteerdeTalen = Template.bind({});
 
     DefaultGeselecteerdeTalen.args = {
