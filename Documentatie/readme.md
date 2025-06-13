@@ -7,13 +7,13 @@
 
 ## Database opzetten
 
-Om de database op te zetten zul moet je eerst het volgende runnen in een terminal in de volgende mappenstructuur: "cnp-project-breathtaking-bicycles/backend/breathtakingbicycles/src/main/resources/db".
+Om de database op te zetten moet je eerst het volgende command runnen in een terminal binnen de volgende mappenstructuur: "cnp-project-breathtaking-bicycles/backend/breathtakingbicycles/src/main/resources/db".
 
 ``` Docker compose up ```
 
 Dit is namelijk waar de docker-compose.yml staat. In dit bestand staan 2 opties voor de database structuur, die is afhankelijk van welk operating systeem je gebruikt. Zorg er dus voor dat je de goeie code op de lijn "image:" hebt staan. 
 
-Als je dit hebt uitgevoerd wordt de database server gecreeerd.
+Als je dit hebt uitgevoerd wordt de database server gecreëerd.
 
 Om toegang te krijgen tot de database moet je een connectie maken via een Database IDE, zoals MSSQL Studio. 
 
@@ -56,6 +56,7 @@ Nu staat de backend aan.
 Om de LibreTranslate API te kunne gebruiken hoef je maar 2 regels code uit te voeren:
 
 ``` 1: docker pull libretranslate/libretranslate```
+
 ``` 2: docker run -ti --rm -p 5000:5000 libretranslate/libretranslate ```
 
 Deze eerste lijn zorgt ervoor dat de API wordt opgehaald naar een docker container, en de tweede lijn zet hem aan op de juiste poort. 
