@@ -1,4 +1,4 @@
-import { within, userEvent, waitFor } from '@storybook/test'
+import { within, userEvent, waitFor } from '@storybook/test';
 import { expect } from '@storybook/test';
 import Login from '../login/Login';
 
@@ -13,13 +13,12 @@ export default {
 let originalFetch;
 
 function mockFetch(response, ok = true) {
-  global.fetch = () =>
+  window.fetch = () =>
     Promise.resolve({
       ok,
       json: () => Promise.resolve(response),
     });
 }
-
 
 export const Default = () => <Login />;
 
@@ -37,7 +36,7 @@ EmptyFields.play = async ({ canvasElement }) => {
 
 export const SuccessfulLogin = () => {
   localStorage.clear();
-  originalFetch = global.fetch;
+  originalFetch = window.fetch;
   mockFetch({ token: 'mocked-jwt-token' });
   return <Login />;
 };
@@ -71,11 +70,9 @@ SuccessfulLogin.play = async ({ canvasElement }) => {
   window.location.assign = originalAssign;
 };
 
-
-
 export const FailedLogin = () => {
   localStorage.clear();
-  originalFetch = global.fetch;
+  originalFetch = window.fetch;
   mockFetch({ message: 'Invalid credentials' }, false);
   return <Login />;
 };
@@ -89,5 +86,5 @@ FailedLogin.play = async ({ canvasElement }) => {
     expect(canvas.getByText('Gebruikersnaam of wachtwoord incorrect!')).toBeInTheDocument();
   });
 
-  global.fetch = originalFetch;
+  window.fetch = originalFetch;
 };
