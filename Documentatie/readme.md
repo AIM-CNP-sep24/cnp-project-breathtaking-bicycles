@@ -7,13 +7,13 @@
 
 ## Database opzetten
 
-Om de database op te zetten zul moet je eerst het volgende runnen in een terminal in de volgende mappenstructuur: "cnp-project-breathtaking-bicycles/backend/breathtakingbicycles/src/main/resources/db".
+Om de database op te zetten moet je eerst het volgende command runnen in een terminal binnen de volgende mappenstructuur: "cnp-project-breathtaking-bicycles/backend/breathtakingbicycles/src/main/resources/db".
 
 ``` Docker compose up ```
 
 Dit is namelijk waar de docker-compose.yml staat. In dit bestand staan 2 opties voor de database structuur, die is afhankelijk van welk operating systeem je gebruikt. Zorg er dus voor dat je de goeie code op de lijn "image:" hebt staan. 
 
-Als je dit hebt uitgevoerd wordt de database server gecreeerd.
+Als je dit hebt uitgevoerd wordt de database server gecreëerd.
 
 Om toegang te krijgen tot de database moet je een connectie maken via een Database IDE, zoals MSSQL Studio. 
 
@@ -23,6 +23,8 @@ De verbinding maak je door de volgende gegevens in te vullen:
 - Authentication type: SQL Login
 - Username: sa
 - Password: Blaziken123
+
+<img src="./images/ScreenshotCnP11.png">
 
 Om de database aan te maken voer je de volgende bestanden uit:
 
@@ -43,11 +45,16 @@ De backend runnen is best wel simpel. Open de folder "cnp-project-breathtaking-b
 
 Aangezien dit project is gemaakt met Maven is het belangrijk dat alle Maven-onderdelen up-to-date zijn, dit kun je checken door op de rechterzijbalk te klikken op het 'M' logootje, en vervolgens op de draaiende pijlen. Dit zorgt ervoor dat alle onderdelen opnieuw worden geladen. Als dit logo hier niet staat, betekend dit dat je in de verkeerde map zit. Check dus goed of je echt in de bovenstaande map zit.
 
+<img src="./images/ScreenshotCnP10.png" width="800">
+
 Navigeer vervolgens naar het bestand: 'BreathtakingbicyclesApplication', en klik op de groene pijl links naast de klasse naam. 
+
+<img src="./images/ScreenshotCnP12.png" width="800">
 
 Als het goed is zou die deze automatisch op moeten pakken en verschijnt deze naam ook rechtsbovenin de IDE links naast de groene pijl. Door op deze pijl te klikken runt de applicatie ook. 
 
-//todo images van backend erin zetten
+<img src="./images/ScreenshotCnP9.png" width="800">
+
 
 Nu staat de backend aan.
 
@@ -56,15 +63,19 @@ Nu staat de backend aan.
 Om de LibreTranslate API te kunne gebruiken hoef je maar 2 regels code uit te voeren:
 
 ``` 1: docker pull libretranslate/libretranslate```
+
 ``` 2: docker run -ti --rm -p 5000:5000 libretranslate/libretranslate ```
 
 Deze eerste lijn zorgt ervoor dat de API wordt opgehaald naar een docker container, en de tweede lijn zet hem aan op de juiste poort. 
+Het duurt even voordat deze geinstalleerd is, omdat allemaal talen moet worden opgehaald.
 
 ## Frontend runnen
 
 Om de frontend te runnen navigeer je naar de volgende folder in een IDE (Ik zou hier Visual Studio Code aanraden): "cnp-project-breathtaking-bicycles/frontend/breathtaking-bicycles"
 
 Klik met je rechtermuisknop op de map breathtaking-bicycles, en klik op "Open Integrated Terminal".
+
+<img src="./images/ScreenshotCnP8.png">
 
 run vervolgens de volgende 2 regels aan code in de terminal:
 
