@@ -80,12 +80,12 @@ function BenodigdhedenPagina({ uiSettings, selectedLanguageZorgverlener, selecte
                                 />
                             </div>
                             <div className=" w-[100%]">
-                                <h1 className={`${uiSettings.font} w-full text-center text-4xl font-bold mt-8`}>{titel}</h1>
+                                <h1 className={`${uiSettings.font} w-full text-center text-4xl font-bold mt-8`}>{titel || "Benodigdheden"}</h1>
                             </div>
                         </div>
                     );
                 }
-                return <h1 className={`${uiSettings.font} w-full text-center text-4xl font-bold px-10`}>{titel}</h1>;
+                return <h1 className={`${uiSettings.font} w-full text-center text-4xl font-bold px-10`}>{titel || "Benodigdheden"}</h1>;
             })()}
 
             <div className="grid-rows-3 text-center mx-5">
