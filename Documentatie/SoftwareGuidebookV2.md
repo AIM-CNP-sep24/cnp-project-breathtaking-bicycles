@@ -161,9 +161,9 @@ De configuratie is te vinden in `.github/workflows/unit-tests.yml`.
   git clone https://github.com/AIM-CNP-sep24/cnp-project-breathtaking-bicycles.git
   
   cd cnp-project-breathtaking-bicycles/frontend/Breathtaking-Bicycles
-  npm instal
+  npm install
 
-  cd cnp-project-breathtaking-bicycles\backend\breathtakingbicycles
-  mvn spring-boot:run
+  cd cnp-project-breathtaking-bicycles/backend/breathtakingbicycles
+  mvn spring-boot:run```
 
 
