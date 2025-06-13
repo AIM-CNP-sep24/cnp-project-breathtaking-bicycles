@@ -119,4 +119,51 @@ Wij gebruiker naast de database ook nog de LibreTranslate API, hier wordt de ing
 Ook gebruiken we de SpeechRecognition Browser API, deze neemt ingesproken tekst op, en geeft getranscribeerde tekst terug. 
 
 
+# CI-pipeline en Productie Deployment
+
+## 1. CI-pipeline (GitHub Actions)
+
+Onze CI-pipeline draait automatisch bij elke **pull request** via GitHub Actions. De pipeline is verdeeld over drie jobs:
+
+### frontend
+- Installeert Node.js v18
+- Schoont de cache en dependencies
+- Installeert npm dependencies
+- Buildt Storybook statisch (`npm run build-storybook`)
+
+### backend
+- Gebruikt Java 21 via Temurin distributie
+- Voert alle JUnit-tests uit via Maven (`mvn test`)
+
+### lint
+- Installeert Node.js v20
+- Voert ESLint uit op frontend-code (`npx eslint "**/*.{js,jsx}"`)
+- Sluit `storybook-static` uit van linting
+
+De configuratie is te vinden in `.github/workflows/unit-tests.yml`.
+
+## 2. Deployment naar een nieuwe productie-server
+
+### Benodigdheden
+
+- Linux-server (getest op Ubuntu 22.04+)
+- Internettoegang
+- Poorten 80 en 443 open
+- SSH-toegang voor beheer
+
+## 3. Productie Deployment Instructies
+
+### Installatie
+- Clone de repository op de server
+- installeer dependecies met npm
+- run backend metn maven
+
+  ```bash
+  git clone https://github.com/AIM-CNP-sep24/cnp-project-breathtaking-bicycles.git
+  
+  cd cnp-project-breathtaking-bicycles/frontend/Breathtaking-Bicycles
+  npm instal
+
+  cd cnp-project-breathtaking-bicycles\backend\breathtakingbicycles
+  mvn spring-boot:run
 
