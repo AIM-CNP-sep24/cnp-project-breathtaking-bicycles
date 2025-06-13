@@ -118,7 +118,6 @@ Wij gebruiker naast de database ook nog de LibreTranslate API, hier wordt de ing
 
 Ook gebruiken we de SpeechRecognition Browser API, deze neemt ingesproken tekst op, en geeft getranscribeerde tekst terug. 
 
-
 # CI-pipeline en Productie Deployment
 
 ## 1. CI-pipeline (GitHub Actions)
@@ -166,4 +165,5 @@ De configuratie is te vinden in `.github/workflows/unit-tests.yml`.
 
   cd cnp-project-breathtaking-bicycles\backend\breathtakingbicycles
   mvn spring-boot:run
+
 
